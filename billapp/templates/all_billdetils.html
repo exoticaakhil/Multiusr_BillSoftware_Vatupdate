@@ -10,6 +10,7 @@
  
     .bs{
         box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.397);
+        background-color: #FFD6D7;
     }
 
     .bs_sm{
@@ -118,6 +119,9 @@
     .th{
         color: black;
     }
+    .bb{
+        background-color: #68020F;
+    }
 
     @media print{
         body{
@@ -171,7 +175,7 @@
     <div class="row ps-3 pe-3 m-0" >
         <div class="col-sm-12 ps-2 pe-3">
             <div class="row pt-0 m-0">
-                <div class="card p-0 bg-light bs"><br>
+                <div class="card p-0  bs"><br>
                     <div class="row">
                         <div class="container">
                             <div class="row">
@@ -214,7 +218,7 @@
 
             <div class="row pt-0 m-0">
 
-                <div class="card p-0 bg-light bs" style="height: 36rem;">
+                <div class="card p-0  bs" style="height: 36rem; border: #FFADB0;">
                     <div class="row m-0 p-0 pt-3">
                         <div class="col-sm-12 col-lg-3">
                             <h4 class="tb fw-bolder pt-2 text-dangerborder-danger">PURCHASE BILLS</h4>
@@ -227,7 +231,7 @@
                         </div>
                         <div class="col-md-6"></div>
                         <div class="col-md-2">
-                            <a class="btn btn-danger bg-gradient w-90" href="{% url 'createbill' %}" style="color: white;"> 
+                            <a class="btn bb bg-gradient w-90" href="{% url 'createbill' %}" style="color: white;"> 
                                 <i class="fa fa-plus border-dark" aria-hidden="true" style="color: white;"></i> &nbsp;Add Purchase Bill
                             </a>
                         </div>
@@ -237,74 +241,74 @@
                     <div class="row">
                         <div class="col-md-12" style="margin-left: 2vh;">
                             <div class="mt-3" style="overflow: scroll;height: 28rem; width: 97%;" id="tablediv">
-                                <table class="table table-bordered table-dangerbtn-danger table-striped tb table-responsive w-100" id="billtable"  style="text-align: center;">
+                                <table class="table table-bordered table-danger  table-striped tb table-responsive w-100" id="billtable"  style="text-align: center;background-color: #68020F;color:white;">
                                     <thead >
                                         <tr class="fs-2 tb">
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black">
+                                            <th style="background-color:#68020F;" class=" border-danger text-white">
                                                 DATE 
-                                                <a class="extra text-black" onclick="toggleDropdown(0)">&nbsp;<i class="fa fa-filter" aria-hidden="true"></i></a>
+                                                <a class="extra text-black" onclick="toggleDropdown(0)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent0">
                                                     <label for="filterInput0" style="color: black; text-align: left;">Equal To</label>
                                                     <input type="date" id="filterInput0"  />
-                                                    <a class="btn btn-danger" onclick="cleardropdown(0)">Clear</a> 
-                                                    &nbsp;<a class="btn btn-danger" onclick="filterTable(0)">Apply</a>
+                                                    <a class="btn " style="background-color: #68020F;color:white;" onclick="cleardropdown(0)">Clear</a> 
+                                                    &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(0)">Apply</a>
                                                 </div>
                                             </th>
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black">
+                                            <th style="background-color:#68020F;" class=" border-danger text-white">
                                                 BILL NO 
-                                                <a class="extra text-black" onclick="toggleDropdown(1)">&nbsp;<i class="fa fa-filter" aria-hidden="true"></i></a>
+                                                <a class="extra text-black" onclick="toggleDropdown(1)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent1">
                                                     <label for="filterInput1" style="color: black; text-align: left;">Equal To</label>
                                                     <input type="text" id="filterInput1"  />
-                                                    <a class="btn btn-danger" onclick="cleardropdown(1)">Clear</a> 
-                                                    &nbsp;<a class="btn btn-danger" onclick="filterTable(1)">Apply</a>
+                                                    <a class="btn " style="background-color: #68020F;color:white;" onclick="cleardropdown(1)">Clear</a> 
+                                                    &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(1)">Apply</a>
                                                 </div>
                                             </th>
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black">
+                                            <th style="background-color:#68020F;" class=" border-danger text-white">
                                                 PARTY NAME 
-                                                <a class="extra text-black" onclick="toggleDropdown(2)">&nbsp;<i class="fa fa-filter" aria-hidden="true"></i></a>
+                                                <a class="extra text-black" onclick="toggleDropdown(2)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent2">
                                                     <label for="filterInput2" style="color: black; text-align: left;">Equal To</label>
                                                     <input type="text" id="filterInput2"  />
-                                                    <a class="btn btn-danger" onclick="cleardropdown(2)">Clear</a> 
-                                                    &nbsp;<a class="btn btn-danger" onclick="filterTable(2)">Apply</a>
+                                                    <a class="btn " style="background-color: #68020F;color:white;" onclick="cleardropdown(2)">Clear</a> 
+                                                    &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(2)">Apply</a>
                                                 </div>
                                             </th>
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black">
+                                            <th style="background-color:#68020F;" class=" border-danger text-white">
                                                 AMOUNT
-                                                <a class="extra text-black" onclick="toggleDropdown(3)">&nbsp;<i class="fa fa-filter" aria-hidden="true"></i></a>
+                                                <a class="extra text-black" onclick="toggleDropdown(3)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent3">
                                                     <label for="filterInput3" style="color: black; text-align: left;">Equal To</label>
                                                     <input type="text" id="filterInput3"  />
-                                                    <a class="btn btn-danger" onclick="cleardropdown(3)">Clear</a> 
-                                                    &nbsp;<a class="btn btn-danger" onclick="filterTable(3)">Apply</a>
+                                                    <a class="btn " style="background-color: #68020F;color:white;" onclick="cleardropdown(3)">Clear</a> 
+                                                    &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(3)">Apply</a>
                                                 </div>
                                             </th>
                                             
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black">
+                                            <th style="background-color:#68020F;" class=" border-danger text-white">
                                                ACTION
-                                                <a class="extra text-black" onclick="toggleDropdown(4)">&nbsp;<i class="fa fa-filter" aria-hidden="true"></i></a>
+                                                <a class="extra text-black" onclick="toggleDropdown(4)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent4">
                                                     <label for="filterInput4" style="color: black; text-align: left;">Equal To</label>
                                                     <input type="text" id="filterInput4" />
-                                                    <a class="btn btn-danger" onclick="cleardropdown(4)">Clear</a> 
-                                                    &nbsp;<a class="btn btn-danger" onclick="filterTable(4)">Apply</a>
+                                                    <a class="btn " style="background-color: #68020F;color:white;" onclick="cleardropdown(4)">Clear</a> 
+                                                    &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(4)">Apply</a>
                                                 </div>
                                             </th>
                                             
                                            
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black extra">
+                                            <th style="background-color:#68020F;" class=" border-danger text-white extra">
                                               BY
-                                                &nbsp; <a onclick="toggleDropdown(6)"><i class="fa fa-filter" aria-hidden="true"></i></a>
+                                                &nbsp; <a onclick="toggleDropdown(6)"><i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent6">
                                                     <label for="filterInput6" style="color: black; text-align: left;">Equal To</label>
                                                     <input type="text" id="filterInput6" />
-                                                    <a class="btn btn-danger" onclick="cleardropdown(6)">Clear</a> 
-                                                    &nbsp;<a class="btn btn-danger" onclick="filterTable(6)">Apply</a>
+                                                    <a class="btn " style="background-color: #68020F;color:white;" onclick="cleardropdown(6)">Clear</a> 
+                                                    &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(6)">Apply</a>
                                                 </div>
                                             </th>
                                             
-                                            <th style="background-color: #FFD6D7;" class=" border-danger text-black extra"></th>
+                                            <th style="background-color:#68020F;" class=" border-danger text-white extra"></th>
                                         </tr>
                                     </thead>
                                     <tbody>

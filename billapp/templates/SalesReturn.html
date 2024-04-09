@@ -154,7 +154,7 @@
 <div class="body-wrapper">
     <div class="container">
         <br><br><br><br><br><br><br>
-        <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
+x        <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
             <div class="card-body">
                 <h1 class="modal-title fs-5 p-1" id="exampleModalLabel"
                                     style="color: #68020F; font-weight: 900;">ADD CREDITNOTE</h1>
@@ -236,7 +236,9 @@
                     <div class="row mt-3 partyon" id="salesinvoiceid" hidden>
                         <div class="col-md-4">
                             <label for="validationDefaultUsername" class="form-label">Invoice Number</label>
-                            <input type="text" class="form-control" id="invoiceno" name="invoiceno">
+                            <select   name="invoiceno" class="form-control">
+                                <option value=" {{ party.salesinvoice.invoice_no }}" id="invoiceno"> {{ party.salesinvoice.invoice_no }}</option>
+                            </select>
                         </div>
                         <div class="col-md-4">
                             <label for="validationDefaultUsername" class="form-label">Invoice Date</label>
@@ -266,7 +268,7 @@
                                     <td class="p-3">
                                         <div style="display: flex;">
                                             <div class="myDropDown" style="width: max-content;">
-                                                <select id="item_name" class="form-control item-name" name="item_name[]" required>      
+                                                <select id="item_name" class="form-control item-name" name="item_name[]" onchange="changeprd1()" required>      
                                                     <option selected disabled>Select Item</option>
                                                     {% for item in items %}
                                                     <option value="{{ item.id }} {{ item.itm_hsn }} {{ item.itm_sale_price }} {{ item.itm_vat }}">{{ item.itm_name }}</option>
@@ -289,7 +291,7 @@
                                     <td class="p-3"><input type="number" class="form-control small-input discount-input" id="discount" name="discount[]" value="0"></td>
                                     <td class="p-3"><input type="text" class="form-control small-input total-input" id="total" name="total[]" value="0"></td>
                                     <td class="p-3"><button type="button" class="btn button_border delete-row-button">
-                                        <span class="fa fa-minus"></span>
+                                        Delete
                                     </button></td>
                                 </tr>
                                 
@@ -566,7 +568,7 @@
                                     <div class="container-fluid">
                                         <form id="itmodalform" action="" enctype="multipart/form-data" method="post">
                                             {% csrf_token %}
-
+                                            <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
                                             <div class="form-group row">
                                                 <div class="d-flex">
                                                     <div class="pt-3 w-50">
@@ -610,24 +612,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tabContainer2">
-                                                <ul class="nav nav-pills nav-fill mt-3" id="myTabs2">
-                                                        <li class="nav-item">
-                                                            <button type="button" class="nav-link" id="defaultOpen2"
-                                                                onclick="showPanel2(0)">PRICING</button>
-
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <button type="button" class="nav-link" id="stockTab"
-                                                            onclick="showPanel2(1)">STOCKS</button>
-
-                                                        </li>
-                                            
-                                                </ul>
-                                                <div id="pricingForm" class="tab-pane p-3" style="margin-top: 3%;">
-                                                    <div class="form-group row">
-                                                        <div class="col-md-6">
-                                                            <div class="pt-1 mb-4" >
+                                            </div>
+                                            <br><br>
+                                            <div class="row">
+                                                <div  class="col-sm-12 col-md-1"></div>
+                                                <div class="col-sm-12 col-md-5 pb-4">
+                                                  <div class="me-3 text-center">
+                                                    <h3><strong class="fw-bolder" style="color: #68020F;">PRICING</strong></h3>
+                                                  </div>
+                                                  <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
+                                                        <div class="col-md-12">
+                                                            <div class="pt-1 mt-3" >
                                                                 <input type="text" name="taxable_result" id="taxable_result" hidden>
                                                                 <label style="user-select: none;" class="fs-4 tb" for="item_tax_1">Tax</label> &nbsp;
                                                                 <input id="item_tax_1" class="me-3" type="radio" name="item_tax_result" required>
@@ -635,21 +630,21 @@
                                                                 <input id="item_tax_2" type="radio" name="item_tax_result" required>
                                                               </div>
                                           
-                                                              <div id="vatdiv" class="mb-2 pt-3" hidden>
+                                                              <div id="vatdiv" class="mb-3 pt-3" hidden>
                                                                   <label class="fw-bold tb fs-3" for="">VAT</label><br>
                                                                   <input type="text" class="form-control mt-1 input_border text-black" name="vat" id="vat">
                                                               </div>
                                                         </div><br>  
-                                                    </div>
+                                                    
                                                     <div class="taxable-fields">
-                                                    <div class="form-group row mt-3">    
-                                                        <div class="col-md-6">
+                                                    <div class="form-group row ">    
+                                                        <div class="col-md-12 mb-3">
                                                             <div>
                                                                 <label for="saleprice" class="col-form-label">SALES PRICE</label>
                                                                 <input type="number" class="form-control" id="item_slprice" name='item_slprice'>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12 mb-3">
                                                             <div>
                                                                 <label for="purchase" class="col-form-label">PURCHASE PRICE</label>
                                                                 <input type="number" class="form-control" id="item_prprice" name='item_prprice'>
@@ -657,45 +652,49 @@
                                                         </div>
                                                     </div>    
                                                     </div>
-                                                    <div class="col-md-12 d-flex justify-content-start mt-5">
-                                                        <button type="button" class="btn button_border me-3 next-btn-2" onclick="showPanel2(1)">NEXT</button>
-                                                    </div>
+                                                </div>
                                                 </div>
 
-                                                <div id="stockForm" class="tab-pane p-3" style="margin-top: 3%;">
+                                                <div class="col-sm-12 col-md-5 pb-4">
+                                                    <div class="me-3 text-center">
+                                                      <h3><strong class="fw-bolder" style="color: #68020F;">STOCKS</strong></h3>
+                                                    </div>
+                                                    <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
                                                     <div class="form-group row">    
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div>
                                                                 <label for="opstock" class="col-form-label">OPENING STOCK</label>
-                                                                <input type="number" class="form-control" id="item_opstock" name='item_opstock'>
+                                                                <input type="number" class="form-control" id="item_opstock" name='item_opstock' value="0">
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div>
                                                                 <label for="atprice" class="col-form-label">AT PRICE</label>
-                                                                <input type="number" class="form-control" id="item_atprice" name='item_atprice'>
+                                                                <input type="number" class="form-control" id="item_atprice" name='item_atprice' value="0">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mt-3">    
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div>
                                                                 <label for="stdate" class="col-form-label">DATE</label>
                                                                 <input type="date" class="form-control" id="item_stdate" name='item_stdate' value="{% now 'Y-m-d' %}">
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                                     
-                                                    <div class="col-md-12 d-flex justify-content-start mt-5">
-
-                                                        <button type="button" class="btn button_border me-3 prev-btn-2" onclick="showPanel2(0)">PREVIOUS</button>
-                                                        <button type="button" class="btn button_border me-3" data-dismiss="modal" id="itemSave">SAVE</button>
-
-                                                    </div>
+                                                    
                                                 </div>
 
                                             
                                             </div>
+                                         
+
+                                               
+                                                <button type="button" class="btn button_border me-3" data-dismiss="modal" id="itemSave">SAVE</button>
+
+                                            
                                         </form>
                                     </div>
                                     
@@ -920,6 +919,7 @@
                     $('#balance').text("Available Balance: " + data.balance).show();
                     $('#party_phone').val(data.phone);
                     $('#address').val(data.address)
+                    
                     // Check if invoice number and date are available
                     if (data.invoiceno && data.invoicedate) {
                         // Show salesinvoiceid div if valid data is available
@@ -1043,7 +1043,7 @@
                     <td class="p-3"><input type="number" class="form-control small-input discount-input" id="discount_${serialNumber}" name="discount[]" value="0"></td>
                     <td class="p-3"><input type="text" class="form-control small-input total-input" id="total_${serialNumber}" name="total[]" value="0"></td>
                     <td class="p-3"><button type="button" class="btn button_border delete-row-button">
-                        <span class="fa fa-minus"></span>
+                        Delete
                     </button></td>
                 </tr>
             `;

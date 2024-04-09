@@ -1405,11 +1405,7 @@ def SalesReturn(request):
     else:
         reference_no = 1
 # Check if there are deleted credit notes in CreditNoteReference
-    if CreditNoteReference.objects.filter(company=cmp).exists():
-      last_reference_no = CreditNoteReference.objects.filter(company=cmp).last().reference_no
-      print("last_reference_no", last_reference_no)
-      if int(last_reference_no) > max_reference_no:
-        reference_no = int(last_reference_no) + 1
+  
     context = {'usr':request.user, 'parties':parties, 'items':items,'unit':unit,'cmp':cmp,'reference_number': reference_no}
     
     return render(request, 'SalesReturn.html', context)
@@ -1555,6 +1551,7 @@ def saveItem(request):
                 itm_at_price=itm_at_price,
                 itm_date=itm_date
             )
+    print(item)
     item.save()
     trans = ItemTransactions(user = request.user, item = item, trans_type = 'Stock Open', trans_date = itm_date, trans_qty = itm_stock_in_hand, 
                              trans_current_qty = itm_stock_in_hand, trans_adjusted_qty = itm_stock_in_hand, trans_price = itm_at_price)
@@ -1734,6 +1731,7 @@ def delete_creditnote(request,pk):
     cmp = request.user.employee.company
   creditnote=CreditNote.objects.get(id=pk,company=cmp)
   reference_no=creditnote.reference_no
+  CreditNoteItem.objects.filter(credit_note= creditnote,company=cmp).delete()
   cr=CreditNoteReference.objects.create(user=request.user,company=cmp,reference_no=reference_no)
   cr.save()
   creditnote.delete()

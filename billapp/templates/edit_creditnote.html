@@ -175,12 +175,7 @@
                             </div>
                         </div><br>  
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-md-4">
-                            <label for="validationDefaultUsername" class="form-label">Reference Number</label>
-                            <input type="text" class="form-control" id="refnum" name="refnum" value="{{credit_note.reference_no }}" readonly>
-                        </div>
-                    </div>
+              
                     <div class="row mt-3">
                         <div class="col-md-8">
                             <div class="row">
@@ -220,15 +215,19 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label for="validationDefaultUsername" class="form-label">Return Date</label>
                                     <input type="date" class="form-control" id="returndate" name="returndate" value="{{credit_note.returndate|date:'Y-m-d' }}">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationDefaultUsername" class="form-label">Reference Number</label>
+                                    <input type="text" class="form-control" id="refnum" name="refnum" value="{{credit_note.reference_no }}" readonly>
                                 </div>
                                 <!-- <div class="col-md-4 partyonfield" hidden>
                                     <label for="validationDefaultUsername" class="form-label">Place of Supply</label>
                                     <input type="text" class="form-control" id="placesupply" name="placesupply" value="{{credit_note.salesinvoice.address}}">
                                 </div> -->
-                                <div class="col-md-6 partyonfield" hidden>
+                                <div class="col-md-4 partyonfield" hidden>
                                     <label for="validationDefaultUsername" class="form-label">Payment method</label>
                                     <input type="text" class="form-control" id="paymethod" name="paymethod" value="{{credit_note.party.payment}}" readonly>
                                 </div>
