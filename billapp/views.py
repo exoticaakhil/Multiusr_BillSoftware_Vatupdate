@@ -1490,8 +1490,9 @@ def get_partydetails(request):
         cmp = request.user.employee.company  
     party_id= request.POST.get('id').split(" ")[0]
     party=Party.objects.get(company=cmp,id=party_id)
+    print(party_id)
     print(party.party_name)
-    sales_invoice = SalesInvoice.objects.filter(company=cmp,party=party).first()
+    sales_invoice = SalesInvoice.objects.filter(company=cmp,party=party)
 
     balance=party.openingbalance
     phone=party.contact
@@ -1499,17 +1500,32 @@ def get_partydetails(request):
     if party.address:
       address=party.address
     if sales_invoice:
-      invoiceno = sales_invoice.invoice_no
-      print(invoiceno)
-      invoicedate = sales_invoice.date
-      placeofsupply = sales_invoice.address
+      invoice_n = []
+      invoice_d =[]
+      invoice_p =[]
+      for i in sales_invoice:
+          invoice_n.append(i.invoice_no)
+          invoice_d.append(i.date)
+          invoice_p.append(i.address)
+      
+      print(invoice_n)
+     
+     
     else:
-      invoiceno = None
-      invoicedate = None
-      placeofsupply = None
+      invoice_n = None
+      invoice_d = None
+      invoice_p = None
 
-    return JsonResponse({'address':address,'balance':balance,'phone':phone,'invoiceno':invoiceno,'invoicedate':invoicedate,'placeofsupply':placeofsupply,'payment':payment})
-
+    return JsonResponse({'address':address,'balance':balance,'phone':phone,'invoiceno':invoice_n,'invoicedate':invoice_d,'placeofsupply':invoice_p,'payment':payment})
+def get_invoice_date(request):
+    invoiceno = request.GET.get('invoiceno') 
+    print(invoiceno,'ftydf') # Get the selected invoice number from the GET request
+    try:
+        invoice = SalesInvoice.objects.get(invoice_no=invoiceno)  # Assuming 'invoice_no' is the field name in your Invoice model
+        invoicedate = invoice.date  # Assuming 'date' is the field name in your Invoice model
+        return JsonResponse({'invoicedate': str(invoicedate)})  # Convert the date to string if needed
+    except SalesInvoice.DoesNotExist:
+        return JsonResponse({'error': 'Invoice not found'}, status=404)
 
 def saveItem(request):
   if request.method == 'POST':
@@ -1616,6 +1632,7 @@ def saveCreditnote(request):
     grandtotal=request.POST.get('grandTotal')
     party_status = request.POST.get('partystatus')
     print("Partystatus: ",party_status)
+    print(grandtotal)
     creditnote_curr = CreditNote(user=usr, company=cmp,reference_no=reference_no,partystatus=party_status,returndate=return_date, subtotal=subtotal, vat=vat, adjustment=adjustment, grandtotal=grandtotal)
     creditnote_curr.save()
     if party_status=='partyon':
@@ -1634,15 +1651,13 @@ def saveCreditnote(request):
       else:
         pass
     
-    item_name =request.POST.getlist('item_name[]')
+    item_name = tuple(request.POST.getlist("product[]"))
     print("item name: ",item_name)
-    quantity =request.POST.getlist('qty[]')
+    quantity = tuple(request.POST.getlist("qty[]"))
     print("item qty: ",quantity)
-    price =request.POST.getlist('price[]')
-    tax =request.POST.getlist('tax[]')
-    discount = request.POST.getlist('discount[]')
-    hsn = request.POST.getlist('hsn[]')
-    total = request.POST.getlist('total[]')
+    tax =  tuple(request.POST.getlist("vat[]"))
+    total = tuple(request.POST.getlist("total[]"))
+    discount = tuple(request.POST.getlist("discount[]"))
     
     if len(item_name) == len(quantity) == len(price) == len(tax) == len(discount) == len(hsn) == len(total) and item_name and quantity and price and tax and discount and hsn and total:
       mapped=zip(item_name,quantity,price,tax,discount,hsn,total)

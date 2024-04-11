@@ -79,6 +79,7 @@ urlpatterns = [
     path('party_dropdown',views.party_dropdown,name="party_dropdown"),
     path('get_partydetails',views.get_partydetails,name="get_partydetails"),
     path('saveItem',views.saveItem,name="saveItem"),
+    path('get_invoice_date',views.get_invoice_date,name="get_invoice_date"),
     path('get_itemdetails',views.get_itemdetails,name="get_itemdetails"),
     path('fetch_item_details',views.fetch_item_details,name="fetch_item_details"),
     path('get_item_dropdown',views.get_item_dropdown,name="get_item_dropdown"),
