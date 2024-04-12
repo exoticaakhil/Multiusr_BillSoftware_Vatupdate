@@ -97,7 +97,7 @@
 
         height: 39px;
         border: 1px solid #68020F;  /* Add border style */
-        background-color: #FFD6D7;
+        background-color: white;
         color: white;  /* Add text color */
         display: flex; /* Use Flexbox */
         align-items: center; /* Align vertically in the center */
@@ -154,7 +154,7 @@
 <div class="body-wrapper">
     <div class="container">
         <br><br><br><br><br><br><br>
-       <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
+       <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: white;">
             <div class="card-body">
                 <h1 class="modal-title fs-5 p-1" id="exampleModalLabel"
                                     style="color: #68020F; font-weight: 900;">ADD CREDITNOTE</h1>
@@ -267,7 +267,9 @@
                                         <th class="text-center">FIELD</th>
                                     </tr>
                                 </thead>
+                                
                                 <tbody id="items-table-body">
+                                    
                                     <tr id='addr01'>
                                         <td class="nnum" style="text-align: center; color: black; width:2%">1</td>
 
@@ -275,10 +277,10 @@
                                             <div class="d-flex">
                                                 
                                                 <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd1()" style="color: black; background-color: white; ">
-                                                    <option value="" selected hidden>Select Product</option>
-                                                    {% for i in item %}
+                                                    <option selected disabled>Select Item</option>
+                                                     {% for item in items %}
                                                         {% if i.cid_id == cmp.cid %}
-                                                            <option style="border-color: #FFADB0;" value="{{ i.id }}" >{{ i.itm_name  }} </option>
+                                                            <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </select> &nbsp;&nbsp;&nbsp;
@@ -290,52 +292,53 @@
                                         </td>
 
                                         <td style="width:15%">
-                                            <input type="text" name='hsn[]' id="hsn" class="form-control border-danger HSNCODE" style="color: black; background-color: #FFD6D7 ;" readonly />
+                                            <input type="text" name='hsn[]' id="hsn" class="form-control  HSNCODE" style="color: black; background-color: white ;" readonly />
                                         </td>
 
                                         <td style="width:13%">
-                                            <input type="number" name='qty[]' id="qty"  class="form-control border-danger qty mb-1" step=0 min=0 style="color: black; background-color: #FFD6D7 ;" value=0  required />
+                                            <input type="number" name='qty[]' id="qty"  class="form-control  qty mb-1" step=0 min=0 style="color: black; background-color: white ;" value=0  required />
                                         </td>
                                     
                                         <td style="width:12%">
-                                            <input type="number" name='price[]' id="unit" class="form-control border-danger price" step="0.00" min="0" style="color: black; background-color: #FFD6D7 ;" value=0 readonly />
+                                            <input type="number" name='price[]' id="unit" class="form-control  price" step="0.00" min="0" style="color: black; background-color: white ;" value=0 readonly />
                                         </td>
                                         <td style="width:12%">
-                                            <input type="text" name='vat[]' id="Vat" class="form-control border-danger seltax"  step="0.00" min="0" style="color: black; background-color: #FFD6D7 ;" value=0 readonly />
+                                            <input type="text" name='vat[]' id="Vat" class="form-control  seltax"  step="0.00" min="0" style="color: black; background-color: white ;" value=0 readonly />
                                         </td>
                                        
 
                                         <td style="width: 10%;">
-                                            <input type="number" name='discount[]'  placeholder='Enter Discount' id="disc" value=0 class="form-control border-danger disc" step=0 min=0 style="  color: black; background-color: #FFD6D7 ;"  />
+                                            <input type="number" name='discount[]'  placeholder='Enter Discount' id="disc" value=0 class="form-control  disc" step=0 min=0 style="  color: black; background-color:white;"  />
                                         </td>
                     
                                         <td style="width:13%">
-                                            <input type="number" name='total[]' id="total" class="form-control border-danger total" value=0 readonly style="color: black; background-color:#FFD6D7;"  />
+                                            <input type="number" name='total[]' id="total" class="form-control  total" value=0 readonly style="color: black; background-color:white;"  />
                                         </td>
-                                        <td hidden><input type="number"  id="taxamount" class="taxamount" /></td>
+                                        <td hidden><input disabled type="number"  id="taxamount" class="taxamount" /></td>
                                         
                                         <td style="width:5%">
                                             
-                                            <button type="button" id="1" class="btn btn-danger remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row"> Delete</button>
+                                            <button type="button" id="1" class="btn button_border  remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row"> Delete</button>
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tr>
-                                    <td style="border: none;"><a class="btn btn-outline-danger ml-1" role="button" id="add" ><span class="fa fa-plus"></span></a></td>
+                                    
                                 </tr>
                             </table>
+                            <a class="btn  ml-1" role="button" id="add" style="border-color: #68020F;" ><span class="fa fa-plus"></span></a>
                         </div>
                     </div>
 
                     <div class="clearfix" style="margin-top:10px">
                         <div class="row" style="margin-left: 2vh;" >
-                            <div class="col-md-5 table-responsive-md mt-3 " id="tab_logic_total" style=" color: black; border: 1px solid #FFADB0; margin-left: -2vh; background-color: #FFADB0 ">
+                            <div class="col-md-5 table-responsive-md mt-3 " id="tab_logic_total" style=" color: black; border: 1px solid #68020F ; margin-left: -2vh;" >
                                 <div class="p-3">
                                     <div class="row container-fluid p-2 m-0">
                                         <div class="col-sm-4 mt-2"><label class="text-center">Sub Total</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                            <input type="number" step="any" name='subtotal' value=0.00 readonly style="color: black; background-color: white;" class="form-control border-danger" id="sub_total">
+                                            <input type="number" step="any" name='subtotal' value=0.00 readonly style="color: black; background-color:white;" class="form-control " id="sub_total">
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -346,7 +349,7 @@
                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">VAT Amount</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                        <input type="number" step="any" name='disvatper' id="tax_amount" value=0.00 readonly style="color: black; background-color: white;" class="form-control border-danger"/>
+                                        <input type="number" step="any" name='disvatper' id="tax_amount" value=0.00 readonly style="color: black; background-color: white;" class="form-control "/>
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -355,7 +358,7 @@
                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Adjustment</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                        <input type="number" step="any" name='adjustment' id="adj" value=0.00 class="form-control border-danger" style="color: black; background-color: white;"/>
+                                        <input type="number" step="any" name='adjustment' id="adj" value=0.00 class="form-control " style="color: black; background-color: white;"/>
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -364,7 +367,7 @@
                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Grand Total</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: black; background-color: white;" class="form-control border-danger"/>
+                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: black; background-color:white;" class="form-control "/>
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -600,7 +603,7 @@
                                     <div class="container-fluid">
                                         <form id="itmodalform" action="" enctype="multipart/form-data" method="post">
                                             {% csrf_token %}
-                                            <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
+                                            <div class="p-3" style="background-color: white; border-radius: 2.5vh;border:2px solid #68020F" >
                                             <div class="form-group row">
                                                 <div class="d-flex">
                                                     <div class="pt-3 w-50">
@@ -652,7 +655,7 @@
                                                   <div class="me-3 text-center">
                                                     <h3><strong class="fw-bolder" style="color: #68020F;">PRICING</strong></h3>
                                                   </div>
-                                                  <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
+                                                  <div class="p-3" style="background-color: white; border-radius: 2.5vh;border:2px solid #68020F" >
                                                         <div class="col-md-12">
                                                             <div class="pt-1 mt-3" >
                                                                 <input type="text" name="taxable_result" id="taxable_result" hidden>
@@ -691,7 +694,7 @@
                                                     <div class="me-3 text-center">
                                                       <h3><strong class="fw-bolder" style="color: #68020F;">STOCKS</strong></h3>
                                                     </div>
-                                                    <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
+                                                    <div class="p-3" style="background-color: white; border-radius: 2.5vh;border:2px solid #68020F" >
                                                     <div class="form-group row">    
                                                         <div class="col-md-12">
                                                             <div>
@@ -839,7 +842,7 @@ $(document).ready(function(){
 
                 <td style="width:18%">
                     <div class="d-flex">
-                        <select name='product[]' id="product${roinc}" class="form-control border-danger product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
+                        <select name='product[]' id="product${roinc}" class="form-control  product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
                             <option value="" selected hidden>Select Product</option>
                             {% for i in item %}
                                 {% if i.cid_id == cmp.cid %}
@@ -856,33 +859,33 @@ $(document).ready(function(){
                 </td>
 
                 <td tyle="width:15%">
-                    <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control border-danger px-1 hsn" style="color: black; background-color: #FFD6D7;" readonly />
+                    <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control  px-1 hsn" style="color: black; background-color: white;" readonly />
                 </td>
 
                 <td style="width:10%">
-                    <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control border-danger qty mb-1" step=0 min=0 style="color: black; background-color: #FFD6D7;" required />
+                    <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control  qty mb-1" step=0 min=0 style="color: black; background-color: white;" required />
                 </td>
 
                 <td tyle="width:12%">
-                    <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control border-danger price" step="0.00" min="0" style="color: black; background-color: #FFD6D7;" readonly/>
+                    <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control  price" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
                 </td>
 
                 <td tyle="width:12%">
-                    <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control border-danger seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color:#FFD6D7;" readonly/>
+                    <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control  seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color:white;" readonly/>
                 </td>  
 
                 <td tyle="width:8%">
-                    <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control border-danger disc" step=0 min=0 style="color: black; background-color: #FFD6D7;">
+                    <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control  disc" step=0 min=0 style="color: black; background-color: white;">
                 </td>
 
                 <td style="width:10%">
-                    <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control border-danger total" value=0 step="any" style="color: black; background-color:#FFD6D7;" readonly />
+                    <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control  total" value=0 step="any" style="color: black; background-color:white;" readonly />
                 </td>
 
-                <td hidden><input type="number" step="any"  id="taxamount${roinc}" class=" taxamount" /></td>
+                <td hidden><input disabled type="number" step="any"  id="taxamount${roinc}" class=" taxamount" /></td>
                 
                 <td style="width:10%">
-                    <button type="button" id="${roinc}" class="btn btn-danger px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
+                    <button type="button" id="${roinc}" class="btn button_border  px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
                 </td>
             </tr>`
         );
@@ -1108,8 +1111,8 @@ $(document).on('change', '.itemselect2',function(){
             }
         }
 
-        var itemInputs = document.querySelectorAll('.item-name');
-        var qtyInputs = document.querySelectorAll('.qty-input');
+        var itemInputs = document.querySelectorAll('.product');
+        var qtyInputs = document.querySelectorAll('.qty');
 
     for (var i = 0; i < itemInputs.length; i++) {
         var item = itemInputs[i];
@@ -1316,6 +1319,24 @@ $(document).on('change', '.itemselect2',function(){
             
         });
      });
+     $('#invoiceno').change(function() {
+        var selectedInvoiceNo = $(this).val(); // Get the selected invoice number
+        $.ajax({
+            url: "{% url 'get_invoice_item' %}",
+       // Replace "your_server_endpoint" with the actual URL to fetch the invoice date
+            method: "GET", // or "POST" depending on your server endpoint
+            data: { invoiceno: selectedInvoiceNo },
+            success: function(response) {
+                // Update the invoicedate input field with the corresponding invoice date
+                var invoiceitem = response.items;
+
+                
+                console.log(response.items)
+            },
+            
+        });
+     });
+
 
 
         // $('#party_details').change(function() {

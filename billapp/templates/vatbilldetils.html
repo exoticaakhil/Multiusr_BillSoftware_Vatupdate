@@ -105,6 +105,10 @@
         overflow-y: auto;
         border: none;
     }
+    .button_border {
+        border: 1px solid #68020F;
+        color: #68020F;
+    }
 
     @media print{
         body{
@@ -219,11 +223,11 @@
                             </div>
                             </div>
                             <div class="row pb-0 mb-0 mt-1" style="margin-top:-2vh">
-                                <div id="templates" class="col text-center pb-2 pt-3" style="background-color: #FFADB0"  >
-                                    <a class="fw-bolder fs-4" style="color: black; text-decoration: none; " >TEMPLATE</a>
+                                <div id="templates" class="col text-center pb-2 pt-3"   >
+                                    <a class="fw-bolder fs-4" style="color: rgb(0, 0, 0); text-decoration: none; " >TEMPLATE</a>
                                 </div>
-                                <div id="slip" class="col text-center pb-2 pt-3" style="background-color: #FFADB0" >
-                                    <a class="fw-bolder fs-4" style="color: black; text-decoration: none;" >BILL SLIP</a>
+                                <div id="slip" class="col text-center pb-2 pt-3"  >
+                                    <a class="fw-bolder fs-4" style="color: rgb(0, 0, 0); text-decoration: none;" >BILL SLIP</a>
                                 </div>
                             </div>
                             
@@ -236,7 +240,7 @@
                                                 <div id="ember2512" class="tooltip-container ember-view ribbon text-ellipsis">
                                                     <section>
                                                         <div class="text-center">
-                                                            <h2 class="text-white bg-danger p-3">PURCHASE BILL</h2>
+                                                            <h2 class="text-white  p-3" style="background-color: #68020F;color:white;">PURCHASE BILL</h2>
                                                         </div>
                                                     </section>
                                                     <br>
@@ -273,15 +277,15 @@
 
                                                     <section class="product-area mt-4">
                                                         <table class=" table table-hover table-bordered border-dark" id="table1">
-                                                            <thead style="background-color: #FFADB0;">
+                                                            <thead style="background-color:#68020F;">
                                                                 <tr>
-                                                                    <td style="text-align: center; font-weight:bold; color:black ">Items</td>
-                                                                    <td style="font-weight:bold; color:black ">HSN</td>
-                                                                    <td style="font-weight:bold; color:black ">Quantity</td>
-                                                                    <td style="font-weight:bold; color:black">Price</td>
-                                                                    <td style="font-weight:bold; color:black">VAT</td>
-                                                                    <td style="font-weight:bold; color:black">Discount</td>
-                                                                    <td style="font-weight:bold; color:black">Total</td>
+                                                                    <td style="text-align: center; font-weight:bold; color:rgb(255, 255, 255) ">Items</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254) ">HSN</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 251, 251) ">Quantity</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 255, 255)">Price</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254)">VAT</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 255, 255)">Discount</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254)">Total</td>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -350,7 +354,7 @@
                                     <div  id="whatToPrint2"  class="printTemplates template2"  style="display: none;">
                                         <div class="my-5 page" size="A4" >
                                             <div id="printdiv2">
-                                                <div class="row px-5 py-4" style="background-color:red;" >
+                                                <div class="row px-5 py-4" style="background-color:#68020F" >
                                                     <div class="col-md-4"></div>
                                                     <div class="col-md-4 d-flex justify-content-center">
                                                         <center class="h3 text-white"><b>PURCHASE BILL</b></center>
@@ -367,7 +371,7 @@
                                                         <div class="col-12">
                                                             <div class="row  pb-2 mt-3">
                                                                 <div class="col-4 pl-0">
-                                                                    <label class="text-white w-100 p-1 mb-1" style="background-color: red; border-top-right-radius: 4vh; border-bottom-right-radius: 4vh;" ><b>BILLING ADDRESS</b></label>
+                                                                    <label class="text-white w-100 p-1 mb-1" style="background-color:#68020F; border-top-right-radius: 4vh; border-bottom-right-radius: 4vh;" ><b>BILLING ADDRESS</b></label>
                                                                     <h5 class="text-secondary" style="font-weight: bold;">{{pbill.company.company_name}}</h5>
                                                                     <p class="address" style="font-weight: bold;color: #000;">
                                                                     {{pbill.company.address}}
@@ -379,7 +383,7 @@
                                                                 </div>
                                                                 <div class="col-4"></div>
                                                                 <div class="col-4 pr-0">
-                                                                    <label class="text-white w-100 p-1 mb-1" style="border-top-right-radius: 4vh; border-bottom-right-radius: 4vh; background-color: red;" ><b>SHIPPING ADDRESS</b></label>
+                                                                    <label class="text-white w-100 p-1 mb-1" style="border-top-right-radius: 4vh; border-bottom-right-radius: 4vh; background-color:#68020F;" ><b>SHIPPING ADDRESS</b></label>
                                                                     <h5 class="text-secondary" style="font-weight: bold;">{{pbill.party.party_name}}</h5>
                                                                     <p class="address" style="font-weight: bold;color: #000;">{{ pbill.party.address | linebreaksbr}} </p>
                                                                 </div>
@@ -388,16 +392,16 @@
                                                     </section>
                                         
                                                     <section class="product-area mt-2">
-                                                        <table class="table table-hover table-bordered " id="table2">
-                                                            <thead style="background-color: #FFADB0 ;" >
-                                                                <tr class="template3tablehead">
-                                                                    <th class="text-center" style="color:black">Items</th>
-                                                                    <th class="text-center" style="color:black">HSN</th>
-                                                                    <th class="text-center" style="color:black">Quantity</th>
-                                                                    <th class="text-center" style="color:black">Rate</th>
-                                                                    <th class="text-center" style="color:black">VAT</th>
-                                                                    <th class="text-center" style="color:black">Discount</th>
-                                                                    <th class="text-center" style="color:black">Total</th>
+                                                        <table class=" table table-hover table-bordered border-dark" id="table1">
+                                                            <thead style="background-color:#68020F;">
+                                                                <tr>
+                                                                    <td style="text-align: center; font-weight:bold; color:rgb(255, 255, 255) ">Items</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254) ">HSN</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 251, 251) ">Quantity</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 255, 255)">Price</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254)">VAT</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 255, 255)">Discount</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254)">Total</td>
                                                                 </tr>
                                                             </thead>
                                                             <tbody style="border: 1px solid #615dff;" >
@@ -470,7 +474,7 @@
                                         <div class="my-5 page"  size="A4" >
                                             <div class="" id="printdiv3">
                                                 <div class="row">
-                                                    <div class="col-sm-12" style="background-image: linear-gradient(red,#FFADB0); color: white;">
+                                                    <div class="col-sm-12" style="background-image: linear-gradient(#68020F,#68484c); color: white;">
                                                         <br>
                                                         <p style="font-size: 4vh; text-align: center;">PURCHASE BILL</p>
                                                         <p style=" text-align: center;"> 
@@ -511,16 +515,16 @@
                                                     </div>
                                                     <div class="col-md-1"></div>
                                                     <div class="col-md-10"><br>
-                                                        <table class="table table-hover table-bordered  template3table" id="table3" style="border:1px solid black">
-                                                            <thead >
-                                                                <tr class="template3tablehead" style="background-color: #FFADB0;">
-                                                                    <th class="text-center"  style="color:black">Items</th>
-                                                                    <th class="text-center"  style="color:black">HSN</th>
-                                                                    <th class="text-center"  style="color:black">Quantity</th>
-                                                                    <th class="text-center"  style="color:black">Rate</th>
-                                                                    <th class="text-center"  style="color:black">VAT</th>
-                                                                    <th class="text-center"  style="color:black">Discount</th>
-                                                                    <th class="text-center"  style="color:black">Total</th>
+                                                        <table class=" table table-hover table-bordered border-dark" id="table1">
+                                                            <thead style="background-color:#68020F;">
+                                                                <tr>
+                                                                    <td style="text-align: center; font-weight:bold; color:rgb(255, 255, 255) ">Items</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254) ">HSN</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 251, 251) ">Quantity</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 255, 255)">Price</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254)">VAT</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 255, 255)">Discount</td>
+                                                                    <td style="font-weight:bold; color:rgb(255, 254, 254)">Total</td>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -587,9 +591,9 @@
                                     </div>
                                 </div>
                                 <div id="templateToggle" class="templateToggleSegment mt-3 mb-0 w-100 d-flex justify-content-center">
-                                    <button id="toggleTemplate1" onclick="toggleTemplate('whatToPrint1','toggleTemplate1')" class="btn btn-outline-danger bg-gradientt btn-sm m-2 active templateToggleButtons">1</button>
-                                    <button id="toggleTemplate2" onclick="toggleTemplate('whatToPrint2','toggleTemplate2')" class="btn btn-outline-danger bg-gradientt btn-sm m-2 templateToggleButtons">2</button>
-                                    <button id="toggleTemplate3" onclick="toggleTemplate('whatToPrint3','toggleTemplate3')" class="btn btn-outline-danger bg-gradientt btn-sm m-2 templateToggleButtons">3</button>
+                                    <button id="toggleTemplate1" onclick="toggleTemplate('whatToPrint1','toggleTemplate1')" class="btn button_border bg-gradientt btn-sm m-2 active templateToggleButtons">1</button>
+                                    <button id="toggleTemplate2" onclick="toggleTemplate('whatToPrint2','toggleTemplate2')" class="btn button_border bg-gradientt btn-sm m-2 templateToggleButtons">2</button>
+                                    <button id="toggleTemplate3" onclick="toggleTemplate('whatToPrint3','toggleTemplate3')" class="btn button_border bg-gradientt btn-sm m-2 templateToggleButtons">3</button>
                                 </div>
                             </div>
 

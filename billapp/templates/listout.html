@@ -5,8 +5,8 @@
 {% block content %}
 <style>
     .button_border {
-        border: 1px solid #68020F;
-        color: #68020F;
+        background-color: #68020F;
+        color: white;
     }
 
     .button_border:hover {
@@ -23,13 +23,11 @@
     .date-input{
         width: 120px;
     }
-    #credittable tr:hover td:not(:last-child){
-        border-right: 1px solid #044A42;
-    }
+  
 
     #credittable tr:hover td{
         cursor: pointer;
-        background-color: white;
+        background-color: #f1dbd6;
     }
 
     
@@ -39,7 +37,7 @@
 <div class="body-wrapper">
     <div class="container">
         <br><br><br><br><br><br><br>
-        <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7; height: 100vh;">
+        <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh;  height: 100vh;">
             <div id="creditnote_detail_target">
             <div class="mb-3 mb-sm-0">
                 <h1 class="modal-title fs-5 p-1" style="color: #68020F; font-weight: 900;">CREDITNOTE</h1>
@@ -131,7 +129,7 @@
                     </thead>
                     <tbody>
                         {% for c in creditnotes %}
-                        <tr style="background-color: #FFD6D7;">
+                        <tr style="background-color: #f1dbd6;" >
                             <td>{{forloop.counter}}</td>
                             <td>{{c.returndate|date:'Y-m-d'}}</td>
                             <td>

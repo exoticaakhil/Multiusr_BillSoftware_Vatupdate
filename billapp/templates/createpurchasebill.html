@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -29,7 +29,6 @@
     .card-body{
         box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.397);
         border-radius: 1vh;
-        background-color:#FFD6D7;
     }
 
     #tab_logic{
@@ -74,7 +73,7 @@
     }
     
     #customer{
-        background-color:#FFD6D7;
+       
         color: black;
     }
 
@@ -82,7 +81,7 @@
         height: 5vh;
         border-color:#68020F;
         border-radius: 5px;
-        background-color:#FFD6D7;
+       
     }
    
     .select2-search {   height: 5vh;
@@ -96,7 +95,7 @@
      }
      .select2-selection {
       border-color: #68020F !important;
-      background-color:#FFD6D7 !important;
+     
      
     }
     .option:hover {
@@ -143,7 +142,7 @@
                     {% csrf_token %}
                     <div class="page-content" >
                         <div class="card radius-15" >
-                            <div class="card-body" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
+                            <div class="card-body" style="border: 2px solid #68020F; border-radius: 2.5vh;">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <h3 class="mb-3" style="color: #68020F;">ADD &nbsp; PURCHASE &nbsp; BILL</h3>
@@ -160,11 +159,11 @@
                                             <div class="col-md-4">
                                                 <label class="col-form-label">PARTY</label>
                                                 <div class="d-flex">
-                                                    <select name="customername" id="customer" class="form-control border-danger" style=" background-color:#FFD6D7" >
+                                                    <select name="customername" id="customer" class="form-control border-danger"  >
                                                         <option value="" selected hidden>Select</option>
                                                         {% for c in party %}
                                                             {% if c.cid_id == cmp.cid %}
-                                                                <option value={{c.id}} style=" background-color:#FFD6D7"> {{ c.party_name }}</option>
+                                                                <option value={{c.id}} > {{ c.party_name }}</option>
                                                             {% endif %}
                                                         {% endfor %}
                                                     </select> &nbsp;&nbsp;&nbsp;
@@ -178,7 +177,7 @@
                                                 <div class="row">
                                                 <div id="billdiv">
                                                     <label class="col-form-label">Bill No.</label>
-                                                    <input type="text" class="form-control border-danger" name="bill_no"  id="bill_no" value="{{bill_no}}"  style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" readonly> <br>
+                                                    <input type="text" class="form-control border-danger" name="bill_no"  id="bill_no" value="{{bill_no}}"  style="color: black;border-color: #68020F !important;" readonly> <br>
                                                 </div>
                                                 
                                             </div>
@@ -188,30 +187,30 @@
                                             <div class="col-md-4">
                                                 <div id="phonediv">
                                                     <label class="col-form-label" >Phone No. </label>
-                                                    <input class="form-control border-danger" name="phno"  id="cust_phno"  style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" readonly>
+                                                    <input class="form-control border-danger" name="phno"  id="cust_phno"  style="color: black;border-color: #68020F !important;" readonly>
                                                 </div>
                                                 <div  style="margin-top: 7%;" >
                                                     <label class="col-form-label">Bill Date</label>
-                                                    <input type="date" class="form-control border-danger" name="billdate" id="billdate"  style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" >
+                                                    <input type="date" class="form-control border-danger" name="billdate" id="billdate"  style="color: black;border-color: #68020F !important;" >
                                                  
                                                 </div>
                                                 <div id="dbilldiv" style="display: none;">
                                                     <label class="col-form-label">Bill No.</label>
-                                                    <input type="text" class="form-control border-danger" value="{{bill_no}}"  style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" readonly> <br>
+                                                    <input type="text" class="form-control border-danger" value="{{bill_no}}"  style="color: black;border-color: #68020F !important;" readonly> <br>
                                                 </div>
                                            
                                                 <div id="daddressdiv" style="display: none;">
                                                     <label class="col-form-label">Billing Address</label>
-                                                    <textarea class="form-control border-danger mb-3" name="dbname" id="dbname" rows="6" type="text" style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" readonly></textarea>
+                                                    <textarea class="form-control border-danger mb-3" name="dbname" id="dbname" rows="6" type="text" style="color: black;border-color: #68020F !important;" readonly></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-4" id="addressdiv">
                                                 <label class="col-form-label">Billing Address</label>
-                                                <textarea class="form-control border-danger mb-3" name="bname" id="bname" rows="6" type="text" style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" readonly></textarea>
+                                                <textarea class="form-control border-danger mb-3" name="bname" id="bname" rows="6" type="text" style="color: black;border-color: #68020F !important;" readonly></textarea>
                                             </div>
                                             <div class="col-md-4" id="ddbilldiv" style="display: none;">
                                                 <label class="col-form-label">Bill No.</label>
-                                                <input type="text" class="form-control border-danger" value="{{bill_no}}"  style="color: black;background-color:#FFD6D7;border-color: #68020F !important;" readonly> <br>
+                                                <input type="text" class="form-control border-danger" value="{{bill_no}}"  style="color: black;border-color: #68020F !important;" readonly> <br>
                                             </div>
                                     
                                         
@@ -227,7 +226,7 @@
                                 
                                     <div class="row clearfix">
                                         <div class="col-md-12 table-responsive-md mt-3">
-                                            <table class="table table-bordered  mt-3" id="tab_logic" style="background-color:#FFD6D7;" >
+                                            <table class="table table-bordered  mt-3" id="tab_logic" style="" >
                                                 <thead>
                                                     <tr style="color: black;">
                                                         <th class="text-center">#</th>
@@ -248,7 +247,7 @@
                                                         <td style="width:18%">
                                                             <div class="d-flex" >
                                                                 <div class="myDropDown" style="width: max-content;"> 
-                                                                <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd1()" style="color: black; background-color:#FFD6D7; ">
+                                                                <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd1()" style="color: black; ">
                                                                     <option value="" selected hidden>Select Product</option>
                                                                     {% for i in item %}
                                                                         {% if i.cid_id == cmp.cid %}
@@ -264,27 +263,27 @@
                                                         </td>
     
                                                         <td style="width:15%">
-                                                            <input type="text" name='hsn[]' id="hsn" class="form-control border-danger HSNCODE" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" readonly />
+                                                            <input type="text" name='hsn[]' id="hsn" class="form-control border-danger HSNCODE" style="color: black;border-color: #68020F !important;" readonly />
                                                         </td>
     
                                                         <td style="width:13%">
-                                                            <input type="number" name='qty[]' id="qty"  class="form-control border-danger qty mb-1" step=0 min=0 style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" value=0  required />
+                                                            <input type="number" name='qty[]' id="qty"  class="form-control border-danger qty mb-1" step=0 min=0 style="color: black;border-color: #68020F !important;" value=0  required />
                                                         </td>
                                                     
                                                         <td style="width:12%">
-                                                            <input type="number" name='price[]' id="unit" class="form-control border-danger price" step="0.00" min="0" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" value=0 readonly />
+                                                            <input type="number" name='price[]' id="unit" class="form-control border-danger price" step="0.00" min="0" style="color: black;border-color: #68020F !important;" value=0 readonly />
                                                         </td>
                                                         <td style="width:12%">
-                                                            <input type="text" name='vat[]' id="Vat" class="form-control border-danger seltax"  step="0.00" min="0" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" value=0 readonly />
+                                                            <input type="text" name='vat[]' id="Vat" class="form-control border-danger seltax"  step="0.00" min="0" style="color: black;border-color: #68020F !important;" value=0 readonly />
                                                         </td>
                                                        
     
                                                         <td style="width: 10%;">
-                                                            <input type="number" name='discount[]'  placeholder='Enter Discount' id="disc" value=0 class="form-control border-danger disc" step=0 min=0 style="  color: black; background-color:#FFD6D7;border-color: #68020F !important;"  />
+                                                            <input type="number" name='discount[]'  placeholder='Enter Discount' id="disc" value=0 class="form-control border-danger disc" step=0 min=0 style="  color: black;border-color: #68020F !important;"  />
                                                         </td>
                                     
                                                         <td style="width:13%">
-                                                            <input type="number" name='total[]' id="total" class="form-control border-danger total" value=0 readonly style="color: black; background-color:#FFD6D7;border-color: #68020F !important;"  />
+                                                            <input type="number" name='total[]' id="total" class="form-control border-danger total" value=0 readonly style="color: black;border-color: #68020F !important;"  />
                                                         </td>
                                                         <td hidden><input type="number" name='taxamount1' id="taxamount" class="taxamount" /></td>
                                                         
@@ -309,7 +308,7 @@
                                                         <div class="col-sm-4 mt-2"><label class="text-center">Sub Total</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                            <input type="number" step="any" name='subtotal' value=0.00 readonly style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" class="form-control border-danger" id="sub_total">
+                                                            <input type="number" step="any" name='subtotal' value=0.00 readonly style="color: black;border-color: #68020F !important;" class="form-control border-danger" id="sub_total">
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -320,7 +319,7 @@
                                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">VAT Amount</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                        <input type="number" step="any" name='taxamount' id="tax_amount" value=0.00 readonly style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" class="form-control border-danger"/>
+                                                        <input type="number" step="any" name='taxamount' id="tax_amount" value=0.00 readonly style="color: black;border-color: #68020F !important;" class="form-control border-danger"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -329,7 +328,7 @@
                                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Adjustment</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                        <input type="number" step="any" name='adj' id="adj" value=0.00 class="form-control border-danger" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;"/>
+                                                        <input type="number" step="any" name='adj' id="adj" value=0.00 class="form-control border-danger" style="color: black;border-color: #68020F !important;"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -338,7 +337,7 @@
                                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Grand Total</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" class="form-control border-danger"/>
+                                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: black;border-color: #68020F !important;" class="form-control border-danger"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -366,12 +365,13 @@
         <div class="modal fade" id="newitem">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: rgba(144, 211, 117, 0.098);">
-                        <h3 class="text-danger ms-3">ADD ITEM</h3>
+                    <div class="modal-header" >
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"
+                        style="color: #68020F; font-weight: 900;">ADD ITEM</h1>
                         <button type="button" class="btn-close me-3" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
             
-                    <div class="modal-body" style="background-color: rgba(144, 211, 117, 0.098);" >
+                    <div class="modal-body"  >
                         <form method="post" enctype="multipart/form-data" id="modalItem" >
                             {% csrf_token %}
                               <div class="bs p-4 rounded mb-5">
@@ -379,10 +379,8 @@
                                 <div class="row" >
                                   <div class="col-sm-12 col-md-1"></div>
                                   <div class="col-sm-12 col-md-10 pb-4 ">
-                                    <center>
-                                      <h3><strong class="fw-bolder " style="color: #68020F;">ITEM DETAILS</strong></h3>
-                                    </center>
-                                    <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
+                                    
+                                    <div class="p-3" style=" border-radius: 2.5vh;border:2px solid #68020F" >
                                       <div class="d-flex">
                                         <div class="pt-5 w-50">
                                           <input type="text" name="itm_type" id="itm_type" hidden>
@@ -420,9 +418,9 @@
                                               <option value="{{ i.unit_name }}">{{ i.unit_name }}</option>
                                               {% endfor %}
                                             </select>&nbsp;&nbsp;&nbsp;
-                                            <button id="modal_closing" type="button" class="btn " data-bs-toggle="modal" data-bs-target="#createNewUnit" data-bs-whatever="@mdo" style="border-color: #68020F !important; margin-top: 10px;border:2px solid;">
-                                                <span class="fa fa-plus"></span>
-                                            </button>
+                                            <button type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#unitsModal" data-bs-whatever="@mdo">
+                                                <span class="fa fa-plus" ></span>
+                                                </button>
                                             </div>
                                      
                                         </div>
@@ -438,7 +436,7 @@
                                     <div class="me-3 text-center">
                                       <h3><strong class="fw-bolder" style="color: #68020F;">PRICING</strong></h3>
                                     </div>
-                                    <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F" >
+                                    <div class="p-3" style=" border-radius: 2.5vh;border:2px solid #68020F" >
                                       <div class="pt-5 mb-4" >
                                         <input type="text" name="taxable_result" id="taxable_result" hidden>
                                         <label style="user-select: none;" class="fs-4 tb" for="item_tax_1">VAT</label> &nbsp;
@@ -469,7 +467,7 @@
                                       <h3><strong class="fw-bolder" style="color: #68020F;">STOCKS</strong></h3>
                                     </div>
                                     
-                                    <div class="p-3" style="background-color: #FFD6D7; border-radius: 2.5vh;border:2px solid #68020F">
+                                    <div class="p-3" style=" border-radius: 2.5vh;border:2px solid #68020F">
                                       <div class="mb-4 pt-4">
                                         <label class="tb fw-bold" for="opn_stock_">STOCK IN HAND</label><br>
                                         <input id="opn_stock_" class="form-control fw-normal fs-3 mt-1 input_border text-black" type="number" placeholder="Enter Opening Stock" name="stock_in_hand" style="border:2px solid #68020F;" required >
@@ -491,33 +489,48 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="modal fade" id="createNewUnit">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" >
-                                        <div class="modal-body">
-                                            <div class="modal-body mb-1 pb-1">
-                                                <form class="mb-0" id="unitmodal">
-                                                  <div class="mb-3">
-                                                    <label for="unit_name" class="col-form-label">UNIT</label>
-                                                    <input name="name" id="unit_name" class="for-control text-uppercase w-100">
-                                                  </div>
-                                                  <div class="m-0 text-center">
-                                                    <label for="message-text" class="col-form-label  text-danger fw-lighter">Example : PCS/BOX/LITER</label>
-                                                  </div>
-                                                </form>
-                                              </div>
-                                              <div class="modal-footer d-flex justify-content-center mt-1">
-                                                <button type="button" class="btn ps-5 pe-5 button_border" data-dismiss="modal">Close</button>
-                                                <button class="btn btn-outline-danger text-grey" data-dismiss="modal" type="submit" id="saveItemUnit">Save</button>
-                                              </div>
-                                        </div>
-                                    </div>   
-                                </div>
+                              
                             </div> 
                           </form>
                     </div> 
                 </div> 
             </div>
+        </div>
+        <div class="modal fade" id="unitsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #68020F; font-weight: 900;">ADD UNIT</h1>
+                  
+                </div>
+                <div class="modal-body mb-1 pb-1">
+                    <form method="post" id="newUnitForm">
+                        {% csrf_token %}
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <label for="name">Unit Name</label>
+                                <input name="name" id="unit_name" class="form-control text-uppercase w-100">
+                            </div>
+                        </div>
+                      
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-center mt-1">
+                
+                        <button type="button" class="btn ps-5 pe-5 button_border" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn ps-5 pe-5 button_border" id="saveItemUnit">ADD</button>
+                        
+                   
+                </div>
+              </div>
+            </div>
+               
+            </script>
+        </div>
+        </div>
+        
+        </div>
+        </div>
         </div>
        
 
@@ -1254,7 +1267,7 @@ $(document).on("click", "#itemsave", function() {
 
                     <td style="width:18%">
                         <div class="d-flex">
-                            <select name='product[]' id="product${roinc}" class="form-control border-danger product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color:#FFD6D7;">
+                            <select name='product[]' id="product${roinc}" class="form-control border-danger product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black;">
                                 <option value="" selected hidden>Select Product</option>
                                 {% for i in item %}
                                     {% if i.cid_id == cmp.cid %}
@@ -1270,27 +1283,27 @@ $(document).on("click", "#itemsave", function() {
                     </td>
 
                     <td tyle="width:15%">
-                        <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control border-danger px-1 hsn" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" readonly />
+                        <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control border-danger px-1 hsn" style="color: black;border-color: #68020F !important;" readonly />
                     </td>
 
                     <td style="width:10%">
-                        <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control border-danger qty mb-1" step=0 min=0 style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" required />
+                        <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control border-danger qty mb-1" step=0 min=0 style="color: black;border-color: #68020F !important;" required />
                     </td>
 
                     <td tyle="width:12%">
-                        <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control border-danger price" step="0.00" min="0" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" readonly/>
+                        <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control border-danger price" step="0.00" min="0" style="color: black;border-color: #68020F !important;" readonly/>
                     </td>
 
                     <td tyle="width:12%">
-                        <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control border-danger seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" readonly/>
+                        <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control border-danger seltax" value="{{0}}" step="0.00" min="0" style="color: black;border-color: #68020F !important;" readonly/>
                     </td>  
 
                     <td tyle="width:8%">
-                        <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control border-danger disc" step=0 min=0 style="color: black; background-color:#FFD6D7;border-color: #68020F !important;">
+                        <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control border-danger disc" step=0 min=0 style="color: black;border-color: #68020F !important;">
                     </td>
 
                     <td style="width:10%">
-                        <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control border-danger total" value=0 step="any" style="color: black; background-color:#FFD6D7;border-color: #68020F !important;" readonly />
+                        <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control border-danger total" value=0 step="any" style="color: black;border-color: #68020F !important;" readonly />
                     </td>
 
                     <td hidden><input type="number" step="any" name='taxamount1' id="taxamount${roinc}" class=" taxamount" /></td>

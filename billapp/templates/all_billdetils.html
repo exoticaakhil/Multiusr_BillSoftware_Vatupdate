@@ -10,7 +10,7 @@
  
     .bs{
         box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.397);
-        background-color: #FFD6D7;
+       
     }
 
     .bs_sm{
@@ -26,7 +26,7 @@
         padding-bottom: 1vh;
         margin-left: 7vh;
         border-radius: 8px;
-        background-color: #FFADB0;
+        
     }
 
     .unpaiddiv{
@@ -38,7 +38,7 @@
         padding-bottom: 1vh;
         margin-left: 7vh;
         border-radius: 8px;
-        background-color: #FFADB0;
+       
     }
 
     .totaldiv{
@@ -50,7 +50,7 @@
         padding-bottom: 1vh;
         margin-left: 7vh;
         border-radius: 8px;
-        background-color:#FFADB0;
+   
     }
 
     #billtable tbody{
@@ -120,6 +120,9 @@
         color: black;
     }
     .bb{
+        background-color: #68020F;
+    }
+    .bb:hover{
         background-color: #68020F;
     }
 
@@ -192,17 +195,17 @@
                                         <input type="date" class="form-control h-100 border-danger" id="toDate" style="color: black; background-color: white;" onchange="filterDates()">
                                     </div>
                                 </div>
+                               
+
                                 <div class="col-md-2"></div>
                                 <div class="col-md-3 text-right" style="margin-right: 2vh; margin-left: 2vh;">
-                                    <button class="btn mt-3" type="button" onclick="ExportToExcel()" style="margin-right: 2vh; margin-left: 2vh;">
-                                        <span><img width="30px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8MIAwEUzmg555EHpPgTVAMxo8vzR4bc2E4A&usqp=CAU" alt="no img"></span>
-                                        <br><span style="color: black; font-size: small; font-weight: bold;">Excel</span>
+                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="ExportToExcel()" style="color: #FF474D;">
+                                        <i class="fas fa-file-excel" style="font-size:175%;"></i><br>EXCEL
                                     </button>
-
-                                    <button class="btn mt-3" type="button" onclick="printfunction()" style="margin-right: 2vh;">
-                                        <span><img width="30px" src="data:image/png;base64,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" alt="no img"></span>
-                                        <br><span style="color: black; font-size: small; font-weight: bold;">Print</span>
+                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="printfunction()" style="color: #FF474D;">
+                                        <i class="fas fa-file-pdf" style="font-size:175%;"></i><br>PDF
                                     </button>
+                                    
 
                                     
                                 </div>
@@ -218,7 +221,7 @@
 
             <div class="row pt-0 m-0">
 
-                <div class="card p-0  bs" style="height: 36rem; border: #FFADB0;">
+                <div class="card p-0  bs" style="height: 36rem; border:#68020F">
                     <div class="row m-0 p-0 pt-3">
                         <div class="col-sm-12 col-lg-3">
                             <h4 class="tb fw-bolder pt-2 text-dangerborder-danger">PURCHASE BILLS</h4>
@@ -231,7 +234,7 @@
                         </div>
                         <div class="col-md-6"></div>
                         <div class="col-md-2">
-                            <a class="btn bb bg-gradient w-90" href="{% url 'createbill' %}" style="color: white;"> 
+                            <a class="btn bb  w-90" href="{% url 'createbill' %}" style="color: white;"> 
                                 <i class="fa fa-plus border-dark" aria-hidden="true" style="color: white;"></i> &nbsp;Add Purchase Bill
                             </a>
                         </div>

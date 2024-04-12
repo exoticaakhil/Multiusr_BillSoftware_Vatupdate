@@ -84,6 +84,7 @@ urlpatterns = [
     path('fetch_item_details',views.fetch_item_details,name="fetch_item_details"),
     path('get_item_dropdown',views.get_item_dropdown,name="get_item_dropdown"),
     path('create_unit',views.create_unit,name="create_unit"),
+    path('get_invoice_item',views.get_invoice_item,name="get_invoice_item"),
     path('saveCreditnote',views.saveCreditnote,name="saveCreditnote"),
     path('listout_page',views.listout_page,name="listout_page"),
     path('edit_creditnote/<int:pk>',views.edit_creditnote,name="edit_creditnote"),

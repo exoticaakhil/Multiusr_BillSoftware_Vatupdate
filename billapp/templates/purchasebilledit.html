@@ -8,14 +8,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <style>
+    .tabContainer .tab-pane{
+        display: none;
+    }
+
+    .tabContainer .nav .nav-item button {
+    background-color: transparent;
+    color: #000; /* Change the color to your desired color */
+    border: none;
+    cursor: pointer;
+    }
+
+    .tabContainer .nav .nav-item button.active {
+    background-color: #68020F;
+    color: #fff;
+    }
+
          .select2-selection {
-      border-color: #FFADB0 !important;
+      border-color: #68020F !important;
      
     }
     .product{
         width: 150px !important; 
         height: 20px;
-        border-color:#FFADB0;
+        border-color:#68020F;
      }
     .card-body{
         box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.397);
@@ -32,7 +48,8 @@
         border-top: 1px solid black;
         border-left: 1px solid black;
         border-right: 1px solid black;
-        background-color: #FFADB0;
+        background-color: #68020F;
+        color: #ffffff;
     }
     #tab_logic tbody td{
         border-bottom: 1px solid black;
@@ -60,17 +77,21 @@
 
     .selectize-input {
         height: 5vh;
-        border-color:  #FFADB0;
+        border-color:  #68020F;
         border-radius: 5px;
     }
 
     .option:hover {
-        background-color: #FFADB0;
+        background-color: #68020F;
         color: white;
     }  
     
     ::-webkit-scrollbar {
         display: none
+    }
+    .button_border {
+        border: 1px solid #68020F;
+        color: #68020F;
     }
 </style> 
 
@@ -103,7 +124,7 @@
                                         <div class="col-md-4">
                                             <label class="col-form-label">Customer</label>
                                             <div class="d-flex">
-                                                <select name="customername" id="customer" class="form-control border-danger" style="color: black; background-color: white;">
+                                                <select name="customername" id="customer" class="form-control button_border" style="color: black; background-color: white;">
                                                     <option value="{{ pbill.party.id }}" selected hidden>{{pbill.party.party_name}}</option>
                                                     {% for c in cust %}
                                                         {% if c.cid_id == cmp.cid %}
@@ -111,7 +132,7 @@
                                                         {% endif %}
                                                     {% endfor %}
                                                 </select> &nbsp;&nbsp;&nbsp;
-                                                <button id="modal_closing" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#customercreation" data-bs-whatever="@mdo">
+                                                <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#customercreation" data-bs-whatever="@mdo">
                                                     <span class="fa fa-plus"></span>
                                                 </button>
                                                 
@@ -128,35 +149,35 @@
                                             {% endif %}
                                             <div id="billdiv">
                                                 <label class="col-form-label">Bill No.</label>
-                                                <input type="text" class="form-control border-danger" name="bill_no"  id="bill_no" value="{{pbill.billno}}"  style="color: black;background-color: white;" readonly> <br>
+                                                <input type="text" class="form-control button_border" name="bill_no"  id="bill_no" value="{{pbill.billno}}"  style="color: black;background-color: white;" readonly> <br>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div id="phonediv">
                                                 <label class="col-form-label">Phone No. </label>
-                                                <input class="form-control border-danger" name="phno" required  id="cust_phno"  style="color: black;background-color: white;" value="{{pbill.party.contact}}" readonly>
+                                                <input class="form-control button_border" name="phno" required  id="cust_phno"  style="color: black;background-color: white;" value="{{pbill.party.contact}}" readonly>
                                             </div>
                                             <div id="dbilldiv" style="display: none;">
                                                 <label class="col-form-label">Bill No.</label>
-                                                <input type="text" class="form-control border-danger" value="{{pbill.billno}}"  style="color: black;background-color: white;" readonly> <br>
+                                                <input type="text" class="form-control button_border" value="{{pbill.billno}}"  style="color: black;background-color: white;" readonly> <br>
                                             </div>
                                             <div  style="margin-top: 7%;" >
                                                 <label class="col-form-label">Bill Date:</label>
-                                                <input type="date" class="form-control border-danger" style="color: black; background-color: white;" name="billdate" id="billdate" value="{{bdate}}">
+                                                <input type="date" class="form-control button_border" style="color: black; background-color: white;" name="billdate" id="billdate" value="{{bdate}}">
                                                 <br>
                                             </div>
                                             <div id="daddressdiv" style="display: none;">
                                                 <label class="col-form-label">Billing Address</label>
-                                                <textarea class="form-control border-danger mb-3" name="dbname" id="dbname" rows="6" type="text" style="color: black;background-color: white;" readonly>{{ pbill.party.address }}</textarea>
+                                                <textarea class="form-control button_border mb-3" name="dbname" id="dbname" rows="6" type="text" style="color: black;background-color: white;" readonly>{{ pbill.party.address }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-4" id="addressdiv">
                                             <label class="col-form-label">Billing Address</label>
-                                            <textarea class="form-control border-danger  mb-3" name="bname" id="bname" rows="6" type="text"style="color: black;background-color: white;">{{ pbill.party.address }}</textarea>
+                                            <textarea class="form-control button_border  mb-3" name="bname" id="bname" rows="6" type="text"style="color: black;background-color: white;">{{ pbill.party.address }}</textarea>
                                         </div>
                                         <div class="col-md-4" id="ddbilldiv" style="display: none;">
                                             <label class="col-form-label">Bill No.</label>
-                                            <input type="text" class="form-control border-danger" value="{{pbill.billno}}"  style="color: black;background-color: white;" readonly> <br>
+                                            <input type="text" class="form-control button_border" value="{{pbill.billno}}"  style="color: black;background-color: white;" readonly> <br>
                                         </div>
                                     </div>
                                     <br>
@@ -190,7 +211,7 @@
 
                                                         <td style="width:18%" >
                                                             <div class="d-flex">
-                                                                <select name='product[]' id="product{{ j.id }}" class="form-control border-danger product select2 itemselect" onchange="changeprd1(this,`{{j.id}}`)" style="color: black; background-color: white;">
+                                                                <select name='product[]' id="product{{ j.id }}" class="form-control button_border product select2 itemselect" onchange="changeprd1(this,`{{j.id}}`)" style="color: black; background-color: white;">
                                                                     <option value="{{ j.product.id }}" selected hidden>{{ j.product.itm_name }}</option>
                                                                     <option value=""  hidden>Select Product</option>
                                                                     {% for i in item %}
@@ -199,7 +220,7 @@
                                                                         {% endif %}
                                                                     {% endfor %}
                                                                 </select>&nbsp;&nbsp;&nbsp;
-                                                                <button id="modal_closing" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
+                                                                <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
                                                                     <span class="fa fa-plus"></span>
                                                                 </button>
                                                                 
@@ -209,28 +230,28 @@
                                                         </td>
 
                                                         <td style="width:15%">
-                                                            <input type="text" name='hsn[]'  value="{{ j.product.itm_hsn }}" id="hsn{{ j.id }}" class="form-control border-danger" style="color: black; background-color: white;"/>
+                                                            <input type="text" name='hsn[]'  value="{{ j.product.itm_hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
                                                         </td>
 
                                                         <td style="width: 13%;">
-                                                            <input type="number" name='qty[]' value="{{ j.qty }}"  placeholder='Enter Qty' id="qty{{ j.id }}" value=0 class="form-control qty mb-1 border-danger " step=0 min=0 style="color: black; background-color: white;" />
+                                                            <input type="number" name='qty[]' value="{{ j.qty }}"  placeholder='Enter Qty' id="qty{{ j.id }}" value=0 class="form-control qty mb-1 button_border " step=0 min=0 style="color: black; background-color: white;" />
                                                         </td>
 
                                                         <td style="width:12%">
-                                                            <input type="number" name='price[]' value="{{ j.product.itm_purchase_price }}" id="unit{{ j.id }}"class="form-control border-danger price" step="0.00" min="0" style="color: black; background-color: white;" />
+                                                            <input type="number" name='price[]' value="{{ j.product.itm_purchase_price }}" id="unit{{ j.id }}"class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" />
                                                         </td>
                                                         <td style="width:12%">
-                                                            <input type="text" name='vat[]' id="Vat{{ j.id }}" value="{{ j.VAT }}" class="form-control border-danger seltax"  step="0.00" min="0" style="color: black; background-color: white;"  readonly />
+                                                            <input type="text" name='vat[]' id="Vat{{ j.id }}" value="{{ j.VAT }}" class="form-control button_border seltax"  step="0.00" min="0" style="color: black; background-color: white;"  readonly />
                                                         </td>
                                                         
                                                         </td>
 
                                                         <td style="width:10%">
-                                                            <input type="number" name='discount[]' placeholder='Enter Discount' id="disc{{j.id}}" value="{{j.discount|default:0}}" class="form-control disc border-danger" step=0 min=0 style="color: black; background-color: white;">
+                                                            <input type="number" name='discount[]' placeholder='Enter Discount' id="disc{{j.id}}" value="{{j.discount|default:0}}" class="form-control disc button_border" step=0 min=0 style="color: black; background-color: white;">
                                                         </td>
 
                                                         <td style="width:13%">
-                                                            <input type="number" name='total[]' value="{{ j.total }}" id="total{{ j.id }}" placeholder=0 class="form-control total border-danger" value=0 step="any" readonly style="color: black; background-color: white;" />
+                                                            <input type="number" name='total[]' value="{{ j.total }}" id="total{{ j.id }}" placeholder=0 class="form-control total button_border" value=0 step="any" readonly style="color: black; background-color: white;" />
                                                         </td>
 
                                                         <td style="display: none;">
@@ -239,27 +260,26 @@
 
                                                         <td style="width:5%">
 
-                                                            <button type="button" id="{{forloop.counter}}" class="btn btn-danger remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row">Delete </button>
+                                                            <button type="button" id="{{forloop.counter}}" class="btn button_border remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row">Delete </button>
                                                         </td>
                                                     </tr>
                                                 {% endfor %}
                                                 </tbody>
-                                                <tr>
-                                                <td style="border: none;"><a class="btn btn-outline-danger ml-1" role="button" id="add" >+</a></td>
-                                                </tr>
+                                                
                                             </table>
+                                            <a class="btn button_border ml-1" role="button" id="add" >+</a>
                                         </div>
                                     </div>
 
                                     <div class="clearfix" style="margin-top:20px">
                                         <div class="row" style="margin-left: 2vh;">
-                                            <div class="col-md-5 table-responsive-md mt-3" id="tab_logic_total" style=" border: 1px solid rgba(128, 128, 128, 0.6); color: black; background-color: #FFADB0;  margin-left: -2vh;">
+                                            <div class="col-md-5 table-responsive-md mt-3" id="tab_logic_total" style=" border: 1px solid #68020F; color: black;   margin-left: -2vh;">
                                                 <div class="p-3">
                                                     <div class="row container-fluid p-2 m-0">
                                                         <div class="col-sm-4 mt-2"><label class="text-center">Sub Total</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                            <input type="number" step="any" name='subtotal' value="{{pbill.subtotal}}"style="color: black; background-color: white;" readonly class="form-control" id="sub_total">
+                                                            <input type="number" step="any" name='subtotal' value="{{pbill.subtotal}}"style="color: black; background-color: white;" readonly class="form-control button_border" id="sub_total">
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -269,7 +289,7 @@
                                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Tax Amount</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                            <input type="number" step="any" name='taxamount' value="{{pbill.taxamount}}" id="tax_amount"style="color: black; background-color: white;" readonly class="form-control"/>
+                                                            <input type="number" step="any" name='taxamount' value="{{pbill.taxamount}}" id="tax_amount"style="color: black; background-color: white;" readonly class="form-control button_border"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -277,7 +297,7 @@
                                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Adjustment</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                            <input type="number" step="any" name='adj' id="adj" value="{{pbill.adjust}}"style="color: black; background-color: white;" class="form-control"/>
+                                                            <input type="number" step="any" name='adj' id="adj" value="{{pbill.adjust}}"style="color: black; background-color: white;" class="form-control button_border"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -285,7 +305,7 @@
                                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Grand Total</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                            <input type="number" name='grandtotal' value="{{pbill.grandtotal}}" id="grandtotal"style="color: black; background-color: white;"  readonly class="form-control"/>
+                                                            <input type="number" name='grandtotal' value="{{pbill.grandtotal}}" id="grandtotal"style="color: black; background-color: white;"  readonly class="form-control button_border"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -299,7 +319,7 @@
                                     <div class="row">
                                         <div class="col-md-1 mt-3" style="margin-right: 8vh;"></div>
                                         <div class="col-md-2 mt-3">
-                                            <button type="submit" class="btn btn-danger bg-gradient w-75" name="Save"   > save</button>
+                                            <button type="submit" class="btn button_border  w-75" name="Save"   > save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -312,14 +332,15 @@
     </div>
 </div>
 <div class="modal fade" id="newitem">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: rgba(144, 211, 117, 0.098);">
-                <h3 class="text-danger ms-3">ADD ITEM</h3>
+            <div class="modal-header" >
+                <h1 class="modal-title fs-5" id="exampleModalLabel"
+                                    style="color: #68020F; font-weight: 900;">ADD ITEM</h1>
                 <button type="button" class="btn-close me-3" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     
-            <div class="modal-body" style="background-color: rgba(144, 211, 117, 0.098);" >
+            <div class="modal-body"  >
                 <form method="post" enctype="multipart/form-data" id="modalItem">
                     {% csrf_token %}
                       <div class="bs p-4 rounded mb-5">
@@ -327,10 +348,8 @@
                         <div class="row">
                           <div class="col-sm-12 col-md-1"></div>
                           <div class="col-sm-12 col-md-10 pb-4 ">
-                            <center>
-                              <h3><strong class="fw-bolder " style="color: #68020F;">ITEM DETAILS</strong></h3>
-                            </center>
-                            <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
+                            
+                            <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; ">
                               <div class="d-flex">
                                 <div class="pt-5 w-50">
                                   <input type="text" name="itm_type" id="itm_type" hidden>
@@ -341,14 +360,14 @@
                                 </div>
                                 <div class="mb-3 w-50 mt-3">
                                   <label class="fw-bold tb fs-3" for="">NAME</label><br>
-                                  <input style="color: black;" class="form-control mt-2 input_border text-black" type="text" placeholder="Enter Item Name" autocomplete="off" name="name" id="item_name" >
+                                  <input style="color: black;" class="form-control mt-2 input_border text-black button_border" type="text" placeholder="Enter Item Name" autocomplete="off" name="name" id="item_name" >
                                 </div>
                               </div>
           
                               <div class="d-flex mt-2">
                                 <div class=" me-3 w-50">
                                   <label class="fw-bold tb fs-3 " for="">HSN </label><br>
-                                  <input style="color: black;" class="form-control mt-2 input_border text-black" type="number" placeholder="Enter HSN value" name="hsn" id="hsn1" onchange="checkhsn(this)" >
+                                  <input style="color: black;" class="form-control mt-2 input_border button_border text-black" type="number" placeholder="Enter HSN value" name="hsn" id="hsn1" onchange="checkhsn(this)" >
                                   <span id="hsn-validation" style="position: absolute; right: 14px; top: 8px;"></span>
                                   <div class="text-danger m-2" id="warnhsn"></div>
                                   <label id="hsnerror" style="color: rgb(101, 3, 3);"></label>
@@ -358,7 +377,7 @@
                                 <div class="mb-3 w-50">
                                   <label class="fw-bold tb fs-3" for="">UNIT</label><br>
                                   <div class="d-flex">
-                                    <select style="color: black;" class="form-control me-3 mt-2 input_border text-black" id="unit_list_drp" name="unit" >
+                                    <select style="color: black;" class="form-control me-3 mt-2 input_border button_border text-black" id="unit_list_drp" name="unit" >
                                       <option value="" hidden>Select an option</option>
                                       <option value="Numbers">NUMBERS</option>
                                       <option value="Packages">PACKETS</option>
@@ -366,8 +385,10 @@
                                       {% for i in item_units %}
                                       <option value="{{ i.unit_name }}">{{ i.unit_name }}</option>
                                       {% endfor %}
-                                    </select>&nbsp;&nbsp;&nbsp;
-                                  <button type="button" class="btn btn-outline-danger " data-toggle="modal" data-target="#createNewUnit">+</button>
+                                    </select>
+                                    <button type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#unitsModal" data-bs-whatever="@mdo">
+                                        <span class="fa fa-plus" ></span>
+                                        </button>
                                     </div>
                              
                                 </div>
@@ -383,7 +404,7 @@
                             <div class="me-3 text-center">
                               <h3><strong class="fw-bolder" style="color: #68020F;">PRICING</strong></h3>
                             </div>
-                            <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
+                            <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; ">
                               <div class="pt-5 mb-4" >
                                 <input type="text" name="taxable_result" id="taxable_result" hidden>
                                 <label style="user-select: none;" class="fs-4 tb" for="item_tax_1">VAT</label> &nbsp;
@@ -412,7 +433,7 @@
                             <div class="me-3 text-center">
                               <h3><strong class="fw-bolder" style="color: #68020F;">STOCKS</strong></h3>
                             </div>
-                            <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; background-color: #FFD6D7;">
+                            <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; ">
                               <div class="mb-4 pt-4">
                                 <label class="tb fw-bold" for="opn_stock_">STOCK IN HAND</label><br>
                                 <input id="opn_stock_" class="form-control fw-normal fs-3 mt-1 input_border text-black" type="number" placeholder="Enter Opening Stock" name="stock_in_hand" required >
@@ -434,207 +455,247 @@
                           </div>
                         </div>
                       </div>
-                      <div class="modal fade" id="createNewUnit">
-                        <div class="modal-dialog">
-                            <div class="modal-content" style="background-color:#FFADB0;">
-                                <div class="modal-header">
-                                    <h5 class="m-3">New Item Unit</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="card p-3">
-                                        <form method="post" id="newUnitForm">
-                                            {% csrf_token %}
-                                            <div class="row mt-2">
-                                                <div class="col-12">
-                                                    <label for="name">Unit Name</label>
-                                                    <input name="name" id="unit_name" class="form-control text-uppercase w-100">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-4">
-                                                <div class="col-12 d-flex justify-content-center">
-                                                    <button class="btn btn-outline-danger text-grey" data-dismiss="modal" type="submit" id="saveItemUnit">Save</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>   
-                        </div>
-                    </div> 
+                      
                   </form>
             </div> 
         </div> 
     </div>
 </div>
-<div class="modal fade" id="createNewUnit">
+<div class="modal fade" id="unitsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-color:#FFADB0;">
-            <div class="modal-header">
-                <h5 class="m-3">New Item Unit</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="card p-3">
-                    <form method="post" id="newUnitForm">
-                        {% csrf_token %}
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                <label for="name">Unit Name</label>
-                                <input name="name" id="unit_name" class="form-control text-uppercase w-100">
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-12 d-flex justify-content-center">
-                                <button class="btn btn-outline-info text-grey" data-dismiss="modal" type="submit" id="saveItemUnit">Save</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>   
-    </div>
-</div> 
-
-<div class="modal fade" id="customercreation">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: rgba(144, 211, 117, 0.098);">
-                <h3 class=" text-warning">ADD PARTY</h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="background-color: rgba(144, 211, 117, 0.098);">
-                <form method="POST" action="{% url 'save_party2'  %}" class="p-5" enctype="multipart/form-data" novalidate
-                id="forms" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: #68020F; font-weight: 900;">ADD UNIT</h1>
+  
+        </div>
+        <div class="modal-body mb-1 pb-1">
+            <form method="post" id="newUnitForm">
                 {% csrf_token %}
-                <input type="hidden" value="{{pbill.id}}" name="pbillhid">
-                <div class="d-flex" style="background-color: #FFADB0;">
-                    <div class="container" style="background-color: #FFADB0;">
-                        <div class="col-md-2" >
-                            <a class="text-dark" style="font-size: 1.5rem;color: #68020F;">Add Party</a>
-                        </div>
-                        <div class="col-md-9 row" style="margin-top: 3vw;">
-                            <div class="col-md-4">
-                                <input type="text" style="background-color: white;" class="form-control" id="partyname" name="partyname" placeholder="Party Name" required>
-                            </div>                
-                            <div class="col-md-4" style="position: relative;">
-                                <input required type="text" style="background-color: white;" class="form-control" id="trn_no" name="trn_no" placeholder="TRN NO" oninput="validateGSTIN(this)">
-                                <span id="gstno-validation" style="position: absolute; right: 14px; top: 8px;"></span>
-                                <label id="trn_no_error" style="color: rgb(101, 3, 3);"></label>
-                                <label style="color: rgb(101, 3, 3);">* 32AAQFR1222B1ZS</label>
-                            </div>
-                            
-                            <div class="col-md-4" style="position: relative;">
-                                <input required type="number" style="background-color: white;" class="form-control" id="contact" pattern="[0-9]{10}" name="contact" placeholder="Phone Number" oninput="validatePhoneNumber(this)">
-                                <span id="contact-validation" style="position: absolute; right: 15px; top: 8px;"></span>
-                                <label id="phone_number_error" style="color: rgb(101, 3, 3);"></label>
-                            </div>
-                            
-                            
-                            <div class="options d-flex" style="margin-top: 5vw;">
-                                <a href="javascript:void(0);" onclick="toggleSection('GST')" style="color: black;"><b>VAT &
-                                        Address<b></a>
-                                <a href="javascript:void(0);" onclick="toggleSection('Credit')"
-                                    style="color: black; margin-left: 3vw;"><b>Credit & Balances<b></a>
-                                <a href="javascript:void(0);" onclick="toggleSection('additionalfield')"
-                                    style="color: black; margin-left: 3vw;">Aditional Field</a>
-                            </div>
-                        </div>
-                        <fieldset id="GST" class="GST">
-                            <div style="background-color: white;" class="col-sm-12"><select class="form-control mt-4 " id="trn_type" name="trn_type" onchange="trn()">
-                                    <option disabled selected>Select TRN Type</option>
-                                    <option >Unregistered/Consumers</option>
-                                    <option>Registered Business - Regular</option>
-                                    <option>Registered Business - Composition</option>
-                                </select>
-                            </div><br>
-                            <div class="d-flex ">
-                                <textarea style="background-color: white;" class="form-control mt-4" name="address" id="" cols="56" rows="3"
-                                    placeholder="&nbsp;Address"></textarea>
-                            </div><br>
-                    
-                            
-                            
-            
-                    
-                    <div class="d-flex ">
-                        <input style="background-color: white;" type="email" class="form-control mt-4" id="email" name="email" placeholder="Email">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <label for="name">Unit Name</label>
+                        <input name="name" id="unit_name" class="form-control text-uppercase w-100">
                     </div>
-                    <br>
-                    <button  type="button" class="btn btn-danger" id="click12"  data-bs-target="#Credit" data-bs-whatever="@mdo"><a href="javascript:void(0);" onclick="toggleSection('Credit')" style="color: rgb(249, 247, 247);"><b>next<b></a>
-                        
-                    </button>
-
-                    </fieldset>
-                    
-            
-                    <fieldset id="Credit" class="Credit" style="display:none;">
-                        <div class="d-flex">
-                            <input style="background-color: white;" type="number" class="form-control mt-4" id="balance" name="balance" placeholder="Opening Balance">
-                        </div>
-                    
-                        <div  class="col-sm-7 mt-4">
-                            <label class="radio-label">To Pay</label>
-                            <input type="radio" class="radio-input" id="toPayRadio" name="paymentType" value="To Pay" style="margin-right: 2vw; margin-left: 5px;">
-                            <label class="radio-label">To Receive</label>
-                            <input type="radio" class="radio-input" id="toReceiveRadio" name="paymentType" value="To Receive" style="margin-right: 2vw; margin-left: 5px;">
-                        </div>
-               
-                    
-                        <div class="d-flex">
-                            <input  type="date" class="form-control" id="current-date" name="currentdate" placeholder="Current Date" style="background-color: white;" >
-                        </div>
-                        <br>
-                        <button  type="button" class="btn btn-danger"  data-bs-target="#Credit" data-bs-whatever="@mdo"><a href="javascript:void(0);" onclick="toggleSection('GST')" style="color: rgb(250, 248, 248);"><b> previous <b></a>
-                        
-                        </button>
-                        <button  type="button" class="btn btn-danger"  data-bs-target="#Credit" data-bs-whatever="@mdo"><a href="javascript:void(0);" onclick="toggleSection('additionalfield')" style="color: rgb(247, 243, 243);"><b>next<b></a>
-                        
-                        </button>
-            
-                    </fieldset>
-                    
-                    <fieldset id="additionalfield" class="additionalfield" style="display:none;">
-                        <div class="d-flex">
-                            <input type="text" class="form-control" name="additionalfield1" id="additionalfield1" placeholder="Additional Field" style="background-color: white;">
-                        </div><br>
-                
-                        <div class="d-flex">
-                            <input type="text" class="form-control" name="additionalfield2" id="additionalfield2" placeholder="Additional Field" style="background-color: white;">
-                        </div><br>
-                
-                        <div class="d-flex">
-                            <input type="text" class="form-control" name="additionalfield3" id="additionalfield3" placeholder="Additional Field" style="background-color: white;">
-                        </div>
-                        <br>
-                        
-                        <div class="col-md-5 mt-4">
-                            <button  type="button" class="btn btn-danger"  data-bs-target="#Credit" data-bs-whatever="@mdo"><a href="javascript:void(0);" onclick="toggleSection('Credit')" style="color: rgb(255, 255, 255);"><b> previous <b></a>
-                        
-                            </button>
-                       
-                            <input type="submit" class="btn btn-danger save-button" name="save" value="Save"  id="customersave">
-                        </div><br>
-                    </fieldset>
-            
-                   
-                   
-            
                 </div>
-                </form>
+              
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center mt-1">
+        
+                <button type="button" class="btn ps-5 pe-5 button_border" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn ps-5 pe-5 button_border" id="saveItemUnit">ADD</button>
                 
+           
+        </div>
+      </div>
+    </div>
+       
+    </script>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="customercreation" tabindex="-1" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"
+                    style="color: #68020F; font-weight: 900;">ADD PARTY</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="container">
+                <div class="modal-body mb-1 pb-1">
+                    <div class="container-fluid">
+                        <form method="POST" action="{% url 'save_party2' %}" class="p-5" enctype="multipart/form-data" novalidate
+                        id="forms" >
+                        {% csrf_token %}
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="party_name" class="col-form-label">Party </label>
+                                    <input type="text" style="border-color: #68020F !important;" class="form-control" id="partyname" name="partyname" placeholder="Party Name" required>
+                                </div>
+                                <div class="col-md-4" style="position: relative;">
+                                    <label for="party_name" class="col-form-label">TRN NO</label>
+                                    <input required type="text" style="border-color: #68020F !important;" class="form-control" id="trn_no" name="trn_no" placeholder="TRN NO" oninput="validateGSTIN(this)">
+                                    <span id="gstno-validation" style="position: absolute; right: 14px; top: 8px;"></span>
+                                    <label id="trn_no_error" style="color: rgb(101, 3, 3);"></label>
+                                    <label style="color: rgb(101, 3, 3);">* 32AAQFR1222B1ZS</label>
+                                </div>
+                                <div class="col-md-4" style="position: relative;">
+                                    <label for="party_name" class="col-form-label">MOBILE</label>
+                                    <input required type="number" style="border-color: #68020F !important;" class="form-control contact" id="contact" pattern="[0-9]{10}" name="contact" placeholder="Phone Number" oninput="validatePhoneNumber(this)" required>
+                                    <span id="contact-validation" style="position: absolute; right: 15px; top: 8px;"></span>
+                                    <label id="phone_number_error" style="color: rgb(101, 3, 3);"></label>
+                                        
+
+                                </div>
+                            </div>
+                           
+                            <div class="tabContainer" sty>
+                                <ul class="nav nav-pills nav-fill mt-3" id="myTabs" style="background-color: #FFD6D7;">
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link active" id="defaultOpen"
+                                            onclick="toggleSection('GST')">VAT & Address</button>
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" id="creditTab"
+                                            onclick="toggleSection('Credit')">Credit & Balances</button>
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" id="balancesTab"
+                                            onclick="toggleSection('additionalfield')">Additional Field</button>
+                                        </li>
+                                </ul>
+                                <div id="transactionForm" class="tab-pane p-3" style="margin-top: 3%;">
+                                    <div class="form-group row">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label for="state" class="col-form-label mt-3">Trn Type</label>
+                                                <select class="form-control " id="trn_type" name="trn_type" onchange="trn()" style="border-color: #68020F !important;" >
+                                                    <option selected hidden value="">Select TRN Type</option>
+                                                    <option value="Registered Business - Regular"> Registered Business - Regular </option>
+                                                    <option value="Registered Business - Composition"> Registered Business - Composition </option>
+                                                    <option value="Unregistered/Consumers"> Unregistered/Consumers</option>
+                                                </select>
+                                            </div><br>
+                                            <div>
+                                                <label for="state" class="col-form-label mt-3">Supply State</label>
+                                            <input style="border-color: #68020F !important;" type="text" class="form-control " id="pol" name="pol" placeholder="Place of Supply">
+                                            </div><br>
+                                            <div>
+                                              
+                                                <label for="email" class="col-form-label mt-3">Email</label>
+                                            <input style="border-color: #68020F !important;" type="email" class="form-control " id="email" name="email" placeholder="Email">
+                                            <span id="email-validation" style="position: absolute; right: 15px; top: 8px;"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label for="address" class="col-form-label mt-3">Billing Address</label>
+                                                <textarea style="border-color: #68020F !important;" class="form-control " name="address" id=""  rows="6"
+                                                placeholder="&nbsp;Address"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                    <div class="col-md-12 d-flex justify-content-start mt-5">
+                                        <button type="button" class="btn button_border me-3 next-btn" onclick="toggleSection('Credit')">NEXT</button>
+                                    </div>
+                                </div>
+
+                                <div id="creditForm" class="tab-pane p-3" style="margin-top: 3%;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <Label for="bal" class="col-form-label">Opening Balance</label>
+                                                <input style="border-color: #68020F !important;" type="number" class="form-control mt-4" id="balance" name="balance" placeholder="Opening Balance">
+                                        </div>
+                                        <!-- <div class="col-md-6">
+                                            <label for="creditLimit" class="col-form-label">Credit Limit</label>
+                                            <input type="number" class="form-control" id="crLimit"
+                                                placeholder=""
+                                                name='crLimit'>
+                                        </div> -->
+                                    </div><br>
+                                    <div class="row">
+                                        <div class="col-md-4 mt-2">
+                                            <input type="radio" class="radio-input" id="toReceiveRadio" name="paymentType" value="To Receive" style="margin-right: 2vw; margin-left: 5px;">
+                                                To Receive
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                            <input type="radio" class="radio-input" id="toPayRadio" name="paymentType" value="To Pay" style="margin-right: 2vw; margin-left: 5px;">
+                                                To Pay
+                                        </div>
+                                    </div><br>
+                                
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="date" class="col-form-label">Date</label>
+                                            <input  type="date" class="form-control" id="current-date" name="currentdate" placeholder="Current Date" style="border-color: #68020F !important;" >
+                                        </div>
+                                    </div><br>
+                                    <div class="col-md-12 d-flex justify-content-start mt-3">
+
+                                        <button type="button" class="btn button_border me-3 prev-btn" onclick="toggleSection('GST')">PREVIOUS</button>
+                                        <button type="button" class="btn button_border me-3 next-btn" onclick="toggleSection('additionalfield')">NEXT</button>
+
+                                    </div>
+                                </div>
+
+                                <div id="balancesForm" class="tab-pane p-3" style="margin-top: 3%;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="add1" class="col-form-label">Additional Field1</label>
+                                            <input type="text" class="form-control" name="additionalfield1" id="additionalfield1" placeholder="Additional Field" style="border-color: #68020F !important;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="add2" class="col-form-label">Additional Field2</label>
+                                            <input type="text" class="form-control" name="additionalfield2" id="additionalfield2" placeholder="Additional Field" style="border-color: #68020F !important;">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="add3" class="col-form-label">Additional Field3</label>
+                                                                           <input type="text" class="form-control" name="additionalfield3" id="additionalfield3" placeholder="Additional Field" style="border-color: #68020F !important;">
+                                        </div>
+                                        
+                                        <div class="col-md-12 d-flex justify-content-start mt-5">
+
+                                            <button type="button" class="btn button_border me-3 prev-btn" onclick="toggleSection('Credit')">PREVIOUS</button>
+                                            
+                                            <input type="submit" class="btn button_border save-button" name="save" value="Save"  id="customersave">
+                       
+                           
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    function showPanel(panelIndex) {
+var tabButtons = document.querySelectorAll(".tabContainer .nav .nav-item button");
+var tabPanels = document.querySelectorAll(".tabContainer .tab-pane");
+
+tabPanels.forEach(function(panel) {
+   panel.style.display = "none";
+});
+tabButtons.forEach(function(button) {
+   button.classList.remove("active");
+});
+
+tabPanels[panelIndex].style.display = "block";
+
+tabButtons[panelIndex].classList.add("active");
+}
+
+$(".tabContainer .nav .nav-item button").on("click", function() {
+   var tabIndex = $(this).parent().index();
+   showPanel(tabIndex);
+});
+$(".next-btn").on("click", function() {
+   var currentPanel = $(".tabContainer .nav .nav-item button.active").parent().index();
+   showPanel(currentPanel + 1);
+});
+$(".prev-btn").on("click", function() {
+   var currentPanel = $(".tabContainer .nav .nav-item button.active").parent().index();
+   showPanel(currentPanel - 1);
+});
+
 $(document).ready(function() {
     $('#pbillForm').submit(function(event) {
         // Prevent the form from submitting by default
@@ -1122,7 +1183,7 @@ console.log(selectedvalue,'hihi')
                     <td class = 'nnum' style="text-align: center; width:2%"">${roinc}</td>
                     <td style="width:18%">
                         <div class="d-flex">
-                            <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control border-danger product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
+                            <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control button_border product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
                                 <option value="" selected hidden>Select Product</option>
                                 {% for i in item %}
                                     {% if i.cid_id == cmp.cid %}
@@ -1130,7 +1191,7 @@ console.log(selectedvalue,'hihi')
                                     {% endif %}
                                 {% endfor %}
                             </select>&nbsp;&nbsp;&nbsp;
-                            <button id="modal_closing" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
+                            <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
                                 <span class="fa fa-plus"></span>
                             </button>
                             
@@ -1139,33 +1200,33 @@ console.log(selectedvalue,'hihi')
                     </td>
 
                     <td tyle="width:15%">
-                        <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control border-danger px-1" style="color: black; background-color: white;" readonly />
+                        <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control button_border px-1" style="color: black; background-color: white;" readonly />
                     </td>
 
                     <td style="width:10%">
-                        <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control border-danger qty mb-1" step=0 min=0 style="color: black; background-color: white;" />
+                        <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control button_border qty mb-1" step=0 min=0 style="color: black; background-color: white;" />
                     </td>
 
                     <td tyle="width:12%">
-                        <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control border-danger price" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
+                        <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
                     </td>
 
                     <td tyle="width:12%">
-                        <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control border-danger seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
+                        <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control button_border seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
                     </td>  
 
                     <td tyle="width:8%">
-                        <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control border-danger disc" step=0 min=0 style="color: black; background-color: white;">
+                        <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control button_border disc" step=0 min=0 style="color: black; background-color: white;">
                     </td>
 
                     <td style="width:10%">
-                        <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control border-danger total" value=0 step="any" style="color: black; background-color: white;" readonly />
+                        <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control button_border total" value=0 step="any" style="color: black; background-color: white;" readonly />
                     </td>
 
                     <td hidden><input type="number" step="any" name='taxamount1' id="taxamount${roinc}" class=" taxamount" /></td>
                     
                     <td style="width:10%">
-                        <button type="button" id="${roinc}" class="btn btn-danger px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
+                        <button type="button" id="${roinc}" class="btn button_border px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
                     </td>
                 </tr>`
             );

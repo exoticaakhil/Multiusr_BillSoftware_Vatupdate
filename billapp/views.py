@@ -1526,6 +1526,19 @@ def get_invoice_date(request):
         return JsonResponse({'invoicedate': str(invoicedate)})  # Convert the date to string if needed
     except SalesInvoice.DoesNotExist:
         return JsonResponse({'error': 'Invoice not found'}, status=404)
+def get_invoice_item(request):
+    invoiceno = request.GET.get('invoiceno') 
+    print(invoiceno,'ftydf') # Get the selected invoice number from the GET request
+    try:
+        invoice = SalesInvoice.objects.get(invoice_no=invoiceno)  # Assuming 'invoice_no' is the field name in your Invoice model
+        invoiceitem = invoice.id
+        print(invoiceitem,"dgfjgfjagfjag")  # Assuming 'date' is the field name in your Invoice model
+        items=SalesInvoiceItem.objects.get(salesinvoice_id=invoiceitem)
+        print(items)
+
+        return JsonResponse({'items': str(items)})  # Convert the date to string if needed
+    except SalesInvoice.DoesNotExist:
+        return JsonResponse({'error': 'Invoice not found'}, status=404)
 
 def saveItem(request):
   if request.method == 'POST':
@@ -1629,10 +1642,12 @@ def saveCreditnote(request):
     subtotal=request.POST.get('subtotal')
     vat=request.POST.get('disvatper')
     adjustment=request.POST.get('adjustment')
-    grandtotal=request.POST.get('grandTotal')
+    grandtotal=request.POST.get('grandtotal')
     party_status = request.POST.get('partystatus')
     print("Partystatus: ",party_status)
-    print(grandtotal)
+    print("grandtotal: ",grandtotal)
+    print("sub: ",subtotal)
+    print("VAT: ",vat)
     creditnote_curr = CreditNote(user=usr, company=cmp,reference_no=reference_no,partystatus=party_status,returndate=return_date, subtotal=subtotal, vat=vat, adjustment=adjustment, grandtotal=grandtotal)
     creditnote_curr.save()
     if party_status=='partyon':
@@ -1655,6 +1670,8 @@ def saveCreditnote(request):
     print("item name: ",item_name)
     quantity = tuple(request.POST.getlist("qty[]"))
     print("item qty: ",quantity)
+    hsn = request.POST.getlist('hsn[]')
+    price =request.POST.getlist('price[]')
     tax =  tuple(request.POST.getlist("vat[]"))
     total = tuple(request.POST.getlist("total[]"))
     discount = tuple(request.POST.getlist("discount[]"))
