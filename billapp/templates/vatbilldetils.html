@@ -178,6 +178,11 @@
     ::-webkit-scrollbar{
         display: none
     }
+    .button_border:hover {
+            background-color: #68020F;
+            color: white;
+        }
+      
 </style>
 
 
@@ -590,11 +595,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="templateToggle" class="templateToggleSegment mt-3 mb-0 w-100 d-flex justify-content-center">
-                                    <button id="toggleTemplate1" onclick="toggleTemplate('whatToPrint1','toggleTemplate1')" class="btn button_border bg-gradientt btn-sm m-2 active templateToggleButtons">1</button>
-                                    <button id="toggleTemplate2" onclick="toggleTemplate('whatToPrint2','toggleTemplate2')" class="btn button_border bg-gradientt btn-sm m-2 templateToggleButtons">2</button>
-                                    <button id="toggleTemplate3" onclick="toggleTemplate('whatToPrint3','toggleTemplate3')" class="btn button_border bg-gradientt btn-sm m-2 templateToggleButtons">3</button>
+                                <div class="row" style="padding-top: 30px; margin-top: 20px;">
+                                    <div class="col d-flex justify-content-center">
+                                        <button id="btn1" onclick="toggleTemplate('whatToPrint1','toggleTemplate1')" class="btn button_border me-2 active">1</button>
+                                        <button id="btn2" onclick="toggleTemplate('whatToPrint2','toggleTemplate2')" class="btn button_border me-2">2</button>
+                                        <button id="btn3" onclick="toggleTemplate('whatToPrint3','toggleTemplate3')" class="btn button_border me-2">3</button>
+                                    </div>
                                 </div>
+                                
                             </div>
 
                             <div id="slipdiv" style="border-radius: 2vh; display: none;">
@@ -788,6 +796,7 @@
 </div>
           
 <script>
+    
     // Function to open the email modal
     function toggleEmailModal() {
         document.getElementById("emailModal").style.display = "block";

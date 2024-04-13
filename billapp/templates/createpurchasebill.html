@@ -376,59 +376,58 @@
                             {% csrf_token %}
                               <div class="bs p-4 rounded mb-5">
                                 <br>
-                                <div class="row" >
-                                  <div class="col-sm-12 col-md-1"></div>
-                                  <div class="col-sm-12 col-md-10 pb-4 ">
-                                    
-                                    <div class="p-3" style=" border-radius: 2.5vh;border:2px solid #68020F" >
-                                      <div class="d-flex">
-                                        <div class="pt-5 w-50">
-                                          <input type="text" name="itm_type" id="itm_type" hidden>
-                                          <label style="user-select: none;" class="fs-4 tb" for="goods">Goods</label>
-                                          <input id="goods" class="me-3 " type="radio" name="item_ty" required>
-                                          <label style="user-select: none;" class="fs-4 tb" for="service">Services</label>
-                                          <input id="service" type="radio" name="item_ty" required>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-1"></div>
+                                    <div class="col-sm-12 col-md-10 pb-4 ">
+                                      
+                                      <div class="p-3" style="border: 2px solid #68020F; border-radius: 2.5vh; ">
+                                        <div class="d-flex">
+                                          <div class="pt-5 w-50">
+                                            <input type="text" name="itm_type" id="itm_type" hidden>
+                                            <label style="user-select: none;" class="fs-4 tb" for="goods">Goods</label>
+                                            <input id="goods" class="me-3 " type="radio" name="item_ty" required>
+                                            <label style="user-select: none;" class="fs-4 tb" for="service">Services</label>
+                                            <input id="service" type="radio" name="item_ty" required>
+                                          </div>
+                                          <div class="mb-3 w-50 mt-3">
+                                            <label class="fw-bold tb fs-3" for="">NAME</label><br>
+                                            <input style="color: black;" class="form-control mt-2 input_border text-black button_border" type="text" placeholder="Enter Item Name" autocomplete="off" name="name" id="item_name" >
+                                          </div>
                                         </div>
-                                        <div class="mb-3 w-50 mt-3">
-                                          <label class="fw-bold tb fs-3" for="">NAME</label><br>
-                                          <input style="color: black;border:2px solid #68020F;" class="form-control mt-2 input_border text-black" type="text" placeholder="Enter Item Name" autocomplete="off" name="name" id="item_name" >
+                    
+                                        <div class="d-flex mt-2">
+                                          <div class=" me-3 w-50">
+                                            <label class="fw-bold tb fs-3 " for="">HSN </label><br>
+                                            <input style="color: black;" class="form-control mt-2 input_border button_border text-black" type="number" placeholder="Enter HSN value" name="hsn" id="hsn1" onchange="checkhsn(this)" >
+                                            <span id="hsn-validation" style="position: absolute; right: 14px; top: 8px;"></span>
+                                            <div class="text-danger m-2" id="warnhsn"></div>
+                                            <label id="hsnerror" style="color: rgb(101, 3, 3);"></label>
+                                            
+                                          </div>
+                                          <br>
+                                          <div class="mb-3 w-50">
+                                            <label class="fw-bold tb fs-3" for="">UNIT</label><br>
+                                            <div class="d-flex">
+                                              <select style="color: black;" class="form-control me-3 mt-2 input_border button_border text-black" id="unit_list_drp" name="unit" >
+                                                <option value="" hidden>Select an option</option>
+                                                <option value="Numbers">NUMBERS</option>
+                                                <option value="Packages">PACKETS</option>
+                                                <option value="Box">BOX</option>
+                                                {% for i in item_units %}
+                                                <option value="{{ i.unit_name }}">{{ i.unit_name }}</option>
+                                                {% endfor %}
+                                              </select>
+                                              <button type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#unitsModal" data-bs-whatever="@mdo">
+                                                  <span class="fa fa-plus" ></span>
+                                                  </button>
+                                              </div>
+                                       
+                                          </div>
                                         </div>
                                       </div>
-                  
-                                      <div class="d-flex mt-2">
-                                        <div class=" me-3 w-50">
-                                          <label class="fw-bold tb fs-3 " for="">HSN </label><br>
-                                          <input style="color: black;border:2px solid #68020F;" class="form-control mt-2 input_border text-black" type="number" placeholder="Enter HSN value" name="hsn" id="hsn1" onchange="checkhsn(this)">
-
-                                          <span id="hsn-validation" style="position: absolute; right: 14px; top: 8px;"></span>
-                                          <div class="text-danger m-2" id="warnhsn"></div>
-                                          <label id="hsnerror" style="color: rgb(101, 3, 3);"></label>
-                                          
-                                        </div>
-                                        <br>
-                                        <div class="mb-3 w-50">
-                                          <label class="fw-bold tb fs-3" for="">UNIT</label><br>
-                                          <div class="d-flex">
-                                            <select style="color: black;border:2px solid #68020F;" class="form-control me-3 mt-2 input_border text-black" id="unit_list_drp" name="unit" >
-                                              <option value="" hidden>Select an option</option>
-                                              <option value="Numbers">NUMBERS</option>
-                                              <option value="Packages">PACKETS</option>
-                                              <option value="Box">BOX</option>
-                                              {% for i in unit %}
-                                              <option value="{{ i.unit_name }}">{{ i.unit_name }}</option>
-                                              {% endfor %}
-                                            </select>&nbsp;&nbsp;&nbsp;
-                                            <button type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#unitsModal" data-bs-whatever="@mdo">
-                                                <span class="fa fa-plus" ></span>
-                                                </button>
-                                            </div>
-                                     
-                                        </div>
-                                      </div>
+                                      <br>
                                     </div>
-                                    <br>
                                   </div>
-                                </div>
                   <br><br>
                                 <div class="row">
                                   <div  class="col-sm-12 col-md-1"></div>

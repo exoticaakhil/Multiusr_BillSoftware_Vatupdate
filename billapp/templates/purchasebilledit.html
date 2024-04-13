@@ -1665,66 +1665,6 @@ $(document).ready(function() {
 });
 
 
-    $(document).on("click","#saveItemUnit",function(){
-        var name = $("#unit_name").val();
-        if (name !=""){
-            $.ajax({
-                type : 'POST',
-                url:"{% url 'save_unit' %}",
-                data:{
-                    'name' : name,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                
-                success: function(response) {
-                    if(response.success){
-                        document.getElementById("newUnitForm").reset();
-                        console.log('success')
-                        reloadUnits();
-                    }else{
-                        // alert(response.message)
-                        console.log('error')
-                    }
-                },         
-            });
-        }
-        else{
-            alert('Invalid')
-        }
-    });
-
-    function reloadUnits() {
-    $.ajax({
-        url: "{% url 'unit_reload_modal' %}",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            console.log("AJAX Success - Dropdown Data:", data);
-            var dropdown = $('#unit_list_drp');
-            dropdown.empty();
-            dropdown.append('<option selected disabled value="">Select an option</option>'); // Added quotes around the HTML
-            dropdown.append('<option  value="BOX">BOX</option>'); // Added quotes around the HTML
-            dropdown.append('<option   value="NUMBERS">NUMBERS</option>'); // Added quotes around the HTML
-            dropdown.append('<option   value="PACKETS">PACKETS</option>'); // Added quotes around the HTML
-            console.log(dropdown);
-            if (data.success) {
-                        // Iterate over the units array and append options to the dropdown
-                        data.unitsobj.forEach(function(unit) {
-                            var option = '<option value="' + unit.name + '">' + unit.name + '</option>';
-                            dropdown.append(option); // Assuming 'name' is a field in your model
-                        });
-            } else {
-                console.error("unitsobj data is not an array:", data.unitsobj);
-                // Handle the case when data.unitsobj is not an array
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX Error:", xhr.responseText);
-            // Add additional error handling code if needed
-        }
-    });
-}
-
 
 
 

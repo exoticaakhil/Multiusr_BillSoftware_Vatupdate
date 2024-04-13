@@ -267,8 +267,11 @@
                                         <th class="text-center">FIELD</th>
                                     </tr>
                                 </thead>
+                               
+                                
                                 
                                 <tbody id="items-table-body">
+                                 
                                     
                                     <tr id='addr01'>
                                         <td class="nnum" style="text-align: center; color: black; width:2%">1</td>
@@ -322,9 +325,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                                <tr>
-                                    
-                                </tr>
+                              
                             </table>
                             <a class="btn  ml-1" role="button" id="add" style="border-color: #68020F;" ><span class="fa fa-plus"></span></a>
                         </div>
@@ -1331,34 +1332,11 @@ $(document).on('change', '.itemselect2',function(){
                 var invoiceitem = response.items;
 
                 
-                console.log(response.items)
+                console.log(invoiceitem,"dfgdfgdfg")
             },
             
         });
      });
-
-
-
-        // $('#party_details').change(function() {
-        //     $.ajax({
-        //         url: "{% url 'get_partydetails' %}",
-        //         data: { 
-        //             id:$('#party_details').val(),
-        //             csrfmiddlewaretoken: '{{ csrf_token }}',
-        //         },
-        //         type: 'POST',
-        //         success: function(data){
-        //             $('#balance').text("Available Balance: " + data.balance).show();
-        //             $('#party_phone').val(""+data.phone);
-        //             $('#invoiceno').val(""+data.invoiceno);
-        //             $('#invoicedate').val(""+data.invoicedate);
-        //             // $('#placesupply').val(""+data.placeofsupply);
-        //             $('#paymethod').val(""+data.payment);
-        //         }
-        //     });
-        // });
-
-        
 
         function validatePhoneNumber(inputElement) {
             const phoneNumber = inputElement.value;
@@ -1377,21 +1355,7 @@ $(document).on('change', '.itemselect2',function(){
                 validationSpan.style.color = "red";
             }
         }
-        // var partyonRadio = document.getElementById('partyonRadio');
-        // var partyoffRadio = document.getElementById('partyoffRadio');
-        // var partyonFields = document.querySelectorAll('.partyon');
-
-        // function togglepartyonFields() {
-        //     var displayValue = partyonRadio.checked ? 'block' : 'none';
-        //     partyonFields.forEach(function (field) {
-        //         field.style.display = displayValue;
-        //     });
-        // }
-
-        // partyonRadio.addEventListener('change', togglepartyonFields);
-        // partyoffRadio.addEventListener('change', togglepartyonFields);
-
-        // togglepartyonFields();
+        
         $('#save-button').on('click', function() {
             if (!validatecreditnote()) {
                 return false; // Prevent form submission if validation fails
@@ -1537,33 +1501,7 @@ $(document).on('change', '.itemselect2',function(){
             });
         });
 
-        function reloadItem() {
-    $.ajax({
-        url: "{% url 'get_item_dropdown' %}",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            $('tr').each(function(){
-                var row = $(this);
-                var drop = row.find('select'); // Assuming dropdowns are <select> elements
-                var existingVal = drop.val();
-                var optionExists = false;
-                
-                drop.append(`<option disabled selected>Select Item</option>`);
-                $.each(data, function(key, value) {
-                    drop.append($('<option></option>').attr('value', key).text(value[1]).val(value[0] + " " +value[2] + " " + value[3] + " " + value[4]));
-                });
-
-                if (optionExists) {
-                    drop.val(existingVal);
-                }
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-}
+       
         $(document).on('change', '[id^=item_name_]', function () {
             var rowId = $(this).attr('id').split('_')[2]; // Extract the row number from the ID
 

@@ -1533,10 +1533,23 @@ def get_invoice_item(request):
         invoice = SalesInvoice.objects.get(invoice_no=invoiceno)  # Assuming 'invoice_no' is the field name in your Invoice model
         invoiceitem = invoice.id
         print(invoiceitem,"dgfjgfjagfjag")  # Assuming 'date' is the field name in your Invoice model
-        items=SalesInvoiceItem.objects.get(salesinvoice_id=invoiceitem)
+        items=SalesInvoiceItem.objects.filter(salesinvoice_id=invoiceitem)
+        itemslist =[]
+        for i in items:
+           itemslist.append({
+             "name":i.item.itm_name,
+              "hsn":i.hsn,
+             "qty":i.quantity,
+             "rate":i.rate,
+             "discount":i.discount,
+             "tax":i.tax,
+             "total":i.totalamount
+           })
+      
         print(items)
+        print(itemslist,'fgsjfgj')
 
-        return JsonResponse({'items': str(items)})  # Convert the date to string if needed
+        return JsonResponse({'items': itemslist})  # Convert the date to string if needed
     except SalesInvoice.DoesNotExist:
         return JsonResponse({'error': 'Invoice not found'}, status=404)
 
@@ -1948,6 +1961,7 @@ def history_page(request,pk):
       cmp = request.user.employee.company
   creditnote=CreditNote.objects.get(id=pk,company=cmp)
   reference=creditnote.reference_no
+  print(reference)
   credit_hist=CreditNoteHistory.objects.filter(credit_note_history=pk,company=cmp) 
   context={'c_usr':request.user,'c_comp':cmp,'creditnote':creditnote,'credit_hist':credit_hist,'reference':reference}
   return render(request,'historyPage.html',context)
