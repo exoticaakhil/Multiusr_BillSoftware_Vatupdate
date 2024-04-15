@@ -251,85 +251,173 @@
                             <input type="date" class="form-control" id="invoicedate" name="invoicedate">
                         </div>
                     </div>
-                    <div class="row clearfix">
-                        <div class="col-md-12 table-responsive-md mt-3">
-                            <table class="table table-bordered table-hover  mt-3" id="tab_logic" >
-                                <thead>
-                                    <tr style="color: rgb(250, 246, 246);">
-                                        <th class="text-center">#</th>
-                                        <th class="text-center">PRODUCT</th>
-                                        <th class="text-center">HSN</th>
-                                        <th class="text-center">QTY</th>
-                                        <th class="text-center">PRICE</th>
-                                        <th class="text-center">VAT (%)</th>
-                                        <th class="text-center">DISCOUNT</th>
-                                        <th class="text-center">TOTAL</th>
-                                        <th class="text-center">FIELD</th>
-                                    </tr>
-                                </thead>
-                               
-                                
-                                
-                                <tbody id="items-table-body">
-                                 
+                    <div class="invoicemain" id="items">
+                        <div class="row clearfix">
+                            <div class="col-md-12 table-responsive-md mt-3">
+                                <table class="table table-bordered table-hover  mt-3" id="tab_logic" >
+                                    <thead>
+                                        <tr style="color: rgb(250, 246, 246);">
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">PRODUCT</th>
+                                            <th class="text-center">HSN</th>
+                                            <th class="text-center">QTY</th>
+                                            <th class="text-center">PRICE</th>
+                                            <th class="text-center">VAT (%)</th>
+                                            <th class="text-center">DISCOUNT</th>
+                                            <th class="text-center">TOTAL</th>
+                                            <th class="text-center">FIELD</th>
+                                        </tr>
+                                    </thead>
+                                   
                                     
-                                    <tr id='addr01'>
-                                        <td class="nnum" style="text-align: center; color: black; width:2%">1</td>
-
-                                        <td style="width:18%">
-                                            <div class="d-flex">
-                                                
-                                                <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd1()" style="color: black; background-color: white; ">
-                                                    <option selected disabled>Select Item</option>
-                                                     {% for item in items %}
-                                                        {% if i.cid_id == cmp.cid %}
-                                                            <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </select> &nbsp;&nbsp;&nbsp;
-                                                <button type="button" class="btn button_border" id="itmodalBtn" data-bs-toggle="modal"
-                                                data-bs-target="#itModal" data-bs-whatever="@mdo">
-                                                <span class="fa fa-plus"></span>
-                                            </button>
-                                            </div>
-                                        </td>
-
-                                        <td style="width:15%">
-                                            <input type="text" name='hsn[]' id="hsn" class="form-control  HSNCODE" style="color: black; background-color: white ;" readonly />
-                                        </td>
-
-                                        <td style="width:13%">
-                                            <input type="number" name='qty[]' id="qty"  class="form-control  qty mb-1" step=0 min=0 style="color: black; background-color: white ;" value=0  required />
-                                        </td>
                                     
-                                        <td style="width:12%">
-                                            <input type="number" name='price[]' id="unit" class="form-control  price" step="0.00" min="0" style="color: black; background-color: white ;" value=0 readonly />
-                                        </td>
-                                        <td style="width:12%">
-                                            <input type="text" name='vat[]' id="Vat" class="form-control  seltax"  step="0.00" min="0" style="color: black; background-color: white ;" value=0 readonly />
-                                        </td>
-                                       
-
-                                        <td style="width: 10%;">
-                                            <input type="number" name='discount[]'  placeholder='Enter Discount' id="disc" value=0 class="form-control  disc" step=0 min=0 style="  color: black; background-color:white;"  />
-                                        </td>
-                    
-                                        <td style="width:13%">
-                                            <input type="number" name='total[]' id="total" class="form-control  total" value=0 readonly style="color: black; background-color:white;"  />
-                                        </td>
-                                        <td hidden><input disabled type="number"  id="taxamount" class="taxamount" /></td>
+                                    <tbody id="items-table-body">
+                                     
                                         
-                                        <td style="width:5%">
+                                        <tr id='addr01'>
+                                            <td class="nnum" style="text-align: center; color: black; width:2%">1</td>
+    
+                                            <td style="width:18%">
+                                                <div class="d-flex">
+                                                    
+                                                    <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd1()" style="color: black; background-color: white; ">
+                                                        <option selected disabled>Select Item</option>
+                                                         {% for item in items %}
+                                                            {% if i.cid_id == cmp.cid %}
+                                                                <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select> &nbsp;&nbsp;&nbsp;
+                                                    <button type="button" class="btn button_border" id="itmodalBtn" data-bs-toggle="modal"
+                                                    data-bs-target="#itModal" data-bs-whatever="@mdo">
+                                                    <span class="fa fa-plus"></span>
+                                                </button>
+                                                </div>
+                                            </td>
+    
+                                            <td style="width:15%">
+                                                <input type="text" name='hsn[]' id="hsn" class="form-control  HSNCODE" style="color: black; background-color: white ;" readonly />
+                                            </td>
+    
+                                            <td style="width:13%">
+                                                <input type="number" name='qty[]' id="qty"  class="form-control  qty mb-1" step=0 min=0 style="color: black; background-color: white ;" value=0  required />
+                                            </td>
+                                        
+                                            <td style="width:12%">
+                                                <input type="number" name='price[]' id="unit" class="form-control  price" step="0.00" min="0" style="color: black; background-color: white ;" value=0 readonly />
+                                            </td>
+                                            <td style="width:12%">
+                                                <input type="text" name='vat[]' id="Vat" class="form-control  seltax"  step="0.00" min="0" style="color: black; background-color: white ;" value=0 readonly />
+                                            </td>
+                                           
+    
+                                            <td style="width: 10%;">
+                                                <input type="number" name='discount[]'  placeholder='Enter Discount' id="disc" value=0 class="form-control  disc" step=0 min=0 style="  color: black; background-color:white;"  />
+                                            </td>
+                        
+                                            <td style="width:13%">
+                                                <input type="number" name='total[]' id="total" class="form-control  total" value=0 readonly style="color: black; background-color:white;"  />
+                                            </td>
+                                            <td hidden><input disabled type="number"  id="taxamount" class="taxamount" /></td>
                                             
-                                            <button type="button" id="1" class="btn button_border  remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row"> Delete</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                              
-                            </table>
-                            <a class="btn  ml-1" role="button" id="add" style="border-color: #68020F;" ><span class="fa fa-plus"></span></a>
+                                            <td style="width:5%">
+                                                
+                                                <button type="button" id="1" class="btn button_border  remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row"> Delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                  
+                                </table>
+                                <a class="btn  ml-1" role="button" id="add" style="border-color: #68020F;" ><span class="fa fa-plus"></span></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="inn" id="inn" hidden>
+                        <div class="row clearfix">
+                            <div class="col-md-12 table-responsive-md mt-3">
+                                <table class="table table-bordered table-hover mt-3" id="tab_logic">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">PRODUCT</th>
+                                            <th class="text-center">HSN</th>
+                                            <th class="text-center">QTY</th>
+                                            <th class="text-center">PRICE</th>
+                                            <th class="text-center">VAT (%)</th>
+                                            <th class="text-center">DISCOUNT</th>
+                                            <th class="text-center">TOTAL</th>
+                                            <th class="text-center">FIELD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="items-table-body1">
+                                    {% for j in billprd %}
+                                        <tr id='addr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
+                                           
+
+                                            <td style="width:18%" >
+                                                <div class="d-flex">
+                                                    <select name='product[]' id="product{{ j.id }}" class="form-control button_border product select2 itemselect" onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white;">
+                                                        <option value="{{ j.product.id }}" selected hidden>{{ j.product.itm_name }}</option>
+                                                        <option selected disabled>Select Item</option>
+                                                         {% for item in items %}
+                                                            {% if i.cid_id == cmp.cid %}
+                                                                <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </select>&nbsp;&nbsp;&nbsp;
+                                                    <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
+                                                        <span class="fa fa-plus"></span>
+                                                    </button>
+                                                    
+                                                    
+                                                    
+                                                </div>
+                                            </td>
+
+                                            <td style="width:15%">
+                                                <input type="text" name='hsn[]'  value="{{ j.product.itm_hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
+                                            </td>
+
+                                            <td style="width: 13%;">
+                                                <input type="number" name='qty[]' value="{{ j.qty }}"  placeholder='Enter Qty' id="qty{{ j.id }}" value=0 class="form-control qty mb-1 button_border " step=0 min=0 style="color: black; background-color: white;" />
+                                            </td>
+
+                                            <td style="width:12%">
+                                                <input type="number" name='price[]' value="{{ j.product.itm_purchase_price }}" id="unit{{ j.id }}"class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" />
+                                            </td>
+                                            <td style="width:12%">
+                                                <input type="text" name='vat[]' id="Vat{{ j.id }}" value="{{ j.VAT }}" class="form-control button_border seltax"  step="0.00" min="0" style="color: black; background-color: white;"  readonly />
+                                            </td>
+                                            
+                                            </td>
+
+                                            <td style="width:10%">
+                                                <input type="number" name='discount[]' placeholder='Enter Discount' id="disc{{j.id}}" value="{{j.discount|default:0}}" class="form-control disc button_border" step=0 min=0 style="color: black; background-color: white;">
+                                            </td>
+
+                                            <td style="width:13%">
+                                                <input type="number" name='total[]' value="{{ j.total }}" id="total{{ j.id }}" placeholder=0 class="form-control total button_border" value=0 step="any" readonly style="color: black; background-color: white;" />
+                                            </td>
+
+                                            <td style="display: none;">
+                                                <input type="number" step="any" name='taxamount1' id="taxamount{{ j.id }}" class="form-control taxamount" />
+                                            </td>
+
+                                            <td style="width:5%">
+
+                                                <button type="button" id="{{forloop.counter}}" class="btn button_border remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row">Delete </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+                                <a class="btn button_border ml-1" role="button" id="add1" >+</a>
+                            </div>
                         </div>
                     </div>
+                    
 
                     <div class="clearfix" style="margin-top:10px">
                         <div class="row" style="margin-left: 2vh;" >
@@ -774,6 +862,214 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+<script>
+
+    function changeprd11(a,b){
+  var selectedvalue=a.value
+console.log(selectedvalue,'hihi')
+        $.ajax({
+            url: "{% url 'itemdetails' %}",
+            type : 'GET',
+            data:{
+                id : selectedvalue,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+            
+            success: function(response) {
+                data = response.hsn
+                data3 = response.price
+                data4 = response.vat
+                data5 = response.qty
+                console.log( data5)
+                
+                
+                document.getElementById(`hsn${b}`).value = data;
+                document.getElementById(`unit${b}`).value = data3;
+                document.getElementById(`Vat${b}`).value = data4;
+                document.getElementById(`qty${b}`).value = data5;
+                
+
+                
+                
+            },
+            
+           
+        
+        });
+        calc();
+       
+       
+    }
+</script>
+<script>
+    
+    $('#add1').click(function(){
+            var lastRowId = $('#items-table-body  tr:last').data('rowno');
+            console.log(lastRowId)
+          
+
+            // Increment the numeric part by one
+           
+            var roinc=lastRowId;
+            // var roinc = $("#items-table-body tr").length;
+            
+            
+            roinc++
+            
+            $('#items-table-body1').append(
+                `<tr id='addr0${roinc}' data-rowno=${roinc}>
+                    <td class = 'nnum' style="text-align: center; width:2%"">${roinc}</td>
+                    <td style="width:18%">
+                        <div class="d-flex">
+                            <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control button_border product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
+                                <option value="" selected hidden>Select Product</option>
+                                {% for i in item %}
+                                    {% if i.cid_id == cmp.cid %}
+                                        <option value="{{ i.id }}" >{{ i.itm_name  }} </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>&nbsp;&nbsp;&nbsp;
+                            <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                            
+                            
+                        </div>
+                    </td>
+
+                    <td tyle="width:15%">
+                        <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control button_border px-1" style="color: black; background-color: white;" readonly />
+                    </td>
+
+                    <td style="width:10%">
+                        <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control button_border qty mb-1" step=0 min=0 style="color: black; background-color: white;" />
+                    </td>
+
+                    <td tyle="width:12%">
+                        <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
+                    </td>
+
+                    <td tyle="width:12%">
+                        <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control button_border seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
+                    </td>  
+
+                    <td tyle="width:8%">
+                        <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control button_border disc" step=0 min=0 style="color: black; background-color: white;">
+                    </td>
+
+                    <td style="width:10%">
+                        <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control button_border total" value=0 step="any" style="color: black; background-color: white;" readonly />
+                    </td>
+
+                    <td hidden><input type="number" step="any" name='taxamount1' id="taxamount${roinc}" class=" taxamount" /></td>
+                    
+                    <td style="width:10%">
+                        <button type="button" id="${roinc}" class="btn button_border px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
+                    </td>
+                </tr>`
+            );
+            $(`.itemselect2${roinc}`).select2()
+
+            var table = document.getElementById('tab_logic');
+            var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    cells[0].innerText = i + 1;
+                    
+                }
+           
+               
+        
+            });
+            $(document).on('change', '.product',function(){ 
+                var n = $(this).data("rowno");
+                console.log(n,'jhgjhg')
+                $.ajax({
+                    url: "{% url 'itemdetails' %}",
+                    type : 'GET',
+                    data:{
+                        id : $(this).val(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                        },
+                    
+                    success: function(response) {
+                        data = response.hsn
+                        data3 = response.price
+                        data4 = response.vat
+                        data5 = response.qty
+                        
+                        
+                        document.getElementById('hsn'+n).value = data;
+                        document.getElementById('unit'+n).value = data3;
+                        document.getElementById('Vat'+n).value = data4;
+                        document.getElementById('qty'+n).value = data5;
+                        
+        
+                        
+                        
+                    },
+                    
+                });
+                calc();
+            });
+            function reloadItem() {
+                $.ajax({
+                    url: "{% url 'item_dropdown' %}",
+                    type: "GET",
+                    dataType: "json",
+                    data: $(this).serialize(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+        
+                    success: function(data) {
+                        var table = document.getElementById('tab_logic');
+                        var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                        for (var i = 1; i <= rows.length; i++) {
+                            itmdropdown = document.getElementById('product'+i)
+                            var selectedIndex = itmdropdown.selectedIndex;
+                            var selectedOption = itmdropdown.options[selectedIndex];
+                            var selectedValue = selectedOption.value;
+                            var selectedText = selectedOption.text;
+                            
+                            var dropdown = $(`#product${i}`);
+                            dropdown.empty();
+                            dropdown.append(`<option ${selectedValue} selected hidden>${selectedText}</option>`);
+                            $.each(data, function(key, value) {
+                                dropdown.append($('<option></option>').attr('value', key).text(value).val(key));
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        
+        
+            $(document).on('click','.remove_row',function(){
+                var row_id = $(this).attr("id");
+                // $('#addr0'+row_id+'').css('display','none');
+                $('#addr0'+row_id+'').remove();
+                var table = document.getElementById('tab_logic');
+                var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    cells[0].innerText = i + 1;
+                    
+                }
+                calc();
+            });
+           
+        
+            $(document).ready(function(){
+                $('#items-table-body').on('keyup change', function () {
+                    calc();
+                });
+        
+                $('#tax').on('keyup change', function () {
+                    calc_total();
+                });
+            });
+</script>
 <script>
     $(document).ready(function() {
         $("#advance").change(function() {
@@ -1289,7 +1585,9 @@ $(document).on('change', '.itemselect2',function(){
                         }
                         // Show salesinvoiceid div if valid data is available
                         $('#salesinvoiceid').show();
-                  
+                        $('#inn').show();
+                        $('.inn').removeAttr('hidden');
+                        $('.invoicemain').attr('hidden', true);
                         
                     
                     } else {
@@ -1381,35 +1679,7 @@ $(document).on('change', '.itemselect2',function(){
         function addNewRow() {
             var serialNumber = $('.table tbody tr').length + 1;
 
-            var newRow = `
-                <tr>
-                    <td class="p-3">${serialNumber}</td>
-                    <td class="p-3">
-                        <div style="display: flex;">
-                            <div class="myDropDown">
-                                <select id="item_name_${serialNumber}" class="form-control item-name" name="item_name[]">
-                                    <option value="" selected disabled>Select Item</option> 
-                                </select>
-                            </div>
-                            <div class="btn-group" role="group" aria-label="Third group" style="margin-left: 5px;">
-                                <button type="button" class="btn button_border itmodalBtn" data-bs-toggle="modal" data-bs-target="#itModal" data-bs-whatever="@mdo">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="p-3"><input type="text" class="form-control small-input hsn-input" id="hsn_${serialNumber}" name="hsn[]"></td>
-                    <td class="p-3"><input type="number" class="form-control small-input qty-input" id="qty_${serialNumber}" name="qty[]" value="0" required></td>
-                    <td class="p-3"><input type="text" class="form-control small-input price-input" id="price_${serialNumber}" name="price[]" value="0"></td>
-                    <td class="p-3"><input type="text" class="form-control small-input tax-input" id="tax_${serialNumber}" name="tax[]">
-                    <input type="text" class="form-control small-input vatper-input" id="vatper_${serialNumber}" name="vatper" hidden></td>
-                    <td class="p-3"><input type="number" class="form-control small-input discount-input" id="discount_${serialNumber}" name="discount[]" value="0"></td>
-                    <td class="p-3"><input type="text" class="form-control small-input total-input" id="total_${serialNumber}" name="total[]" value="0"></td>
-                    <td class="p-3"><button type="button" class="btn button_border delete-row-button">
-                        Delete
-                    </button></td>
-                </tr>
-            `;
+         
 
             $('.table tbody').append(newRow);
             $.ajax({

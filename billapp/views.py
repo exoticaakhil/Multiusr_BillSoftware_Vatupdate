@@ -1526,30 +1526,30 @@ def get_invoice_date(request):
         return JsonResponse({'invoicedate': str(invoicedate)})  # Convert the date to string if needed
     except SalesInvoice.DoesNotExist:
         return JsonResponse({'error': 'Invoice not found'}, status=404)
+
 def get_invoice_item(request):
     invoiceno = request.GET.get('invoiceno') 
-    print(invoiceno,'ftydf') # Get the selected invoice number from the GET request
+    print(invoiceno, 'ftydf')  # Output the invoice number for debugging
     try:
-        invoice = SalesInvoice.objects.get(invoice_no=invoiceno)  # Assuming 'invoice_no' is the field name in your Invoice model
-        invoiceitem = invoice.id
-        print(invoiceitem,"dgfjgfjagfjag")  # Assuming 'date' is the field name in your Invoice model
-        items=SalesInvoiceItem.objects.filter(salesinvoice_id=invoiceitem)
-        itemslist =[]
-        for i in items:
-           itemslist.append({
-             "name":i.item.itm_name,
-              "hsn":i.hsn,
-             "qty":i.quantity,
-             "rate":i.rate,
-             "discount":i.discount,
-             "tax":i.tax,
-             "total":i.totalamount
-           })
+        # Retrieve the invoice object with the given invoice number or return a 404 error if not found
+        invoice = get_object_or_404(SalesInvoice, invoice_no=invoiceno)
+        invoice_items = SalesInvoiceItem.objects.filter(salesinvoice=invoice)
+        
+        items_list = []
+        for item in invoice_items:
+            items_list.append({
+                'item_name': item.item.itm_name,
+                'hsn': item.hsn,
+                'quantity': item.quantity,
+                'rate': item.rate,
+                'discount': item.discount,
+                'tax': item.tax,
+                'total_amount': item.totalamount
+            })
       
-        print(items)
-        print(itemslist,'fgsjfgj')
+        print(items_list, 'fgsjfgj')  # Output the items list for debugging
 
-        return JsonResponse({'items': itemslist})  # Convert the date to string if needed
+        return JsonResponse({'items': items_list})
     except SalesInvoice.DoesNotExist:
         return JsonResponse({'error': 'Invoice not found'}, status=404)
 
