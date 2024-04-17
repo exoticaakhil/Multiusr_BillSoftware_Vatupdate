@@ -43,6 +43,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.http.response import JsonResponse, HttpResponse
+from django.core import serializers
 
 def home(request):
   return render(request, 'home.html')
@@ -1528,28 +1529,20 @@ def get_invoice_date(request):
         return JsonResponse({'error': 'Invoice not found'}, status=404)
 
 def get_invoice_item(request):
+
+    if request.user.is_company:
+        cmp = request.user.company
+    else:
+        cmp = request.user.employee.company  
     invoiceno = request.GET.get('invoiceno') 
     print(invoiceno, 'ftydf')  # Output the invoice number for debugging
     try:
         # Retrieve the invoice object with the given invoice number or return a 404 error if not found
         invoice = get_object_or_404(SalesInvoice, invoice_no=invoiceno)
-        invoice_items = SalesInvoiceItem.objects.filter(salesinvoice=invoice)
-        
-        items_list = []
-        for item in invoice_items:
-            items_list.append({
-                'item_name': item.item.itm_name,
-                'hsn': item.hsn,
-                'quantity': item.quantity,
-                'rate': item.rate,
-                'discount': item.discount,
-                'tax': item.tax,
-                'total_amount': item.totalamount
-            })
-      
-        print(items_list, 'fgsjfgj')  # Output the items list for debugging
-
-        return JsonResponse({'items': items_list})
+        invoice_items = SalesInvoiceItem.objects.filter(company=cmp, salesinvoice=invoice)
+        serialized_data = serializers.serialize('json', invoice_items)
+        print(serialized_data,'gdsuag')
+        return JsonResponse({'items': serialized_data})
     except SalesInvoice.DoesNotExist:
         return JsonResponse({'error': 'Invoice not found'}, status=404)
 

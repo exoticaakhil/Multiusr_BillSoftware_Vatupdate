@@ -351,32 +351,31 @@
                                         </tr>
                                     </thead>
                                     <tbody id="items-table-body1">
-                                    {% for j in billprd %}
+                                    {% for j in invoiceitem %}
                                         <tr id='addr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
                                            
 
                                             <td style="width:18%" >
                                                 <div class="d-flex">
-                                                    <select name='product[]' id="product{{ j.id }}" class="form-control button_border product select2 itemselect" onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white;">
-                                                        <option value="{{ j.product.id }}" selected hidden>{{ j.product.itm_name }}</option>
+                                                    <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
                                                         <option selected disabled>Select Item</option>
                                                          {% for item in items %}
                                                             {% if i.cid_id == cmp.cid %}
                                                                 <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
                                                             {% endif %}
                                                         {% endfor %}
-                                                    </select>&nbsp;&nbsp;&nbsp;
-                                                    <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
-                                                        <span class="fa fa-plus"></span>
-                                                    </button>
-                                                    
+                                                    </select> &nbsp;&nbsp;&nbsp;
+                                                    <button type="button" class="btn button_border" id="itmodalBtn" data-bs-toggle="modal"
+                                                    data-bs-target="#itModal" data-bs-whatever="@mdo">
+                                                    <span class="fa fa-plus"></span>
+                                                </button>
                                                     
                                                     
                                                 </div>
                                             </td>
 
                                             <td style="width:15%">
-                                                <input type="text" name='hsn[]'  value="{{ j.product.itm_hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
+                                                <input type="text" name='hsn[]'  value="{{ j.itm_hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
                                             </td>
 
                                             <td style="width: 13%;">
@@ -1595,6 +1594,9 @@ $(document).on('change', '.itemselect2',function(){
                         $('#salesinvoiceid').hide();
                         $('#invoiceno').val('');
                         $('#invoicedate').val('');
+                        $('.inn').attr('hidden', true);
+                        $('.invoicemain').removeAttr('hidden');
+                        
                     }
                     // $('#placesupply').val(data.placeofsupply);
                     $('#paymethod').val(data.payment);
