@@ -246,6 +246,10 @@
 
                             
                         </div>
+                        {% for j in invoiceitem %}
+                                    <input type="text" value="{{j.hsn}}">
+                                    {% endfor %}
+                        
                         <div class="col-md-4">
                             <label for="validationDefaultUsername" class="form-label">Invoice Date</label>
                             <input type="date" class="form-control" id="invoicedate" name="invoicedate">
@@ -352,6 +356,7 @@
                                     </thead>
                                     <tbody id="items-table-body1">
                                     {% for j in invoiceitem %}
+                                    <input type="text" value="{{j.hsn}}">
                                         <tr id='addr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
                                            
 
