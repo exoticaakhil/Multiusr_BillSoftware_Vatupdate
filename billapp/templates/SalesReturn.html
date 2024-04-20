@@ -339,84 +339,11 @@
                     </div>
                     <div class="inn" id="inn" hidden>
                         <div class="row clearfix">
-                            <div class="col-md-12 table-responsive-md mt-3">
-                                <table class="table table-bordered table-hover mt-3" id="tab_logic">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">#</th>
-                                            <th class="text-center">PRODUCT</th>
-                                            <th class="text-center">HSN</th>
-                                            <th class="text-center">QTY</th>
-                                            <th class="text-center">PRICE</th>
-                                            <th class="text-center">VAT (%)</th>
-                                            <th class="text-center">DISCOUNT</th>
-                                            <th class="text-center">TOTAL</th>
-                                            <th class="text-center">FIELD</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="items-table-body1">
-                                    {% for j in invoiceitem %}
-                                    <input type="text" value="{{j.hsn}}">
-                                        <tr id='addr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
-                                           
+                            <div class="col-md-12 table-responsive-md mt-3" >
+                                <div id="activityBox">
 
-                                            <td style="width:18%" >
-                                                <div class="d-flex">
-                                                    <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
-                                                        <option selected disabled>Select Item</option>
-                                                         {% for item in items %}
-                                                            {% if i.cid_id == cmp.cid %}
-                                                                <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    </select> &nbsp;&nbsp;&nbsp;
-                                                    <button type="button" class="btn button_border" id="itmodalBtn" data-bs-toggle="modal"
-                                                    data-bs-target="#itModal" data-bs-whatever="@mdo">
-                                                    <span class="fa fa-plus"></span>
-                                                </button>
-                                                    
-                                                    
-                                                </div>
-                                            </td>
-
-                                            <td style="width:15%">
-                                                <input type="text" name='hsn[]'  value="{{ j.itm_hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
-                                            </td>
-
-                                            <td style="width: 13%;">
-                                                <input type="number" name='qty[]' value="{{ j.qty }}"  placeholder='Enter Qty' id="qty{{ j.id }}" value=0 class="form-control qty mb-1 button_border " step=0 min=0 style="color: black; background-color: white;" />
-                                            </td>
-
-                                            <td style="width:12%">
-                                                <input type="number" name='price[]' value="{{ j.product.itm_purchase_price }}" id="unit{{ j.id }}"class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" />
-                                            </td>
-                                            <td style="width:12%">
-                                                <input type="text" name='vat[]' id="Vat{{ j.id }}" value="{{ j.VAT }}" class="form-control button_border seltax"  step="0.00" min="0" style="color: black; background-color: white;"  readonly />
-                                            </td>
-                                            
-                                            </td>
-
-                                            <td style="width:10%">
-                                                <input type="number" name='discount[]' placeholder='Enter Discount' id="disc{{j.id}}" value="{{j.discount|default:0}}" class="form-control disc button_border" step=0 min=0 style="color: black; background-color: white;">
-                                            </td>
-
-                                            <td style="width:13%">
-                                                <input type="number" name='total[]' value="{{ j.total }}" id="total{{ j.id }}" placeholder=0 class="form-control total button_border" value=0 step="any" readonly style="color: black; background-color: white;" />
-                                            </td>
-
-                                            <td style="display: none;">
-                                                <input type="number" step="any" name='taxamount1' id="taxamount{{ j.id }}" class="form-control taxamount" />
-                                            </td>
-
-                                            <td style="width:5%">
-
-                                                <button type="button" id="{{forloop.counter}}" class="btn button_border remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row">Delete </button>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                    
-                                </table>
+                                </div>
+                                
                                 <a class="btn button_border ml-1" role="button" id="add1" >+</a>
                             </div>
                         </div>
@@ -1635,6 +1562,7 @@ $(document).on('change', '.itemselect2',function(){
             success: function(response) {
                 // Update the invoicedate input field with the corresponding invoice date
                 var invoiceitem = response.items;
+                $('#activityBox').html(response);
 
                 
                 console.log(invoiceitem,"dfgdfgdfg")

@@ -1540,11 +1540,10 @@ def get_invoice_item(request):
         # Retrieve the invoice object with the given invoice number or return a 404 error if not found
         invoice = get_object_or_404(SalesInvoice, invoice_no=invoiceno)
         invoice_items = SalesInvoiceItem.objects.filter(company=cmp, salesinvoice=invoice)
-        serialized_data = serializers.serialize('json', invoice_items)
-        print(serialized_data,'gdsuag')
-        return JsonResponse({'items': serialized_data})
     except SalesInvoice.DoesNotExist:
-        return JsonResponse({'error': 'Invoice not found'}, status=404)
+        return redirect(SalesReturn)
+    return render(request, 'tab_logic.html',{"items":invoice_items})
+
 
 def saveItem(request):
   if request.method == 'POST':
