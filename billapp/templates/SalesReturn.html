@@ -246,10 +246,7 @@
 
                             
                         </div>
-                        {% for j in invoiceitem %}
-                                    <input type="text" value="{{j.hsn}}">
-                                    {% endfor %}
-                        
+                     
                         <div class="col-md-4">
                             <label for="validationDefaultUsername" class="form-label">Invoice Date</label>
                             <input type="date" class="form-control" id="invoicedate" name="invoicedate">
@@ -848,11 +845,11 @@ console.log(selectedvalue,'hihi')
             roinc++
             
             $('#items-table-body1').append(
-                `<tr id='addr0${roinc}' data-rowno=${roinc}>
+                `<tr id='addrr0${roinc}' data-rowno=${roinc}>
                     <td class = 'nnum' style="text-align: center; width:2%"">${roinc}</td>
                     <td style="width:18%">
                         <div class="d-flex">
-                            <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control button_border product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
+                            <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control button_border product1 select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
                                 <option value="" selected hidden>Select Product</option>
                                 {% for i in item %}
                                     {% if i.cid_id == cmp.cid %}
@@ -900,8 +897,30 @@ console.log(selectedvalue,'hihi')
                 </tr>`
             );
             $(`.itemselect2${roinc}`).select2()
+            reloadItem1();
+            $('#tab_logic1').on('change', '.qty, .hsn', function() {
+    validateRows1();
+});
+function validateRows1() {
+    var isValid = true;
+    $('#tab_logic tbody tr').each(function(index) {
+        var product = $(this).find('.hsn').val();
+        var qty = $(this).find('.qty').val();
+        if (product === '') {
+            alert('Select a product on row ' + (index + 1));
+            isValid = false;
+            return false;
+        }
+        if (qty === '' || qty === '0') {
+            alert('Add quantity in row ' + (index + 1));
+            isValid = false;
+            return false;
+        }
+    });
+    return isValid;
+}
 
-            var table = document.getElementById('tab_logic');
+            var table = document.getElementById('tab_logic1');
             var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
                 for (var i = 0; i < rows.length; i++) {
                     var cells = rows[i].getElementsByTagName('td');
@@ -912,7 +931,7 @@ console.log(selectedvalue,'hihi')
                
         
             });
-            $(document).on('change', '.product',function(){ 
+            $(document).on('change', '.product1',function(){ 
                 var n = $(this).data("rowno");
                 console.log(n,'jhgjhg')
                 $.ajax({
@@ -943,43 +962,51 @@ console.log(selectedvalue,'hihi')
                 });
                 calc();
             });
-            function reloadItem() {
-                $.ajax({
-                    url: "{% url 'item_dropdown' %}",
-                    type: "GET",
-                    dataType: "json",
-                    data: $(this).serialize(),
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-        
-                    success: function(data) {
-                        var table = document.getElementById('tab_logic');
-                        var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                        for (var i = 1; i <= rows.length; i++) {
-                            itmdropdown = document.getElementById('product'+i)
-                            var selectedIndex = itmdropdown.selectedIndex;
-                            var selectedOption = itmdropdown.options[selectedIndex];
-                            var selectedValue = selectedOption.value;
-                            var selectedText = selectedOption.text;
-                            
-                            var dropdown = $(`#product${i}`);
-                            dropdown.empty();
-                            dropdown.append(`<option ${selectedValue} selected hidden>${selectedText}</option>`);
-                            $.each(data, function(key, value) {
-                                dropdown.append($('<option></option>').attr('value', key).text(value).val(key));
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
+            function reloadItem1() {
+        $.ajax({
+            url: "{% url 'item_dropdown' %}",
+            type: "GET",
+            dataType: "json",
+            data: $(this).serialize(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+
+            success: function(data) {
+                $('#tab_logic1 tbody tr').each(function(){
+                    var row = $(this);
+                    var drop = row.find('.product1');
+                    var existingVal = drop.val();
+                    drop.empty();
+                    console.log(row,'sdsg')
+                    // dropdown.append(`<option ${selectedValue} selected hidden>${selectedText}</option>`);
+                    var defaultOption = new Option("Select Item", "", true, true);
+        defaultOption.disabled = true;
+        drop.append(defaultOption);
+                    $.each(data, function(key, value) {
+                        // dropdown.append($('<option></option>').attr('value', key).text(value).val(key));
+                        console.log(value);
+                        var newOption = new Option(value[1], value[0], false, false);
+                        console.log('appended',value[0]);
+                        drop.append(newOption);
+                        console.log('done...');
+                    });
+
+                    if(existingVal != ""){
+                        drop.val(existingVal);
                     }
-                });
+                })
+                
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
             }
+        });
+    }
         
         
-            $(document).on('click','.remove_row',function(){
+            $(document).on('click','.remove_row1',function(){
                 var row_id = $(this).attr("id");
                 // $('#addr0'+row_id+'').css('display','none');
-                $('#addr0'+row_id+'').remove();
+                $('#addrr0'+row_id+'').remove();
                 var table = document.getElementById('tab_logic');
                 var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
                 for (var i = 0; i < rows.length; i++) {
@@ -992,7 +1019,7 @@ console.log(selectedvalue,'hihi')
            
         
             $(document).ready(function(){
-                $('#items-table-body').on('keyup change', function () {
+                $('#items-table-body1').on('keyup change', function () {
                     calc();
                 });
         

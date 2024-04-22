@@ -1,4 +1,5 @@
-<table class="table table-bordered table-hover mt-3" id="tab_logic">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+<table class="table table-bordered table-hover mt-3" id="tab_logic1">
     <thead>
         <tr>
             <th class="text-center">#</th>
@@ -13,15 +14,17 @@
         </tr>
     </thead>
     <tbody id="items-table-body1">
-    {% for j in item %}
-    <input type="text" value="{{j.hsn}}">
+    {% for j in items %}
+    
         <tr id='addr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
            
-
+            <td style="text-align: center; width:2%" class="nnum">
+                {{ forloop.counter }}
+            </td>
             <td style="width:18%" >
                 <div class="d-flex">
-                    <select name='product[]' id="product" class="form-control  product select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
-                        <option value="{{ j.item.id }}" selected hidden>{{ j.item.itm_name }}</option>
+                    <select name='product[]' id="product" class="form-control  product1 select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
+                        <option value="{{ j.item.id }}" selected >{{ j.item.itm_name }}</option>
                         <option selected disabled>Select Item</option>
                          {% for item in items %}
                             {% if i.cid_id == cmp.cid %}
@@ -39,18 +42,18 @@
             </td>
 
             <td style="width:15%">
-                <input type="text" name='hsn[]'  value="{{ j.itm_hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
+                <input type="text" name='hsn[]'  value="{{ j.hsn }}" id="hsn{{ j.id }}" class="form-control button_border" style="color: black; background-color: white;"/>
             </td>
 
             <td style="width: 13%;">
-                <input type="number" name='qty[]' value="{{ j.qty }}"  placeholder='Enter Qty' id="qty{{ j.id }}" value=0 class="form-control qty mb-1 button_border " step=0 min=0 style="color: black; background-color: white;" />
+                <input type="number" name='qty[]' value="{{ j.quantity }}"  placeholder='Enter Qty' id="qty{{ j.id }}" value=0 class="form-control qty mb-1 button_border " step=0 min=0 style="color: black; background-color: white;" />
             </td>
 
             <td style="width:12%">
-                <input type="number" name='price[]' value="{{ j.product.itm_purchase_price }}" id="unit{{ j.id }}"class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" />
+                <input type="number" name='price[]' value="{{ j.rate }}" id="unit{{ j.id }}"class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" />
             </td>
             <td style="width:12%">
-                <input type="text" name='vat[]' id="Vat{{ j.id }}" value="{{ j.VAT }}" class="form-control button_border seltax"  step="0.00" min="0" style="color: black; background-color: white;"  readonly />
+                <input type="text" name='vat[]' id="Vat{{ j.id }}" value="{{ j.tax }}" class="form-control button_border seltax"  step="0.00" min="0" style="color: black; background-color: white;"  readonly />
             </td>
             
             </td>
@@ -60,7 +63,7 @@
             </td>
 
             <td style="width:13%">
-                <input type="number" name='total[]' value="{{ j.total }}" id="total{{ j.id }}" placeholder=0 class="form-control total button_border" value=0 step="any" readonly style="color: black; background-color: white;" />
+                <input type="number" name='total[]' value="{{ j.totalamount }}" id="total{{ j.id }}" placeholder=0 class="form-control total button_border" value=0 step="any" readonly style="color: black; background-color: white;" />
             </td>
 
             <td style="display: none;">
@@ -69,7 +72,7 @@
 
             <td style="width:5%">
 
-                <button type="button" id="{{forloop.counter}}" class="btn button_border remove_row px-2 py-1 mx-1 fa fa-close" title="Remove Row">Delete </button>
+                <button type="button" id="{{forloop.counter}}" class="btn button_border remove_row1 px-2 py-1 mx-1 fa fa-close" title="Remove Row">Delete </button>
             </td>
         </tr>
     {% endfor %}
