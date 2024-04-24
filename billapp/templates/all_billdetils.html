@@ -316,7 +316,7 @@
                                     </thead>
                                     <tbody>
                                         {% for p in pbill %}
-                                        <tr>
+                                        <tr style="background-color:#f1dbd6;">
                                             <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billdate | date:'d-m-Y'}}</td>
                                             <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billno}}</td>
                                             <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.party}}</td>

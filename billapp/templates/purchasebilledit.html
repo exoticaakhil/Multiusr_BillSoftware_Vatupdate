@@ -1161,235 +1161,234 @@ console.log(selectedvalue,'hihi')
         
             
   
-        $(document).ready(function(){
+            $(document).ready(function(){
             
         
         
-        $('#add').click(function(){
-            var lastRowId = $('#items-table-body  tr:last').data('rowno');
-            console.log(lastRowId)
-          
-
-            // Increment the numeric part by one
-           
-            var roinc=lastRowId;
-            // var roinc = $("#items-table-body tr").length;
-            
-            
-            roinc++
-            
-            $('#items-table-body').append(
-                `<tr id='addr0${roinc}' data-rowno=${roinc}>
-                    <td class = 'nnum' style="text-align: center; width:2%"">${roinc}</td>
-                    <td style="width:18%">
-                        <div class="d-flex">
-                            <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control button_border product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
-                                <option value="" selected hidden>Select Product</option>
-                                {% for i in item %}
-                                    {% if i.cid_id == cmp.cid %}
-                                        <option value="{{ i.id }}" >{{ i.itm_name  }} </option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>&nbsp;&nbsp;&nbsp;
-                            <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                            
-                            
-                        </div>
-                    </td>
-
-                    <td tyle="width:15%">
-                        <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control button_border px-1" style="color: black; background-color: white;" readonly />
-                    </td>
-
-                    <td style="width:10%">
-                        <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control button_border qty mb-1" step=0 min=0 style="color: black; background-color: white;" />
-                    </td>
-
-                    <td tyle="width:12%">
-                        <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
-                    </td>
-
-                    <td tyle="width:12%">
-                        <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control button_border seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
-                    </td>  
-
-                    <td tyle="width:8%">
-                        <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control button_border disc" step=0 min=0 style="color: black; background-color: white;">
-                    </td>
-
-                    <td style="width:10%">
-                        <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control button_border total" value=0 step="any" style="color: black; background-color: white;" readonly />
-                    </td>
-
-                    <td hidden><input type="number" step="any" name='taxamount1' id="taxamount${roinc}" class=" taxamount" /></td>
-                    
-                    <td style="width:10%">
-                        <button type="button" id="${roinc}" class="btn button_border px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
-                    </td>
-                </tr>`
-            );
-            $(`.itemselect2${roinc}`).select2()
-
-            var table = document.getElementById('tab_logic');
-            var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                for (var i = 0; i < rows.length; i++) {
-                    var cells = rows[i].getElementsByTagName('td');
-                    cells[0].innerText = i + 1;
-                    
-                }
-           
-            });
+            $('#add').click(function(){
+                var lastRowId = $('#items-table-body  tr:last').data('rowno');
+                console.log(lastRowId)
+              
+    
+                // Increment the numeric part by one
                
-        
-           
-            $(document).on('change', '.product',function(){ 
-                var n = $(this).data("rowno");
-                console.log(n,'jhgjhg')
-                $.ajax({
-                    url: "{% url 'itemdetails' %}",
-                    type : 'GET',
-                    data:{
-                        id : $(this).val(),
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                        },
-                    
-                    success: function(response) {
-                        data = response.hsn
-                        data3 = response.price
-                        data4 = response.vat
-                        data5 = response.qty
+                var roinc=lastRowId;
+                // var roinc = $("#items-table-body tr").length;
+                
+                
+                roinc++
+                
+                $('#items-table-body').append(
+                    `<tr id='addr0${roinc}' data-rowno=${roinc}>
+                        <td class = 'nnum' style="text-align: center; width:2%"">${roinc}</td>
+                        <td style="width:18%">
+                            <div class="d-flex">
+                                <select name='product[]' id="product${roinc}" data-rowno=${roinc} class="form-control border-danger product select2 itemselect2${roinc}"  onchange="changeprd(${roinc})" style="color: black; background-color: white;">
+                                    <option value="" selected hidden>Select Product</option>
+                                    {% for i in item %}
+                                        {% if i.cid_id == cmp.cid %}
+                                            <option value="{{ i.id }}" >{{ i.itm_name  }} </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>&nbsp;&nbsp;&nbsp;
+                                <button id="modal_closing" type="button" class="btn button_border" data-bs-toggle="modal" data-bs-target="#newitem" data-bs-whatever="@mdo">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                                
+                                
+                            </div>
+                        </td>
+    
+                        <td tyle="width:15%">
+                            <input type="text" name='hsn[]' id="hsn${roinc}" class="form-control button_border px-1" style="color: black; background-color: white;" readonly />
+                        </td>
+    
+                        <td style="width:10%">
+                            <input type="number" name='qty[]' value=0 id="qty${roinc}" class="form-control button_border qty mb-1" step=0 min=0 style="color: black; background-color: white;" />
+                        </td>
+    
+                        <td tyle="width:12%">
+                            <input type="number" name='price[]' id="unit${roinc}" value=0 class="form-control button_border price" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
+                        </td>
+    
+                        <td tyle="width:12%">
+                            <input type="text" name='vat[]' id="Vat${roinc}" value=0 class="form-control button_border seltax" value="{{0}}" step="0.00" min="0" style="color: black; background-color: white;" readonly/>
+                        </td>  
+    
+                        <td tyle="width:8%">
+                            <input type="number" name='discount[]' placeholder='Enter Discount' value=0 id="disc${roinc}" class="form-control button_border disc" step=0 min=0 style="color: black; background-color: white;">
+                        </td>
+    
+                        <td style="width:10%">
+                            <input type="number" name='total[]' id="total${roinc}" placeholder=0 class="form-control button_border total" value=0 step="any" style="color: black; background-color: white;" readonly />
+                        </td>
+    
+                        <td hidden><input type="number" step="any" name='taxamount1' id="taxamount${roinc}" class=" taxamount" /></td>
                         
-                        
-                        document.getElementById('hsn'+n).value = data;
-                        document.getElementById('unit'+n).value = data3;
-                        document.getElementById('Vat'+n).value = data4;
-                        document.getElementById('qty'+n).value = data5;
-                        
-        
-                        
-                        
-                    },
-                    
-                });
-                calc();
-            });
-            function reloadItem() {
-                $.ajax({
-                    url: "{% url 'item_dropdown' %}",
-                    type: "GET",
-                    dataType: "json",
-                    data: $(this).serialize(),
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-        
-                    success: function(data) {
-                        var table = document.getElementById('tab_logic');
-                        var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                        for (var i = 1; i <= rows.length; i++) {
-                            itmdropdown = document.getElementById('product'+i)
-                            var selectedIndex = itmdropdown.selectedIndex;
-                            var selectedOption = itmdropdown.options[selectedIndex];
-                            var selectedValue = selectedOption.value;
-                            var selectedText = selectedOption.text;
-                            
-                            var dropdown = $(`#product${i}`);
-                            dropdown.empty();
-                            dropdown.append(`<option ${selectedValue} selected hidden>${selectedText}</option>`);
-                            $.each(data, function(key, value) {
-                                dropdown.append($('<option></option>').attr('value', key).text(value).val(key));
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            }
-        
-        
-            $(document).on('click','.remove_row',function(){
-                var row_id = $(this).attr("id");
-                // $('#addr0'+row_id+'').css('display','none');
-                $('#addr0'+row_id+'').remove();
+                        <td style="width:10%">
+                            <button type="button" id="${roinc}" class="btn button_border px-2 mx-1 py-1 remove_row fa fa-close">Delete</button>
+                        </td>
+                    </tr>`
+                );
+                $(`.itemselect2${roinc}`).select2()
+    
                 var table = document.getElementById('tab_logic');
                 var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-                for (var i = 0; i < rows.length; i++) {
-                    var cells = rows[i].getElementsByTagName('td');
-                    cells[0].innerText = i + 1;
-                    
-                }
-                calc();
-            });
-           
-        
-            $(document).ready(function(){
-                $('#items-table-body').on('keyup change', function () {
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].getElementsByTagName('td');
+                        cells[0].innerText = i + 1;
+                        
+                    }
+               
+                    });
+                   
+            
+                });
+                $(document).on('change', '.product',function(){ 
+                    var n = $(this).data("rowno");
+                    console.log(n,'jhgjhg')
+                    $.ajax({
+                        url: "{% url 'itemdetails' %}",
+                        type : 'GET',
+                        data:{
+                            id : $(this).val(),
+                            csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+                        
+                        success: function(response) {
+                            data = response.hsn
+                            data3 = response.price
+                            data4 = response.vat
+                            data5 = response.qty
+                            
+                            
+                            document.getElementById('hsn'+n).value = data;
+                            document.getElementById('unit'+n).value = data3;
+                            document.getElementById('Vat'+n).value = data4;
+                            document.getElementById('qty'+n).value = data5;
+                            
+            
+                            
+                            
+                        },
+                        
+                    });
                     calc();
                 });
-        
-                $('#tax').on('keyup change', function () {
-                    calc_total();
+                function reloadItem() {
+                    $.ajax({
+                        url: "{% url 'item_dropdown' %}",
+                        type: "GET",
+                        dataType: "json",
+                        data: $(this).serialize(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+            
+                        success: function(data) {
+                            var table = document.getElementById('tab_logic');
+                            var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                            for (var i = 1; i <= rows.length; i++) {
+                                itmdropdown = document.getElementById('product'+i)
+                                var selectedIndex = itmdropdown.selectedIndex;
+                                var selectedOption = itmdropdown.options[selectedIndex];
+                                var selectedValue = selectedOption.value;
+                                var selectedText = selectedOption.text;
+                                
+                                var dropdown = $(`#product${i}`);
+                                dropdown.empty();
+                                dropdown.append(`<option ${selectedValue} selected hidden>${selectedText}</option>`);
+                                $.each(data, function(key, value) {
+                                    dropdown.append($('<option></option>').attr('value', key).text(value).val(key));
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            
+            
+                $(document).on('click','.remove_row',function(){
+                    var row_id = $(this).attr("id");
+                    // $('#addr0'+row_id+'').css('display','none');
+                    $('#addr0'+row_id+'').remove();
+                    var table = document.getElementById('tab_logic');
+                    var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].getElementsByTagName('td');
+                        cells[0].innerText = i + 1;
+                        
+                    }
+                    calc();
                 });
-            });
-                
-            function calc() {
-        $('#tab_logic tbody tr').each(function () {
-            var html = $(this).html();
-            if (html != '') {
-                var qty = $(this).find('.qty').val();
-                var price = $(this).find('.price').val();
-                var dis = $(this).find('.disc').val();
-                var taxString = $(this).find('.seltax').val(); // Get the value from the input field
-                var tax = parseInt(taxString.replace(/\D/g, ''), 10); // Extract integer part using regular expression
-
-                console.log(taxString)
-                console.log(tax)
                
-       
-                $(this).find('.total').val((parseFloat(qty) *parseFloat(price))-parseFloat(dis));
-                $(this).find('.taxamount').val(((qty * price)-dis) * (tax / 100));
-                
-                calc_total();
-            }
-        });
-    }
-        
-            function calc_total() {
-                total = 0;
-                $('.total').each(function () {
-                    total += parseFloat($(this).val());
+            
+                $(document).ready(function(){
+                    $('#items-table-body').on('keyup change', function () {
+                        calc();
+                    });
+            
+                    $('#tax').on('keyup change', function () {
+                        calc_total();
+                    });
                 });
-                taxamount = 0;
-                $('.taxamount').each(function () {
-                    taxamount += parseFloat($(this).val());
-                });
-                $('#sub_total').val(total.toFixed(2));
-                $('#tax_amount').val(taxamount.toFixed(2));
-                adj_val = parseFloat($('#adj').val())
-                gtot = taxamount + total + adj_val;
-                $('#grandtotal').val(gtot.toFixed(2));
-                $('#baldue').val(gtot.toFixed(2));
-                adv_val = parseFloat($('#advance').val())
-                adv_val = gtot - adv_val
-                $('#balance').val(adv_val.toFixed(2));
-                
-            }
-        
-                
-        
-            $(document).on("change", "#adj", function(){
-                var subtot = $('#sub_total').val();
-                var tax = $('#tax_amount').val();
-                var adj = $("#adj").val();
-                var adv = $("#advance").val();
-                $('#grandtotal').val((parseFloat(subtot)+parseFloat(tax)+parseFloat(adj)).toFixed(2));
-                $('#balance').val((parseFloat(subtot)+parseFloat(tax)+parseFloat(adj)-parseFloat(adv)).toFixed(2));
-            });
-          
+                    
+                function calc() {
+            $('#tab_logic tbody tr').each(function () {
+                var html = $(this).html();
+                if (html != '') {
+                    var qty = $(this).find('.qty').val();
+                    var price = $(this).find('.price').val();
+                    var dis = $(this).find('.disc').val();
+                    var taxString = $(this).find('.seltax').val(); // Get the value from the input field
+                    var tax = parseInt(taxString.replace(/\D/g, ''), 10); // Extract integer part using regular expression
+    
+                    console.log(taxString)
+                    console.log(tax)
+                   
            
-        </script>
-
+                    $(this).find('.total').val((parseFloat(qty) *parseFloat(price))-parseFloat(dis));
+                    $(this).find('.taxamount').val(((qty * price)-dis) * (tax / 100));
+                    
+                    calc_total();
+                }
+            });
+        }
+            
+                function calc_total() {
+                    total = 0;
+                    $('.total').each(function () {
+                        total += parseFloat($(this).val());
+                    });
+                    taxamount = 0;
+                    $('.taxamount').each(function () {
+                        taxamount += parseFloat($(this).val());
+                    });
+                    $('#sub_total').val(total.toFixed(2));
+                    $('#tax_amount').val(taxamount.toFixed(2));
+                    adj_val = parseFloat($('#adj').val())
+                    gtot = taxamount + total + adj_val;
+                    $('#grandtotal').val(gtot.toFixed(2));
+                    $('#baldue').val(gtot.toFixed(2));
+                    adv_val = parseFloat($('#advance').val())
+                    adv_val = gtot - adv_val
+                    $('#balance').val(adv_val.toFixed(2));
+                    
+                }
+            
+                    
+            
+                $(document).on("change", "#adj", function(){
+                    var subtot = $('#sub_total').val();
+                    var tax = $('#tax_amount').val();
+                    var adj = $("#adj").val();
+                    var adv = $("#advance").val();
+                    $('#grandtotal').val((parseFloat(subtot)+parseFloat(tax)+parseFloat(adj)).toFixed(2));
+                    $('#balance').val((parseFloat(subtot)+parseFloat(tax)+parseFloat(adj)-parseFloat(adv)).toFixed(2));
+                });
+              
+               
+            </script>
   <script>
     $(document).ready(function () {
         cust_name = '{{cust_name}}'

@@ -16,16 +16,16 @@
     <tbody id="items-table-body1">
     {% for j in items %}
     
-        <tr id='addr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
+        <tr id='addrr0{{ forloop.counter }}' data-rowno="{{ forloop.counter }}">
            
             <td style="text-align: center; width:2%" class="nnum">
                 {{ forloop.counter }}
             </td>
             <td style="width:18%" >
                 <div class="d-flex">
-                    <select name='product[]' id="product" class="form-control  product1 select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
+                    <select name='product[]' id="product1" class="form-control  product1 select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
                         <option value="{{ j.item.id }}" selected >{{ j.item.itm_name }}</option>
-                        <option selected disabled>Select Item</option>
+                        <option  disabled>Select Item</option>
                          {% for item in items %}
                             {% if i.cid_id == cmp.cid %}
                                 <option style="border-color: #FFADB0;" value="{{ item.id }}" >{{ item.itm_name  }} </option>
@@ -79,3 +79,70 @@
     </tbody>
     
 </table>
+<input type="number" step="any" name='disvatper' id="tax_amount" value=0.00 readonly style="color: black; background-color: white;" class="form-control tax_amount"/>
+<script>
+            $(`.itemselect`).select2()
+            reloadItem1();
+            
+            $(document).ready(function(){
+                $('#items-table-body1').on('keyup change', function () {
+                    calc1();
+                });
+        
+                
+            });
+            function calc1() {
+        $('#tab_logic1 tbody tr').each(function () {
+            var html = $(this).html();
+            if (html != '') {
+                var qty = $(this).find('.qty').val();
+                var price = $(this).find('.price').val();
+                var dis = $(this).find('.disc').val();
+                var taxString = $(this).find('.seltax').val(); // Get the value from the input field
+                var tax = parseInt(taxString.replace(/\D/g, ''), 10); // Extract integer part using regular expression
+
+                console.log(taxString)
+                console.log(tax)
+               
+       
+                $(this).find('.total').val((parseFloat(qty) *parseFloat(price))-parseFloat(dis));
+                $(this).find('.taxamount').val(((qty * price)-dis) * (tax / 100));
+                
+                calc_total1();
+            }
+        });
+    }
+    function calc_total1() {
+        total = 0;
+        $('.total').each(function () {
+            total += parseFloat($(this).val());
+        });
+        taxamount = 0;
+        $('.taxamount').each(function () {
+            taxamount += parseFloat($(this).val());
+        });
+        $('#sub_total').val(total.toFixed(2));
+        $('.tax_amount').val(taxamount.toFixed(2));
+        adj_val = parseFloat($('#adj').val())
+        gtot = taxamount + total + adj_val;
+        $('#grandtotal').val(gtot.toFixed(2));
+        $('#baldue').val(gtot.toFixed(2));
+        adv_val = parseFloat($('#advance').val())
+        adv_val = gtot - adv_val
+        $('#balance').val(adv_val.toFixed(2));
+
+    }
+
+        
+
+    $(document).on("change", "#adj", function(){
+        var subtot = $('#sub_total').val();
+        var tax = $('#tax_amount').val();
+        var adj = $("#adj").val();
+        var adv = $("#advance").val();
+        $('#grandtotal').val((parseFloat(subtot)+parseFloat(tax)+parseFloat(adj)).toFixed(2));
+        $('#balance').val((parseFloat(subtot)+parseFloat(tax)+parseFloat(adj)-parseFloat(adv)).toFixed(2));
+    });
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet"  defer/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>

@@ -995,24 +995,24 @@
         }
 
         $('#party_details').change(function() {
-        $.ajax({
-            url: "{% url 'get_partydetails' %}",
-            data: { 
-                id: $('#party_details').val(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-            },
-            type: 'POST',
-            success: function(data) {
-                $('#balance').text("Available Balance: " + data.balance).show();
-                $('#party_phone').val(data.phone);
-                $('#address').val(data.address)
-                // Check if invoice number and date are available
-                
-                if (data.invoiceno && data.invoicedate) {
+            $.ajax({
+                url: "{% url 'get_partydetails' %}",
+                data: { 
+                    id: $('#party_details').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                type: 'POST',
+                success: function(data) {
+                    $('#balance').text("Available Balance: " + data.balance).show();
+                    $('#party_phone').val(data.phone);
+                    $('#address').val(data.address)
+                    
+                    // Check if invoice number and date are available
+                    if (data.invoiceno && data.invoicedate) {
                         for (var i = 0; i < data.invoiceno.length; i++) {
                             var optionText = data.invoiceno[i];
                             var optionTexts = data.invoicedate[i];
-                            console.log(optionText,"fghjgjdghds")
+                            console.log(optionText)
                             console.log(optionTexts)
                             $('#invoiceno').append($('<option>', {
                                 value: data.invoiceno[i],
@@ -1025,7 +1025,9 @@
                         }
                         // Show salesinvoiceid div if valid data is available
                         $('#salesinvoiceid').show();
-                  
+                        $('#inn').show();
+                        $('.inn').removeAttr('hidden');
+                        $('.invoicemain').attr('hidden', true);
                         
                     
                     } else {
@@ -1033,6 +1035,9 @@
                         $('#salesinvoiceid').hide();
                         $('#invoiceno').val('');
                         $('#invoicedate').val('');
+                        $('.inn').attr('hidden', true);
+                        $('.invoicemain').removeAttr('hidden');
+                        
                     }
                     // $('#placesupply').val(data.placeofsupply);
                     $('#paymethod').val(data.payment);
@@ -1056,6 +1061,7 @@
             
         });
      });
+     
      
 
 
