@@ -1675,11 +1675,17 @@ def saveCreditnote(request):
     print("item name: ",item_name)
     quantity = tuple(request.POST.getlist("qty[]"))
     print("item qty: ",quantity)
-    hsn = request.POST.getlist('hsn[]')
-    price =request.POST.getlist('price[]')
+    hsn = tuple(request.POST.getlist('hsn[]'))
+    print("item hsn: ",hsn)
+    price =tuple(request.POST.getlist('price[]'))
+    print("item price: ",price)
     tax =  tuple(request.POST.getlist("vat[]"))
+    print("item price: ",tax)
     total = tuple(request.POST.getlist("total[]"))
+    print("item price: ",total)
     discount = tuple(request.POST.getlist("discount[]"))
+    print("item price: ",discount)
+    print(hsn,'dtdtdr')
     
     if len(item_name) == len(quantity) == len(price) == len(tax) == len(discount) == len(hsn) == len(total) and item_name and quantity and price and tax and discount and hsn and total:
       mapped=zip(item_name,quantity,price,tax,discount,hsn,total)
@@ -1803,12 +1809,14 @@ def updateCreditnote(request,pk):
       party.save()
       print(party.party_name)
       creditnote.party=party
-      try:
-        salesinvoice = SalesInvoice.objects.get(company=cmp, party=party)
-        creditnote.salesinvoice = salesinvoice
-      except SalesInvoice.DoesNotExist:
-        # Handle the case where SalesInvoice does not exist
+      salesinvoice = SalesInvoice.objects.filter(company=cmp, party=party)
+      if salesinvoice:
+        idsales=request.POST['invoiceno']
+        creditnote.salesinvoice=SalesInvoice.objects.get(invoice_no=idsales,company=cmp)
+        creditnote.save()
+      else:
         pass
+      
       creditnote.save()
     else:
       creditnote.party = None

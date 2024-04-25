@@ -247,16 +247,18 @@
                     <div class="row mt-3 partyonfield" id="salesinvoiceid" hidden>
                         <div class="col-md-4">
                             <label for="validationDefaultUsername" class="form-label">Invoice Number</label>
-                            <input hidden type="text" class="form-control" id="invoiceno" name="invoiceno" value="{{credit_note.salesinvoice.invoice_no}}" readonly>
+                           
+                           
 
 
                             <select class="form-control" name="invoiceno" id="invoiceno" style="color: black;">
-                                <option value="" selected hidden>{{credit_note.salesinvoice.invoice_no}}</option>
+                                <option value="" selected >{{credit_note.salesinvoice.invoice_no}}</option>
                                 {% for bill_number in invoiceno %}
                                 <option value="{{ bill_number }}">{{ bill_number }}</option>
                                 {% endfor %}
                             </select>
-                            
+                           
+
                         </div>
 
                         <div class="col-md-4">
@@ -1291,11 +1293,33 @@
                 }
             });
         });
+        $(document).on('change', '.qty-input', function(){
+            var row = $(this).closest('tr');
+            var selectedValue = $(this).val();
+            var itemId = selectedValue.split(' ')[0];
+            calculateTotal(row);
+                    calculatevatperc(row);
+                    calculateSubtotal();
+                    calculateTax();
+                    calculateGrandtotal();
+                });
+                $(document).on('change', '.discount-input', function(){
+            var row = $(this).closest('tr');
+            var selectedValue = $(this).val();
+            var itemId = selectedValue.split(' ')[0];
+            calculateTotal(row);
+                    calculatevatperc(row);
+                    calculateSubtotal();
+                    calculateTax();
+                    calculateGrandtotal();
+                });
+
 
         $(document).on('change', '.item-name', function(){
             var row = $(this).closest('tr');
             var selectedValue = $(this).val();
             var itemId = selectedValue.split(' ')[0];
+            
             
             $.ajax({
                 url:"{% url 'get_itemdetails' %}",
@@ -1461,16 +1485,17 @@
             var tax = total * vatRate;
             row.find('.vatper-input').val(tax);
         }
-
-        $(document).on('input','.qty-input, .price-input, .discount-input, .adjustment', function(){
-            var row=$(this).closest('tr');
+        $(document).on('change', '.adjustment', function(){
+            var row = $(this).closest('tr');
+            var selectedValue = $(this).val();
+            var itemId = selectedValue.split(' ')[0];
             calculateTotal(row);
-            calculatevatperc(row);
-            calculateSubtotal();
-            calculateTax();
-            calculateGrandtotal();
-        });
-
+                    calculatevatperc(row);
+                    calculateSubtotal();
+                    calculateTax();
+                    calculateGrandtotal();
+                });
+        
         function calculateSubtotal(){
             var subtotal = 0;
             $('.table tbody tr').each(function() {

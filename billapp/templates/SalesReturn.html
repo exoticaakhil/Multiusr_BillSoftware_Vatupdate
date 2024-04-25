@@ -346,6 +346,7 @@
                         </div>
                     </div>
                     
+                    
 
                     <div class="clearfix" style="margin-top:10px">
                         <div class="row" style="margin-left: 2vh;" >
@@ -366,7 +367,7 @@
                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">VAT Amount</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                        <input type="number" step="any" name='disvatper' id="tax_amount" value=0.00 readonly style="color: black; background-color: white;" class="form-control tax_amount"/>
+                                        <input type="number" step="any" name='disvatper' id="tax_amount" value=0.00  style="color: black; background-color: white;" class="form-control tax_amount"/>
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -384,7 +385,7 @@
                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">Grand Total</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: black; background-color:white;" class="form-control "/>
+                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00  style="color: black; background-color:white;" class="form-control "/>
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -792,42 +793,40 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
 <script>
 
-    function changeprd11(a,b){
-  var selectedvalue=a.value
-console.log(selectedvalue,'hihi')
-        $.ajax({
-            url: "{% url 'itemdetails' %}",
-            type : 'GET',
-            data:{
-                id : selectedvalue,
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-            
-            success: function(response) {
-                data = response.hsn
-                data3 = response.price
-                data4 = response.vat
-                data5 = response.qty
-                console.log( data5)
-                
-                
-                document.getElementById(`hsn${b}`).value = data;
-                document.getElementById(`unit${b}`).value = data3;
-                document.getElementById(`Vat${b}`).value = data4;
-                document.getElementById(`qty${b}`).value = data5;
-                
+function changeprd11(a, b) {
+    var selectedvalue = a.value;
+    console.log(selectedvalue, 'hihi');
+    
+    // Add an alert message
+    alert('Are you ready to change invoice item!');
 
-                
-                
-            },
-            
-           
-        
-        });
-        calc1();
-       
-       
-    }
+    $.ajax({
+        url: "{% url 'itemdetails' %}",
+        type: 'GET',
+        data: {
+            id: selectedvalue,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(response) {
+            data = response.hsn;
+            data3 = response.price;
+            data4 = response.vat;
+            data5 = response.qty;
+            console.log(data5);
+
+            document.getElementById(`hsn${b}`).value = data;
+            document.getElementById(`unit${b}`).value = data3;
+            document.getElementById(`Vat${b}`).value = data4;
+            document.getElementById(`qty${b}`).value = data5;
+
+            // Optionally, call calc1() here if it's dependent on the response data
+        },
+        // Optionally, add error handling here
+    });
+    calc1();
+    // Optionally, call calc1() here if it's not dependent on the response data
+}
+
     function changeprd12(d){
         const itemselect = document.querySelector(`.itemselect3${d}`)
         const selectedOption =itemselect.options[itemselect.selectedIndex]
@@ -943,20 +942,7 @@ console.log(selectedvalue,'hihi')
 });
 function validateRows1() {
     var isValid = true;
-    $('#tab_logic1 tbody tr').each(function(index) {
-        var product = $(this).find('.hsn').val();
-        var qty = $(this).find('.qty').val();
-        if (product === '') {
-            alert('Select a product on row ' + (index + 1));
-            isValid = false;
-            return false;
-        }
-        if (qty === '' || qty === '0') {
-            alert('Add quantity in row ' + (index + 1));
-            isValid = false;
-            return false;
-        }
-    });
+   
     return isValid;
 }
 
@@ -1105,6 +1091,7 @@ function validateRows1() {
         adv_val = parseFloat($('#advance').val())
         adv_val = gtot - adv_val
         $('#balance').val(adv_val.toFixed(2));
+       
 
     }
 
@@ -1445,58 +1432,7 @@ $(document).on('change', '.itemselect3',function(){
        
        
     }
-    function validatecreditnote() {
-        var partystatus = document.querySelector('input[name="partyStatusGroup"]:checked');
-        console.log("partystatus:", partystatus);
-
-        if (!partystatus) {
-            alert('Please select Party Status');
-            return false;
-        }
-
-        var partystatusId = partystatus.id;
-        console.log("partystatus id is:", partystatusId);
-
-        if (partystatusId === "partyonRadio") {
-            var party = document.getElementById('party_details');
-            if (!party.value || party.value.trim() === '' || party.value === 'Select a party name') {
-                alert('Please select Party');
-                return false;
-            }
-        }
-
-        var itemInputs = document.querySelectorAll('.product');
-        var qtyInputs = document.querySelectorAll('.qty');
-        var itemInput = document.querySelectorAll('.product1');
-        for (var i = 0; i < itemInput.length; i++) {
-        var items = itemInput[i];
-        var qty = qtyInputs[i];
-        var rowNumber = i + 1;
-
-        if (!items.value || items.value.trim() === '' || items.value === 'Select Item') {
-            alert('Please select an Item in row ' + rowNumber);
-            return false;
-        }
-
-    }
-
-    for (var i = 0; i < itemInputs.length; i++) {
-        var item = itemInputs[i];
-        var qty = qtyInputs[i];
-        var rowNumber = i + 1;
-
-        if (!item.value || item.value.trim() === '' || item.value === 'Select Item') {
-            alert('Please select an Item in row ' + rowNumber);
-            return false;
-        }
-
-        if (isNaN(qty.value) || qty.value.trim() === '' || parseFloat(qty.value) <= 0) {
-            alert("Please enter valid quantity in row " + rowNumber);
-            return false;
-        }
-    }
-    return true; 
-    }
+    
     function checkhsn(element){
         var hsninput = element.value;
         var gstregexp = "[0-9]{6}";
