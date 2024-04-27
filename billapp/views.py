@@ -1753,7 +1753,26 @@ def edit_creditnote(request,pk):
   items = Item.objects.filter(company=cmp)
   unit = Unit.objects.filter(company=cmp)
   creditnote_curr=CreditNote.objects.get(id=pk,company=cmp)
+  name=creditnote_curr.party
   reference=creditnote_curr.reference_no
+  print(name)
+  sales_invoice = SalesInvoice.objects.filter(company=cmp,party=name)
+  if sales_invoice:
+      invoice_n = []
+      invoice_d =[]
+      invoice_p =[]
+      for i in sales_invoice:
+          invoice_n.append(i.invoice_no)
+          invoice_d.append(i.date)
+          invoice_p.append(i.address)
+      
+      print(invoice_n)
+     
+     
+  else:
+      invoice_n = None
+      invoice_d = None
+      invoice_p = None
   creditnote_items=CreditNoteItem.objects.filter(credit_note=creditnote_curr,company=cmp)
   for item in creditnote_items:
     print(f"Item ID: {item.id}")
@@ -1763,7 +1782,8 @@ def edit_creditnote(request,pk):
            'credit_note':creditnote_curr,
            'parties':parties,
            'reference':reference,
-           'items':items,'unit':unit
+           'items':items,'unit':unit,"invoiceno":invoice_n,
+          
           }
   return render(request,'edit_creditnote.html',context)
 

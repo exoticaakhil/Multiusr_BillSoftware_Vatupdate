@@ -23,7 +23,7 @@
             </td>
             <td style="width:18%" >
                 <div class="d-flex">
-                    <select name='product[]' id="product1" class="form-control  product1 select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
+                    <select name='product[]' id="product{{ j.id }}" class="form-control  product1 select2 itemselect"  onchange="changeprd11(this,`{{j.id}}`)" style="color: black; background-color: white; ">
                         <option value="{{ j.item.id }}" selected >{{ j.item.itm_name }}</option>
                         <option  disabled>Select Item</option>
                          {% for item in items %}
@@ -81,7 +81,18 @@
 </table>
 
 <script>
-            $(`.itemselect`).select2()
+
+    $(document).ready(function(){
+        $("#product").select2();
+        $(".itemselect").each(function(){
+            var id =$(this).attr('id');
+            $("#"+id).select2();
+        })
+
+    })
+    
+
+    
             reloadItem1();
             
             $(document).ready(function(){

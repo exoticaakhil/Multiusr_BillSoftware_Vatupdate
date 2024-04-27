@@ -248,11 +248,12 @@
                         <div class="col-md-4">
                             <label for="validationDefaultUsername" class="form-label">Invoice Number</label>
                            
-                           
+                            <input hidden type="text" class="form-control" id="invoiceno1" name="invoiceno" value="{{credit_note.salesinvoice.invoice_no}}" readonly>
+
 
 
                             <select class="form-control" name="invoiceno" id="invoiceno" style="color: black;">
-                                <option value="" selected >{{credit_note.salesinvoice.invoice_no}}</option>
+                                <option value="" selected hidden >{{credit_note.salesinvoice.invoice_no}}</option>
                                 {% for bill_number in invoiceno %}
                                 <option value="{{ bill_number }}">{{ bill_number }}</option>
                                 {% endfor %}
@@ -284,7 +285,7 @@
                             </thead>
                             <tbody>
                                 {% for i in creditnoteitem_curr %}
-                                <tr>
+                                <tr >
                                     <td class="p-3">{{forloop.counter}}</td>
                                     <td class="p-3">
                                         <div style="display: flex;">
@@ -348,25 +349,19 @@
                             
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control disvatper" id="disvatper" name="disvatper" value="{{credit_note.vat}}">
+                                <input  type="text" class="form-control disvatper" id="disvatper" name="disvatper" value="{{credit_note.vat}}">
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <label for="validationDefaultUsername" class="form-label">Tax Amount</label>
-                            
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control tax_amnt" id="tax_amnt" name="tax_amnt" value="{{credit_note.vat}}">
-                            </div>
-                        </div>
+                        
+                                <input hidden type="text" class="form-control tax_amnt" id="tax_amnt" name="tax_amnt" value="{{credit_note.vat}}">
+                        
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label for="validationDefaultUsername" class="form-label">Adjustment</label>
                             
                             </div>
                             <div class="col-md-6">
-                                <input type="number" class="form-control adjustment" id="adjustment" name="adjustment" value="{{credit_note.adjustment}}">
+                                <input type="number" class="form-control adjustment" id="adjustment" name="adjustment" value="{{credit_note.adjustment}}" oninput="calculateadj()">
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -888,7 +883,7 @@
 <script>
     $(document).ready(function() {
         // Check if there is a sales invoice number and date associated with the credit note
-        var invoiceNo = document.getElementById("invoiceno").value;
+        var invoiceNo = document.getElementById("invoiceno1").value;
         var invoiceDate = document.getElementById("invoicedate").value;
 
         if (invoiceNo && invoiceDate) {
@@ -1131,6 +1126,7 @@
 
         $(document).on('click', '.delete-row-button', function () {
             $(this).closest('tr').remove();
+            
             var row=$(this).closest('tr');
             calculateTotal(row);
             calculatevatperc(row);
@@ -1470,7 +1466,7 @@
             var discount = parseFloat(row.find('.discount-input').val());
 
             var total=(qty*price)-discount;
-            
+            console.log(total,'dfgsjhgedfs')
             row.find('.total-input').val(total); 
         }
 
@@ -1483,19 +1479,13 @@
             }
 
             var tax = total * vatRate;
+            console.log(tax,'dfgsjhgedfs')
             row.find('.vatper-input').val(tax);
         }
-        $(document).on('change', '.adjustment', function(){
-            var row = $(this).closest('tr');
-            var selectedValue = $(this).val();
-            var itemId = selectedValue.split(' ')[0];
-            calculateTotal(row);
-                    calculatevatperc(row);
-                    calculateSubtotal();
-                    calculateTax();
-                    calculateGrandtotal();
-                });
         
+        
+     
+
         function calculateSubtotal(){
             var subtotal = 0;
             $('.table tbody tr').each(function() {
@@ -1511,23 +1501,40 @@
             var totalTax = 0;
             $('.table tbody tr').each(function () {
                 var vatper = parseFloat($(this).find('.vatper-input').val());
-                totalTax += vatper;
+                if (!isNaN(vatper)) {
+                    totalTax += vatper;
+                }
+               
             });
-
+            var vat = parseFloat($('.tax_amnt').val());
+            totalTax += vat
+            console.log(vat,'sjdgfuhys')
             $('#disvatper').val(totalTax);
-            $('#tax_amnt').val(totalTax.toFixed(2));
+            
         }
 
         function calculateGrandtotal(){
             var grandtotal=0;
             var subtotal=parseFloat($('.subtotal').val());
-            var tax_amnt=parseFloat($('.tax_amnt').val());
+            var tax_amnt=parseFloat($('#disvatper').val());
+            var adj = parseFloat($('#adjustment').val());
+            console.log("Adjustment1:", adj);
+            console.log("tax:", tax_amnt);
+            grandtotal=subtotal+tax_amnt+(adj);
+            $('#grandTotal').val(grandtotal.toFixed(2))
+        }    
+       
+    });
+</script>
+<script>
+    function calculateadj(){
+            var grandtotal=0;
+            var subtotal=parseFloat($('.subtotal').val());
+            var tax_amnt=parseFloat($('#disvatper').val());
             var adj = parseFloat($('#adjustment').val());
             console.log("Adjustment:", adj);
             grandtotal=subtotal+tax_amnt+(adj);
             $('#grandTotal').val(grandtotal.toFixed(2))
         }    
-        $('.qty-input, .price-input, .discount-input, .adjustment,.subtotal,.disvatper,.tax_amnt,.adjustment,.grandTotal').trigger('input');
-    });
 </script>
 {% endblock %}
