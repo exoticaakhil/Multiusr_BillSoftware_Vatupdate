@@ -319,7 +319,7 @@
                                             <td style="width:13%">
                                                 <input type="number" name='total[]' id="total" class="form-control  total" value=0 readonly style="color: black; background-color:white;"  />
                                             </td>
-                                            <td hidden><input disabled type="number"  id="taxamount" class="taxamount" /></td>
+                                            <td hidden><input disabled type="number"  id="taxamount" class="taxamount" value=0 /></td>
                                             
                                             <td style="width:5%">
                                                 
@@ -341,14 +341,14 @@
 
                                 </div>
                                 
-                                <a class="btn button_border ml-1" role="button" id="add1" >+</a>
+                               
                             </div>
                         </div>
                     </div>
                     
                     
 
-                    <div class="clearfix" style="margin-top:10px">
+                    <div class="clearfix" style="margin-top:10px" id="cal1">
                         <div class="row" style="margin-left: 2vh;" >
                             <div class="col-md-5 table-responsive-md mt-3 " id="tab_logic_total" style=" color: black; border: 1px solid #68020F ; margin-left: -2vh;" >
                                 <div class="p-3">
@@ -367,7 +367,7 @@
                                         <div class="col-sm-4 mt-2"><label for="a" class="text-center">VAT Amount</label></div>
                                         <div class="col-sm-1 mt-2">:</div>
                                         <div class="col-sm-7">
-                                        <input type="number" step="any" name='disvatper' id="tax_amount" value=0.00  style="color: black; background-color: white;" class="form-control tax_amount"/>
+                                        <input type="text" step="any" name='disvatper' id="tax_amount" value=0.00  style="color: black; background-color: white;" class="form-control tax_amount"/>
                                         </div>
                                         <div class="col-sm-4 m-0 p-0"></div>
                                     </div>
@@ -1068,12 +1068,12 @@ function validateRows1() {
                 $(this).find('.total').val((parseFloat(qty) *parseFloat(price))-parseFloat(dis));
                 $(this).find('.taxamount').val(((qty * price)-dis) * (tax / 100));
                 
-                calc_total1();
+                calc_total();
             }
         });
     }
 
-    function calc_total1() {
+    function calc_total() {
         total = 0;
         $('.total').each(function () {
             total += parseFloat($(this).val());
@@ -1571,7 +1571,12 @@ $(document).on('change', '.itemselect3',function(){
                     $('#balance').text("Available Balance: " + data.balance).show();
                     $('#party_phone').val(data.phone);
                     $('#address').val(data.address)
-                    
+                    $('#invoiceno').html('')
+                    $('#invoiceno').append($('<option>', {
+                                value: '',
+                                text: 'select an Invoice number',
+                                hidden:true
+                            }));
                     // Check if invoice number and date are available
                     if (data.invoiceno && data.invoicedate) {
                         for (var i = 0; i < data.invoiceno.length; i++) {
@@ -1592,6 +1597,7 @@ $(document).on('change', '.itemselect3',function(){
                         $('#salesinvoiceid').show();
                         $('#inn').show();
                         $('.inn').removeAttr('hidden');
+                        $('#cal1').attr('hidden', true);
                         $('.invoicemain').attr('hidden', true);
                         $('.product').attr('disabled', true);
                         $('.HSNCODE').attr('disabled', true);
@@ -1600,6 +1606,11 @@ $(document).on('change', '.itemselect3',function(){
                         $('.seltax').attr('disabled', true);
                         $('.disc').attr('disabled', true);
                         $('.total').attr('disabled', true);
+                        $('#sub_total').attr('disabled', true);
+                        $('#tax_amount').attr('disabled', true);
+                        $('#adj').attr('disabled', true);
+                        $('#grandtotal').attr('disabled', true);
+   
                         
                     
                     } else {
@@ -1608,6 +1619,7 @@ $(document).on('change', '.itemselect3',function(){
                         $('#invoiceno').val('');
                         $('#invoicedate').val('');
                         $('.inn').attr('hidden', true);
+                        $('#cal1').removeAttr('hidden');
                         $('.invoicemain').removeAttr('hidden');
                         $('.product').removeAttr('disabled');
                         $('.HSNCODE').removeAttr('disabled');
@@ -1616,6 +1628,11 @@ $(document).on('change', '.itemselect3',function(){
                         $('.seltax').removeAttr('disabled');
                         $('.disc').removeAttr('disabled');
                         $('.total').removeAttr('disabled');
+                        $('#sub_total').removeAttr('disabled');
+                        $('#tax_amount').removeAttr('disabled');
+                        $('#adj').removeAttr('disabled');
+                        $('#grandtotal').removeAttr('disabled');
+                        
                         
                     }
                     // $('#placesupply').val(data.placeofsupply);

@@ -990,7 +990,9 @@
                 }
             });
         }
-
+        $(document).ready(function() {
+    $('#party_details').trigger('change');
+});
         $('#party_details').change(function() {
             $.ajax({
                 url: "{% url 'get_partydetails' %}",
@@ -1003,6 +1005,8 @@
                     $('#balance').text("Available Balance: " + data.balance).show();
                     $('#party_phone').val(data.phone);
                     $('#address').val(data.address)
+                    $('#invoiceno').html('')
+                   
                     
                     // Check if invoice number and date are available
                     if (data.invoiceno && data.invoicedate) {
