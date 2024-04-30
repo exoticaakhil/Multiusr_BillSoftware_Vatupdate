@@ -166,6 +166,10 @@
     ::-webkit-scrollbar{
         display: none
     }
+    .button_border {
+        border: 1px solid #68020F;
+        color: #68020F;
+    }
 </style>
 
 {% if itm %}
@@ -185,24 +189,24 @@
                                 <div class="col-md-3" style="margin-left: 7vh;">
                                     <div class="form-group">
                                         <label for="fromDate" style="color: black; margin-bottom: 1vh;">From Date:</label>
-                                        <input type="date" class="form-control h-100 border-danger" id="fromDate" style="color: black; background-color: white;" onchange="filterDates(this.value)">
+                                        <input type="date" class="form-control h-100 button_border" id="fromDate" style="color: black; background-color: white;" onchange="filterDates(this.value)">
                                         
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="toDate" style="color: black; margin-bottom: 1vh;">To Date:</label>
-                                        <input type="date" class="form-control h-100 border-danger" id="toDate" style="color: black; background-color: white;" onchange="filterDates()">
+                                        <input type="date" class="form-control h-100 button_border " id="toDate" style="color: black; background-color: white;" onchange="filterDates()">
                                     </div>
                                 </div>
                                
 
                                 <div class="col-md-2"></div>
                                 <div class="col-md-3 text-right" style="margin-right: 2vh; margin-left: 2vh;">
-                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="ExportToExcel()" style="color: #FF474D;">
+                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="ExportToExcel()" style="color:#68020F;">
                                         <i class="fas fa-file-excel" style="font-size:175%;"></i><br>EXCEL
                                     </button>
-                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="printfunction()" style="color: #FF474D;">
+                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="printfunction()" style="color:#68020F;">
                                         <i class="fas fa-file-pdf" style="font-size:175%;"></i><br>PDF
                                     </button>
                                     
@@ -230,7 +234,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <input id="search_input" style="padding-inline-start: 2rem; margin-left: 1vh; " class="w-100 border-danger text-dark pt-1 pb-1 pe-1 rounded" type="text" placeholder=" Search">
+                            <input id="search_input" style="padding-inline-start: 2rem; margin-left: 1vh; " class="w-75 button_border text-dark pt-1 pb-1 pe-1 rounded" type="text" placeholder=" Search">
                         </div>
                         <div class="col-md-6"></div>
                         <div class="col-md-2">
