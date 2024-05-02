@@ -2656,27 +2656,11 @@ progress {
     }
 }
 
-.table {
-    --bs-table-color: var(--bs-body-color);
-    --bs-table-bg: transparent;
-    --bs-table-border-color: #ebf1f6;
-    --bs-table-accent-bg: transparent;
-    --bs-table-striped-color: var(--bs-body-color);
-    --bs-table-striped-bg: #EAEFF4;
-    --bs-table-active-color: var(--bs-body-color);
-    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
-    --bs-table-hover-color: var(--bs-body-color);
-    --bs-table-hover-bg: #F6F9FC;
-    width: 100%;
-    margin-bottom: 1rem;
-    color: var(--bs-table-color);
-    vertical-align: top;
-    border-color: var(--bs-table-border-color)
-}
+
 
 .table>:not(caption)>*>* {
     padding: 16px 16px;
-   
+    background-color: var(--bs-table-bg);
     border-bottom-width: var(--bs-border-width);
     -webkit-box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
     box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg)
@@ -2824,7 +2808,7 @@ progress {
 
 .table-light {
     --bs-table-color: #000;
-    --bs-table-bg: #F6F9FC;
+    --bs-table-bg: #ffffff;
     --bs-table-border-color: #dde0e3;
     --bs-table-striped-bg: #eaedef;
     --bs-table-striped-color: #000;

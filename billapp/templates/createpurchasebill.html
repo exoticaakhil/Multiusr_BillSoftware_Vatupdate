@@ -297,15 +297,15 @@
                                         </div>
                                     </div>
     
-                                    <div class="clearfix" style="margin-top:10px">
+                                    <div class="clearfix" style="margin-top:10px;">
                                         <div class="row" style="margin-left: 2vh;" >
-                                            <div class="col-md-5 table-responsive-md mt-3 " id="tab_logic_total" style=" color: black; border: 1px solid #68020F; margin-left: -2vh;">
+                                            <div class="col-md-5 table-responsive-md mt-3 " id="tab_logic_total" style=" color: rgb(250, 248, 248); border: 1px solid #68020F; margin-left: -2vh;background-color: #68020F;">
                                                 <div class="p-3">
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label class="text-center">Sub Total</label></div>
+                                                        <div class="col-sm-4 mt-2"><label class="text-center" style="color: #ffffff;">Sub Total</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                            <input type="number" step="any" name='subtotal' value=0.00 readonly style="color: black;border-color: #68020F !important;" class="form-control border-danger" id="sub_total">
+                                                            <input type="number" step="any" name='subtotal' value=0.00 readonly style="color: rgb(0, 0, 0);border-color: #ffffff !important;background-color: #ffffff;" class="form-control border-danger" id="sub_total">
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -313,28 +313,28 @@
                                                
         
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center">VAT Amount</label></div>
+                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center" style="color: #ffffff;">VAT Amount</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                        <input type="number" step="any" name='taxamount' id="tax_amount" value=0.00 readonly style="color: black;border-color: #68020F !important;" class="form-control border-danger"/>
+                                                        <input type="number" step="any" name='taxamount' id="tax_amount" value=0.00 readonly style="color: rgb(0, 0, 0);border-color: #ffffff !important;background-color: #ffffff;" class="form-control border-danger"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
         
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center">Adjustment</label></div>
+                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center" style="color: #ffffff;">Adjustment</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                        <input type="number" step="any" name='adj' id="adj" value=0.00 class="form-control border-danger" style="color: black;border-color: #68020F !important;"/>
+                                                        <input type="number" step="any" name='adj' id="adj" value=0.00 class="form-control border-danger" style="color: rgb(0, 0, 0);border-color: #ffffff !important;background-color: #ffffff;"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
                                                     
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center">Grand Total</label></div>
+                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center" style="color: #ffffff;">Grand Total</label></div>
                                                         <div class="col-sm-1 mt-2">:</div>
                                                         <div class="col-sm-7">
-                                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: black;border-color: #68020F !important;" class="form-control border-danger"/>
+                                                        <input type="number" name='grandtotal' id="grandtotal" value=0.00 readonly style="color: rgb(0, 0, 0);border-color: #ffffff !important;background-color: #ffffff;" class="form-control border-danger"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
@@ -347,9 +347,9 @@
                             
                                     <div class="row">
                                         <div class="col-md-1 mt-4"></div>
-                                        <div class="col-md-5 mt-3 d-flex" style="margin-left:5vh">
-                                            <input type="submit" class="btn  me-3" name="Next" value="SAVE & NEXT" style="border: 1px solid #68020F;"></input> 
-                                            <input type="submit" class="btn " name="Save" value="SAVE" style="border: 1px solid #68020F;"></input>
+                                        <div class="col-md-5 mt-3 d-flex" >
+                                            <input type="submit" class="btn  me-3" name="Next" value="SAVE & NEXT" style="border: 1px solid #68020F;color: black;"></input> 
+                                            <input type="submit" class="btn " name="Save" value="SAVE" style="border: 1px solid #68020F;color: black;"></input>
                                         </div>
                                     </div>
                                 </div>
@@ -1305,7 +1305,7 @@ $(document).on("click", "#itemsave", function() {
                     <td hidden><input type="number" step="any" name='taxamount1' id="taxamount${roinc}" class=" taxamount" /></td>
                     
                     <td style="width:10%">
-                        <button type="button" id="${roinc}" class="btn button_border " px-2 mx-1 py-1 remove_row fa fa-close" >Delete</button>
+                        <button type="button" id="${roinc}" class="btn button_border  px-2 mx-1 py-1 remove_row fa fa-close" >Delete</button>
                     </td>
                 </tr>`
             );

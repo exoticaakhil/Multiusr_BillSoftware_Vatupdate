@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
 <style>
  
     .bs{
@@ -170,6 +166,9 @@
         border: 1px solid #68020F;
         color: #68020F;
     }
+    .table{
+        padding: 16px 16px;
+    }
 </style>
 
 {% if itm %}
@@ -248,7 +247,7 @@
                     <div class="row">
                         <div class="col-md-12" style="margin-left: 2vh;">
                             <div class="mt-3" style="overflow: scroll;height: 28rem; width: 97%;" id="tablediv">
-                                <table class="table table-bordered table-danger  table-striped tb table-responsive w-100" id="billtable"  style="text-align: center;background-color: #68020F;color:white;">
+                                <table class="table table-bordered table-danger   tb table-responsive w-100" id="billtable"  style="text-align: center;background-color: #68020F;color:white;">
                                     <thead >
                                         <tr class="fs-2 tb">
                                             <th style="background-color:#68020F;" class=" border-danger text-white">
@@ -318,9 +317,9 @@
                                             <th style="background-color:#68020F;" class=" border-danger text-white extra"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="background-color:#ffffff !important;">
                                         {% for p in pbill %}
-                                        <tr style="background-color:#f1dbd6;">
+                                        <tr style="background-color:#ffffff;">
                                             <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billdate | date:'d-m-Y'}}</td>
                                             <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billno}}</td>
                                             <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.party}}</td>

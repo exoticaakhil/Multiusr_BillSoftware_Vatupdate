@@ -135,15 +135,15 @@
             <div class="card bg-light bs"style="height:100%;">
                      
                 <div id ="pdfexclude" style="display: flex; margin-top: 30px; margin-left: auto;">
-                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="print_credit()" style="color: #FF474D;">
+                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="print_credit()" style="color:  #68020F;">
                         <i class="fas fa-print" style="font-size:175%;"></i><br>PRINT
                     </button>
-                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="export_as_pdf()" style="color: #FF474D;">
+                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="export_as_pdf()" style="color: #68020F;">
                         <i class="fas fa-file-pdf" style="font-size:175%;"></i><br>PDF
                     </button>
                     
                     <div class="dropdown">
-                        <button class="btn dropbtn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"  style="color: #FF474D;">
+                        <button class="btn dropbtn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"  style="color: #68020F;">
                             <i class="fas fa-share" style="font-size:175%;"></i><br>Share
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -247,7 +247,7 @@
                                         </thead>
                                         <tbody>
                                             {% for i in creditnoteitem_curr %}
-                                            <tr style="background-color: #FFD6D7;">
+                                            <tr style="background-color: #fcfcfc;">
                                                 <td class="p-3">{{ i.item }} </td>
                                                 <td class="p-3">{{i.hsn}}</td>
                                                 <td class="p-3">{{i.quantity}}</td>
@@ -348,7 +348,7 @@
                                         </thead>
                                         <tbody>
                                             {% for i in creditnoteitem_curr %}
-                                            <tr style="background-color: #FFD6D7;">
+                                            <tr style="background-color: #ffffff;">
                                                 <td class="p-3">{{ i.item }} </td>
                                                 <td class="p-3">{{i.hsn}}</td>
                                                 <td class="p-3">{{i.quantity}}</td>
@@ -442,7 +442,7 @@
                                 </div>
                                 <div class="table-responsive" style="padding: 30px;">
                                     <table id="itemtable" class="table table-bordered  tb table-responsive w-100" style="border: 1px solid black;">
-                                        <thead style="color: #68020F;">
+                                        <thead style="background-color: #68020F;color: #ffffff;">
                                                 <th>PRODUCT</th>
                                                 <th>HSN</th>
                                                 <th>QTY</th>
@@ -454,7 +454,7 @@
                                         </thead>
                                         <tbody>
                                             {% for i in creditnoteitem_curr %}
-                                            <tr style="background-color: #FFD6D7;">
+                                            <tr style="background-color: #fcfcfc;">
                                                 <td class="p-3">{{ i.item }} </td>
                                                 <td class="p-3">{{i.hsn}}</td>
                                                 <td class="p-3">{{i.quantity}}</td>
