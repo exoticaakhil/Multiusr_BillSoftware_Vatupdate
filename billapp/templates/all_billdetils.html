@@ -109,7 +109,7 @@
     }
 
     .tj{
-        color:#E4A11B;
+        color:#f37730;
     }
 
     .th{
@@ -166,7 +166,7 @@
         border: 1px solid #68020F;
         color: #68020F;
     }
-    .table{
+    .table1{
         padding: 16px 16px;
     }
 </style>
@@ -180,40 +180,33 @@
     <p></p>
     <div class="row ps-3 pe-3 m-0" >
         <div class="col-sm-12 ps-2 pe-3">
-            <div class="row pt-0 m-0">
-                <div class="card p-0  bs"><br>
+            <div class="row ">
+                <div class="card bs"><br>
                     <div class="row">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-3" style="margin-left: 7vh;">
-                                    <div class="form-group">
+                            <div class="d-flex flex-wrap justify-content-between mb-3">
+                                <div class="d-flex flex-wrap">
+                                    <div class="me-3 mb-2">
+                                        <label for="fromDate" class="col-form-label">From Date:</label>
                                         <label for="fromDate" style="color: black; margin-bottom: 1vh;">From Date:</label>
-                                        <input type="date" class="form-control h-100 button_border" id="fromDate" style="color: black; background-color: white;" onchange="filterDates(this.value)">
-                                        
+                                        <input type="date" class="form-control  button_border" id="fromDate" style="color: black; background-color: white;" onchange="filterDates(this.value)">
+                                    </div>
+                                    <div class="me-3 mb-2">
+                                        <label for="toDate" class="col-form-label">To Date:</label>
+                                        <input type="date" class="form-control  button_border " id="toDate" style="color: black; background-color: white;" onchange="filterDates()">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="toDate" style="color: black; margin-bottom: 1vh;">To Date:</label>
-                                        <input type="date" class="form-control h-100 button_border " id="toDate" style="color: black; background-color: white;" onchange="filterDates()">
-                                    </div>
-                                </div>
-                               
-
-                                <div class="col-md-2"></div>
-                                <div class="col-md-3 text-right" style="margin-right: 2vh; margin-left: 2vh;">
+                                <div class="mt-4">
                                     <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="ExportToExcel()" style="color:#68020F;">
                                         <i class="fas fa-file-excel" style="font-size:175%;"></i><br>EXCEL
                                     </button>
                                     <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="printfunction()" style="color:#68020F;">
                                         <i class="fas fa-file-pdf" style="font-size:175%;"></i><br>PDF
                                     </button>
-                                    
-
-                                    
                                 </div>
-                                
+                              
                             </div>
+                            
                         </div>
                     </div><br>
                     
@@ -227,7 +220,7 @@
                 <div class="card p-0  bs" style="height: 36rem; border:#68020F">
                     <div class="row m-0 p-0 pt-3">
                         <div class="col-sm-12 col-lg-3">
-                            <h4 class="tb fw-bolder pt-2 text-dangerborder-danger">PURCHASE BILLS</h4>
+                            <h4 class="tb fw-bolder pt-2 " style="color: #68020F;">PURCHASE BILLS</h4>
                         </div>
                     </div>
 
@@ -236,9 +229,10 @@
                             <input id="search_input" style="padding-inline-start: 2rem; margin-left: 1vh; " class="w-75 button_border text-dark pt-1 pb-1 pe-1 rounded" type="text" placeholder=" Search">
                         </div>
                         <div class="col-md-6"></div>
-                        <div class="col-md-2">
+                        
+                        <div class="col-md-2 ">
                             <a class="btn bb  w-90" href="{% url 'createbill' %}" style="color: white;"> 
-                                <i class="fa fa-plus border-dark" aria-hidden="true" style="color: white;"></i> &nbsp;Add Purchase Bill
+                                <i class="fa fa-plus border-dark" aria-hidden="true" style="color: white;"></i> &nbsp;Purchase Bill&nbsp;
                             </a>
                         </div>
                         
@@ -247,10 +241,10 @@
                     <div class="row">
                         <div class="col-md-12" style="margin-left: 2vh;">
                             <div class="mt-3" style="overflow: scroll;height: 28rem; width: 97%;" id="tablediv">
-                                <table class="table table-bordered table-danger   tb table-responsive w-100" id="billtable"  style="text-align: center;background-color: #68020F;color:white;">
+                                <table class=" table-bordered    tb table-responsive w-100" id="billtable"  style="text-align: center;background-color: #68020F;color:white;">
                                     <thead >
-                                        <tr class="fs-2 tb">
-                                            <th style="background-color:#68020F;" class=" border-danger text-white">
+                                        <tr class="fs-2 tb ">
+                                            <th style="background-color:#68020F;" class="table1 text-white">
                                                 DATE 
                                                 <a class="extra text-black" onclick="toggleDropdown(0)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent0">
@@ -260,7 +254,7 @@
                                                     &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(0)">Apply</a>
                                                 </div>
                                             </th>
-                                            <th style="background-color:#68020F;" class=" border-danger text-white">
+                                            <th style="background-color:#68020F;" class="  text-white">
                                                 BILL NO 
                                                 <a class="extra text-black" onclick="toggleDropdown(1)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent1">
@@ -270,7 +264,7 @@
                                                     &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(1)">Apply</a>
                                                 </div>
                                             </th>
-                                            <th style="background-color:#68020F;" class=" border-danger text-white">
+                                            <th style="background-color:#68020F;" class="  text-white">
                                                 PARTY NAME 
                                                 <a class="extra text-black" onclick="toggleDropdown(2)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent2">
@@ -280,7 +274,7 @@
                                                     &nbsp;<a class="btn " style="background-color: #68020F;color:white;" onclick="filterTable(2)">Apply</a>
                                                 </div>
                                             </th>
-                                            <th style="background-color:#68020F;" class=" border-danger text-white">
+                                            <th style="background-color:#68020F;" class="  text-white">
                                                 AMOUNT
                                                 <a class="extra text-black" onclick="toggleDropdown(3)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent3">
@@ -291,7 +285,7 @@
                                                 </div>
                                             </th>
                                             
-                                            <th style="background-color:#68020F;" class=" border-danger text-white">
+                                            <th style="background-color:#68020F;" class="  text-white">
                                                ACTION
                                                 <a class="extra text-black" onclick="toggleDropdown(4)">&nbsp;<i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent4">
@@ -303,7 +297,7 @@
                                             </th>
                                             
                                            
-                                            <th style="background-color:#68020F;" class=" border-danger text-white extra">
+                                            <th style="background-color:#68020F;" class="  text-white extra">
                                               BY
                                                 &nbsp; <a onclick="toggleDropdown(6)"><i class="fa fa-filter text-white" aria-hidden="true"></i></a>
                                                 <div class="dropdown-content" id="dropdownContent6">
@@ -314,24 +308,24 @@
                                                 </div>
                                             </th>
                                             
-                                            <th style="background-color:#68020F;" class=" border-danger text-white extra"></th>
+                                            <th style="background-color:#68020F;" class="  text-white extra"></th>
                                         </tr>
                                     </thead>
                                     <tbody style="background-color:#ffffff !important;">
                                         {% for p in pbill %}
-                                        <tr style="background-color:#ffffff;">
-                                            <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billdate | date:'d-m-Y'}}</td>
-                                            <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billno}}</td>
-                                            <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.party}}</td>
+                                        <tr style="background-color:#ffffff;" >
+                                            <td class="clickable-row pt-2" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billdate | date:'d-m-Y'}}</td>
+                                            <td class="clickable-row pt-2" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.billno}}</td>
+                                            <td class="clickable-row pt-2" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.party}}</td>
 
-                                            <td class="clickable-row" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.grandtotal}}</td>
+                                            <td class="clickable-row pt-2" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.grandtotal}}</td>
 
-                                            <td class="clickable-row extra" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.action}}</td>
-                                            <td class="clickable-row extra" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.name}}</td>
-                                            <td class="pt-3 m-0 extra">
+                                            <td class="clickable-row pt-2 extra" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.action}}</td>
+                                            <td class="clickable-row pt-2 extra" style="color: black;" data-href="details_purchasebill/{{ p.id }}">{{p.name}}</td>
+                                            <td class="pt-2 m-0 extra">
                                                 <div class="btn-group">
                                                     <button style="border: none;background: none;" type="button" class="ropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <span class="fa fa-ellipsis-v text-dark fs-1 ps-"></span>
+                                                        <span style="font-size: 20px; background:none;">&#8942;</span>
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                       <li><a class="dropdown-item fw-bold tb hide_table_text_v" href="{% url 'details_purchasebill' p.id %}"><span class="fa fa-eye pe-2 tg"></span> View </a></li>
@@ -403,7 +397,7 @@
                     </div>
                     <div class="col-md-3"></div>
                     <div class="col-sm-12 col-md-6 pb-3">
-                        <img  src="{% static 'img/image.webp' %}" class="card-img" alt="no img"> <br>
+                        <img  src="https://vyaparapp.in/v/z/wp-content/uploads/2023/09/2-15.webp" class="card-img" alt="no img"> <br>
                        <button style="background-color: #FFADB0;"> <a class="btn btn-lg" href="{% url 'createbill' %}" id="add_btn">Add Your First Purchase Bill</a></button>
                     </div>
                 </div>

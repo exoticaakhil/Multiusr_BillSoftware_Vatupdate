@@ -273,11 +273,11 @@
 
                                     <div class="clearfix" style="margin-top:20px">
                                         <div class="row" style="margin-left: 2vh;">
-                                            <div class="col-md-5 table-responsive-md mt-3" id="tab_logic_total" style=" border: 1px solid #68020F; color: black;   margin-left: -2vh;">
+                                            <div class="col-md-5 table-responsive-md mt-3" id="tab_logic_total" style=" border: 1px solid #68020F; color: black;   margin-left: -2vh;background-color: #68020F;">
                                                 <div class="p-3">
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label class="text-center">Sub Total</label></div>
-                                                        <div class="col-sm-1 mt-2">:</div>
+                                                        <div class="col-sm-4 mt-2"><label class="text-center" style="color: #ffffff;">Sub Total</label></div>
+                                                        <div class="col-sm-1 mt-2" style="color: #ffffff;">:</div>
                                                         <div class="col-sm-7">
                                                             <input type="number" step="any" name='subtotal' value="{{pbill.subtotal}}"style="color: black; background-color: white;" readonly class="form-control button_border" id="sub_total">
                                                         </div>
@@ -286,24 +286,24 @@
                                                  
                                                         
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center">Tax Amount</label></div>
-                                                        <div class="col-sm-1 mt-2">:</div>
+                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center" style="color: #ffffff;">Tax Amount</label></div>
+                                                        <div class="col-sm-1 mt-2" style="color: #ffffff;">:</div>
                                                         <div class="col-sm-7">
                                                             <input type="number" step="any" name='taxamount' value="{{pbill.taxamount}}" id="tax_amount"style="color: black; background-color: white;" readonly class="form-control button_border"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center">Adjustment</label></div>
-                                                        <div class="col-sm-1 mt-2">:</div>
+                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center" style="color: #ffffff;">Adjustment</label></div>
+                                                        <div class="col-sm-1 mt-2" style="color: #ffffff;">:</div>
                                                         <div class="col-sm-7">
                                                             <input type="number" step="any" name='adj' id="adj" value="{{pbill.adjust}}"style="color: black; background-color: white;" class="form-control button_border"/>
                                                         </div>
                                                         <div class="col-sm-4 m-0 p-0"></div>
                                                     </div>
                                                     <div class="row container-fluid p-2 m-0">
-                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center">Grand Total</label></div>
-                                                        <div class="col-sm-1 mt-2">:</div>
+                                                        <div class="col-sm-4 mt-2"><label for="a" class="text-center" style="color: #ffffff;">Grand Total</label></div>
+                                                        <div class="col-sm-1 mt-2" style="color: #ffffff;">:</div>
                                                         <div class="col-sm-7">
                                                             <input type="number" name='grandtotal' value="{{pbill.grandtotal}}" id="grandtotal"style="color: black; background-color: white;"  readonly class="form-control button_border"/>
                                                         </div>
@@ -317,10 +317,11 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-1 mt-3" style="margin-right: 8vh;"></div>
+                                      
                                         <div class="col-md-2 mt-3">
-                                            <button type="submit" class="btn button_border  w-75" name="Save"   > save</button>
+                                            <button type="submit" class="btn button_border  w-75" name="Save" style="background-color: #68020F;color: #ffffff;"  > save</button>
                                         </div>
+                                        <div class="col-md-1 mt-3" ></div>
                                     </div>
                                 </div>
                             </div>

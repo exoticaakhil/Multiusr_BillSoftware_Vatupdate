@@ -23,103 +23,138 @@
     .date-input{
         width: 120px;
     }
-  
+     
+    .bs{
+        box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.397);
+       
+    }
 
-   
+    .bs_sm{
+        box-shadow: inset 2px 2px 5px 3px rgba(0, 0, 0, 0.199);
+    }
+    .table1{
+        text-align: center;
+        padding: 16px 16px;
+    }
+  
+ 
 
     
 </style>
 {% if creditnotes%}
 
+
 <div class="body-wrapper">
     <div class="container">
-        <br><br><br><br><br><br><br>
-        <div class="p-3 mb-5" style="border: 2px solid #68020F; border-radius: 2.5vh;  height: 100vh;">
-            <div id="creditnote_detail_target">
-            <div class="mb-3 mb-sm-0">
-                <h1 class="modal-title fs-5 p-1" style="color: #68020F; font-weight: 900;">CREDITNOTE</h1>
-               <div id="pdfexclude"> 
-                <div class="d-flex flex-wrap justify-content-between mb-3">
-                    <div class="d-flex flex-wrap">
-                        <div class="me-3 mb-2">
-                            <label for="fromDate" class="col-form-label">From Date:</label>
+        <br><br><br><br>
+        <div class="p-3 " style=" border-radius: 2.5vh;">
+            <div class="row ">
+                <div class="card bs"><br>
+                    <div class="row">
+                        <div class="container">
+                            <div class="d-flex flex-wrap justify-content-between mb-3">
+                                <div class="d-flex flex-wrap">
+                                    <div class="me-3 mb-2">
+                                        <label for="fromDate" class="col-form-label">From Date:</label>
+                             
                             <input type="date" class="form-control date-input" id="fromDate">
-                        </div>
-                        <div class="me-3 mb-2">
-                            <label for="toDate" class="col-form-label">To Date:</label>
+                                    </div>
+                                    <div class="me-3 mb-2">
+                                        <label for="toDate" class="col-form-label">To Date:</label>
                             <input type="date" class="form-control date-input" id="toDate">
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="export_as_excel()" style="color:#68020F">
-                            <i class="fas fa-file-excel" style="font-size:175%;"></i><br>EXCEL
-                        </button>
-                        <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="export_as_pdf()" style="color:#68020F">
-                            <i class="fas fa-file-pdf" style="font-size:175%;"></i><br>PDF
-                        </button>
-                    </div>
-                  
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <div id="searchdiv">
-                            <div class="position-relative">
-                                <div class="position-absolute" style="margin-top:0.4rem;margin-left: 0.5rem;">
-                                    <span class="fa fa-search fs-5 text-danger"></span>
+                                    </div>
                                 </div>
+                                <div class="mt-4">
+                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="export_as_excel()" style="color:#68020F;">
+                                        <i class="fas fa-file-excel" style="font-size:175%;"></i><br>EXCEL
+                                    </button>
+                                    <button class="btn p-0 ps-2 pe-2 ms-2" type="button" onclick="export_as_pdf()" style="color: #68020F;">
+                                        <i class="fas fa-file-pdf" style="font-size:175%;"></i><br>PDF
+                                    </button>
+                                </div>
+                              
                             </div>
-                            <input id="searchInput" style="padding-inline-start: 2rem; width:200%; border: 1px solid #062925;" class="text-dark pt-1 pb-1 pe-1 rounded" type="text" placeholder=" search here..">
                             
                         </div>
+                    </div><br>
+                    
+                   
+                    <br>
+                </div>
+            </div>
+        </div>
+     
+        <div class="p-3 mb-5 col-md-12" style="box-shadow:  2px 2px 5px 3px rgba(0, 0, 0, 0.397);; border-radius: 2.5vh;  height: 100vh;">
+            
+            <div id="creditnote_detail_target">
+                
+                
+            <div class="mb-3 mb-sm-0">
+                <div class="row m-0 p-0 ">
+                    <div class="col-sm-12 col-lg-3">
+                        <h4 class="tb fw-bolder pt-2 text-dangerborder-danger">CREDIT NOTES</h4>
                     </div>
-                    <div class="col-md-8"></div>
-                    <div class="col-md-2">
+                </div>
+
+               
+                
+                
+                <div class="d-flex justify-content-between">
+                    
+                    <div id="searchdiv">
+                        <div class="position-relative">
+                            <div class="position-absolute" style="margin-top:0.4rem;margin-left: 0.5rem;">
+                                <span class="fa fa-search fs-5 text-danger"></span>
+                            </div>
+                        </div>
+                        <input id="searchInput" style="padding-inline-start: 2rem; width:200%; border: 1px solid #062925;" class="text-dark pt-1 pb-1 pe-1 rounded" type="text" placeholder=" search here..">
+                        
+                    </div>
+                    <div >
                         <button type="button" class="btn button_border me-3" id="addCreditNoteBtn">+ Add Credit Note</button>
                     </div>
-                    
+                   
                 </div>
-                
-                
                </div> 
                 
             </div>
             <div class="mt-3" >
-                <table id="credittable" class="table table-bordered  tb table-responsive w-100">
+                <table id="credittable" class="table1 table-danger table-bordered  tb table-responsive w-100" style="border-color: #e1a7a8;">
                     <thead style="background: #68020F; color: white;">
                         <tr>
-                            <th>#</th>
+                            
         <th class="text-center fs-2">
-            <div style="display: flex; align-items: center;">
+            <div style="display: flex; align-items: center; padding-left: 40px;">
                 DATE
                 <span class="fa fa-filter ps-1 fs-2" onclick="showdateFilter(this,1)"></span>
             </div>
         </th>
-        <th class="text-center fs-2">
-            <div style="display: flex; align-items: center;">
+        <th class="text-center table1 fs-2">
+            <div style="display: flex; align-items: center;padding-left: 50px;">
                 CREDITNOTE
                 <span class="fa fa-filter ps-1 fs-2" onclick="showFilterBox(this,2)"></span>
             </div>
         </th>
-        <th class="text-center fs-2">
-            <div style="display: flex; align-items: center;">
+        <th class="text-center fs-2 table1">
+            <div style="display: flex; align-items: center;padding-left: 50px;">
                 PARTY NAME
                 <span class="fa fa-filter ps-1 fs-2" onclick="showFilterBox(this,3)"></span>
             </div>
         </th>
-        <th class="text-center fs-2">
-            <div style="display: flex; align-items: center;">
+        <th class="text-center fs-2 table1">
+            <div style="display: flex; align-items: center;padding-left: 50px;">
                 TRANSACTION
                 <span class="fa fa-filter ps-1 fs-2" onclick="showFilterBox(this,4)"></span>
             </div>
         </th>
-        <th class="text-center fs-2">
-            <div style="display: flex; align-items: center;">
+        <th class="text-center fs-2 table1">
+            <div style="display: flex; align-items: center;padding-left: 50px;">
                 TYPE
                 <span class="fa fa-filter ps-1 fs-2" onclick="showFilterBox(this,5)"></span>
             </div>
         </th>
-        <th class="text-center fs-2">
-            <div style="display: flex; align-items: center;">
+        <th class="text-center fs-2 table1">
+            <div style="display: flex; align-items: center;padding-left: 50px;">
                 TOTAL
                 <span class="fa fa-filter ps-1 fs-2" onclick="showFilterBox(this,6)"></span>
             </div>
@@ -127,18 +162,18 @@
         <th class="text-center p-0 m-0" id="pdfexclude"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="border: 1px solid #68020F ">
                         {% for c in creditnotes %}
-                        <tr style="background-color: #f9f9f9;" >
-                            <td style="color: #000;">{{forloop.counter}}</td>
-                            <td style="color: #000;">{{c.returndate|date:'Y-m-d'}}</td>
-                            <td style="color: #000;">
+                        <tr style="background-color: #ffffff;" >
+                           
+                            <td  style="color: #000;">{{c.returndate|date:'Y-m-d'}}</td>
+                            <td  style="color: #000;">
                                     {{ c.reference_no }}</td>
-                            <td style="color: #000;">{{c.party.party_name}}</td>
-                            <td style="color: #000;">Credit Note</td>
-                            <td style="color: #000;">{{c.party.payment}}</td>
-                            <td style="color: #000;">{{c.grandtotal}}</td>
-                            <td style="color: #000;" class="p-0 pt-1 m-0" id="pdfexclude">
+                            <td  style="color: #000;">{{c.party.party_name}}</td>
+                            <td  style="color: #000;">Credit Note</td>
+                            <td  style="color: #000;">{{c.party.payment}}</td>
+                            <td  style="color: #000;">{{c.grandtotal}}</td>
+                            <td class="p-0 pt-1 m-0" id="pdfexclude">
                                 <div class="btn-group mb-1">
                                     <button style="border: none;background: none;" type="button" class="dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span style="font-size: 20px; background:none;">&#8942;</span>

@@ -30,6 +30,9 @@
     ::-webkit-scrollbar{
         display: none
     }
+    .table1{
+        padding: 16px 16px;
+    }
     
 </style>
 
@@ -49,33 +52,33 @@
                 </div>
             </div>
             <div class="tablediv" style="overflow: scroll;height: 35rem; width: 97%;">
-                <table class="table table-bordered table-danger table-striped tb table-responsive w-100" id="billtable"  style="text-align: center;">
+                <table class=" table-bordered table-danger  tb table-responsive w-100" id="billtable"  style="text-align: center;">
                     <thead >
-                        <tr class="fs-2 tb" >
-                            <th class=" text-white" style="background-color: #68020F;">
+                        <tr class="fs-2 tb mt-" >
+                            <th class=" text-white table1 " style="background-color: #68020F;">
                                 # 
                             </th>
-                            <th class=" text-white" style="background-color: #68020F;">
+                            <th class=" text-white table1" style="background-color: #68020F;">
                                 DATE 
                             </th>
-                            <th class=" text-white" style="background-color: #68020F;">
+                            <th class=" text-white table1" style="background-color: #68020F;">
                                 NAME 
                             </th>
-                            <th class=" text-white" style="background-color: #68020F;">
+                            <th class=" text-white table1" style="background-color: #68020F;">
                                 ACTION
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for h in hst %}
-                        <tr>
-                            <td>{{forloop.counter}}</td>
-                            <td style="color: black;" >{{h.transactiondate | date:'d-m-Y'}}</td>
-                            <td style="color: black;" >{{h.staff.first_name}} {{h.staff.last_name}}</td>
+                        <tr class="">
+                            <td class="table1">{{forloop.counter}}</td>
+                            <td class="table1" style="color: black;" >{{h.transactiondate | date:'d-m-Y'}}</td>
+                            <td class="table1" style="color: black;" >{{h.staff.first_name}} {{h.staff.last_name}}</td>
                             {% if h.action == 'Created' %}
-                                <td style="color: red;" >{{h.action}}</td>
+                                <td class="table1" style="color: red;" >{{h.action}}</td>
                             {% else %}
-                                <td style="color: #154c79;" >{{h.action}}</td>
+                                <td  class="table1"style="color: #154c79;" >{{h.action}}</td>
                             {% endif %}
                         </tr>
                         {% endfor %}
